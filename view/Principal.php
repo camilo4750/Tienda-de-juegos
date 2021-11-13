@@ -18,9 +18,8 @@
                             <i class="bi bi-card-checklist icons1"></i>
                             <h5 class="text-color1">Pedidos Online</h5>
                             <p class="card-text ">
-                                Lorem Ipsum es simplemente
-                                el texto de relleno de las
-                                imprentas y archivos de texto.
+                                Crea tu perfil y realiza compras con envios a todo el pais y
+                                garantia de 1 mes dias en todos nuestros productos
                             </p>
                         </div>
                     </div>
@@ -31,9 +30,8 @@
                             <i class="bi bi-cart-check-fill icons1"></i>
                             <h5 class="text-color1">Envios al instante</h5>
                             <p class="card-text">
-                                Lorem Ipsum es simplemente
-                                el texto de relleno de las
-                                imprentas y archivos de texto.
+                                Al mometo en que realizas la compra, imediatamente Quick Shopping
+                                se toma la responsabilidad enviar tu producto al instante
                             </p>
                         </div>
                     </div>
@@ -44,9 +42,9 @@
                             <i class="bi bi-credit-card-fill icons1"></i>
                             <h5 class="text-color1">Pagos en linea</h5>
                             <div class="card-text">
-                                Lorem Ipsum es simplemente
-                                el texto de relleno de las
-                                imprentas y archivos de texto.
+                                en Quick Shopping tienes la posibilidad de realizar tus
+                                compras online y al instante o realiza tu pago en puntos
+                                autorizados
                             </div>
                         </div>
                     </div>
@@ -57,9 +55,7 @@
                             <i class="bi bi-lock-fill icons1"></i>
                             <h5 class="text-color1">Seguridad</h5>
                             <div class="card-text">
-                                Lorem Ipsum es simplemente
-                                el texto de relleno de las
-                                imprentas y archivos de texto.
+                                Nos encargamos de que tus datos esten 100% protegidos y tus compras seguras siempre con la mejor calidad
                             </div>
                         </div>
                     </div>
@@ -70,22 +66,5 @@
     </div>
 
 </main>
-<div id="global">
-    <div id="mensajes">
-        <div class="texto">Mensaje 1</div>
-        <div class="texto">Mensaje 2</div>
-        <div class="texto">Mensaje 3</div>
-        <div class="texto">Mensaje 4</div>
-        <div class="texto">Mensaje 5</div>
-        <div class="texto">Mensaje 6</div>
-        <div class="texto">Mensaje 7</div>
-        <div class="texto">Mensaje 8</div>
-        <div class="texto">Mensaje 9</div>
-        <div class="texto">Mensaje 10</div>
-        <div class="texto">Mensaje 11</div>
-        <div class="texto">Mensaje 12</div>
-        <div class="texto">Mensaje 13</div>
-        <div class="texto">Mensaje 14</div>
-        <div class="texto">Mensaje 15</div>
-    </div>
+
 </div>

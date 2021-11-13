@@ -125,3 +125,10 @@
 .text-color1{
     color: rgb(65, 105, 225);
 }
+
+.icons {
+    width: 250px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 1.5rem;
+}
