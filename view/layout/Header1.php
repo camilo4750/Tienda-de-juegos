@@ -14,7 +14,7 @@
     <div class="row m-0">
         <div class="col-3 bg-black  overflow-auto">
             <nav class="primary-nav navbar-expand-md">
-                <div class="site-title text-center py-3">
+                <div class=" text-center py-3">
                     <a href="#" class="text-title-menu">Quick Shopping <i class="bi bi-controller"></i></a>
 
                     <p class="text-white">Tienda de juegos online</p>
@@ -27,7 +27,7 @@
                     <a href="#" class="nav-item nav-link text-subtitle-menu">Noticias</a>
                     <a href="#" class="nav-item nav-link text-subtitle-menu">Comunicate con
                         nosotros</a>
-                    <a href="#" class="nav-item nav-link text-subtitle-menu">Iniciar session</a>
+                    <a href="<?= baseUrl ?>users/session" class="nav-item nav-link text-subtitle-menu">Iniciar session</a>
                     <div class="container icons">
                         <a href=""><i class=" bi bi-twitter mx-1"></i></a>
                         <a href=""><i class="bi bi-facebook mx-1"></i></a>
@@ -49,7 +49,7 @@
 </header>
 <nav class="navbar navbar-expand-lg navbar-light bg-black fixed-top" id="menu">
     <div class="container-fluid">
-        <a class="navbar-brand text-white" href="#">Quick Shopping <i class="bi bi-controller"></i></a>
+        <a class="navbar-brand text-white" href="#">Tienda de juegos</a>
         <button class="navbar-toggler bg-white" type="button" data-bs-toggle="collapse" data-bs-target="#navbarScroll" aria-controls="navbarScroll" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>

@@ -1,6 +1,8 @@
 <?php
-class UserController {
-    public function index(){
-        echo "Hola desde el controlador";
+class UsersController
+{
+    public function session()
+    {
+        require_once 'view/users/session.php';
     }
 }

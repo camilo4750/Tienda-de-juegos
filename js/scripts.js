@@ -15,7 +15,7 @@ $(document).ready(function(e){
 });
 
 function toggle_onclik($win, $navbar, width){
-    if($win.width() <= 740){
+    if($win.width() <= 766){
         $navbar.css({left: `-${width}px`})
         document.getElementById('menu').style.display = 'block';
     }else{

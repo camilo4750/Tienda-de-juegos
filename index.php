@@ -12,12 +12,11 @@ function showError()
 }
 
 if (isset($_GET['controller'])) {
-    $nameController = $_GET['controller'] . 'controller';
+    $nameController = $_GET['controller'] . 'Controller';
 } elseif (!isset($_GET['controller']) && !isset($_GET['action'])) {
     $nameController = ControllerDefault;
 } else {
-    showError();
-    exit();
+    echo "error1";
 }
 
 if (class_exists($nameController)) {
@@ -30,8 +29,10 @@ if (class_exists($nameController)) {
         $actionDefault = ActionDefault;
         $controlador->$actionDefault();
     } else {
-        showError();
+        echo "error2";
     }
+} else {
+    echo "error3";
 }
 
 require_once('view/layout/Footer1.php');

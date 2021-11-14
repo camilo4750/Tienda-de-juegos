@@ -46,6 +46,12 @@
     transition: .5s;
 }
 
+.text-title {
+    font-size: 30px;
+    color: rgb(65, 105, 225);
+    font-family: 'Roboto', sans-serif;
+}
+
 .text-title-menu:hover{
     color: #ffffff;
     transition: .4s;
@@ -131,4 +137,73 @@
   margin-left: auto;
   margin-right: auto;
   margin-top: 1.5rem;
+}
+
+.btn-fixed {
+    background: rgb(64, 89, 167);
+    color: #ffffff;
+    font-size: 18px;
+    font-family: 'Roboto', sans-serif;
+    transition: 2s;    
+    font-weight: 500;
+    border-radius: 100px;
+    
+    
+}
+
+.btn-fixed:hover {
+    background: rgb(65, 105, 225);
+    color: #ffffff;
+    transition: .5s;
+    box-shadow: 0px 0px 15px  rgb(65, 105, 225);
+    font-size: 19px;
+}
+
+.btn-a {
+    background: rgb(202, 146, 42);
+    color: #ffffff;
+    font-size: 18px;
+    font-family: 'Roboto', sans-serif;
+    transition: 2s;    
+    font-weight: 500;
+    border-radius: 100px;
+    
+    
+}
+
+.btn-a:hover {
+    background: rgb(240, 157, 4);
+    color: #ffffff;
+    transition: .5s;
+    box-shadow: 0px 0px 15px  rgb(240, 157, 4);
+    font-size: 19px;
+}
+
+.btn-b {
+    background: rgb(149, 170, 233);
+    color: black;
+    font-size: 18px;
+    font-family: 'Roboto', sans-serif;
+    transition: 2s;    
+    font-weight: 500;
+    border-radius: 100px;
+    
+    
+}
+
+.btn-b:hover {
+    background: rgb(70, 96, 175);
+    color: black;
+    transition: .5s;
+    box-shadow: 0px 0px 15px  rgb(70, 96, 175);
+    font-size: 19px;
+}
+
+.border-color-blue {
+  box-shadow: 0px 0px 35px  rgb(65, 105, 225);
+}
+
+
+.mt-8 {
+    margin-top: 5rem;
 }
