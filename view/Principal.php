@@ -12,7 +12,7 @@
                 </figure>
             </div>
             <div class="row m-0 mt-4">
-                <div class="col-md-3 mb-3">
+                <div class="col-xl-3 col-md-6 mb-3">
                     <div class="card border-section">
                         <div class="card-body text-center">
                             <i class="bi bi-card-checklist icons1"></i>
@@ -24,7 +24,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-md-3 mb-3">
+                <div class="col-xl-3 col-md-6 mb-3">
                     <div class="card border-section">
                         <div class="card-body text-center">
                             <i class="bi bi-cart-check-fill icons1"></i>
@@ -36,7 +36,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-md-3 mb-3">
+                <div class="col-xl-3 col-md-6 mb-3">
                     <div class="card border-section">
                         <div class="card-body text-center">
                             <i class="bi bi-credit-card-fill icons1"></i>
@@ -49,7 +49,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-md-3 mb-3">
+                <div class="col-xl-3 col-md-6 mb-3">
                     <div class="card border-section">
                         <div class="card-body text-center">
                             <i class="bi bi-lock-fill icons1"></i>
@@ -61,10 +61,6 @@
                     </div>
                 </div>
             </div>
-
         </div>
     </div>
-
 </main>
-
-</div>

@@ -1,6 +1,7 @@
 <?php
 session_start();
 require_once('autoload.php');
+require_once('config/db.php');
 require_once('config/parameters.php');
 require_once('helpers/utilities.php');
 require_once('View/layout/Header1.php');

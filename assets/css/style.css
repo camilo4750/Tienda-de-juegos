@@ -180,7 +180,7 @@
 }
 
 .btn-b {
-    background: rgb(149, 170, 233);
+    background: rgb(69, 219, 64);
     color: black;
     font-size: 18px;
     font-family: 'Roboto', sans-serif;
@@ -192,10 +192,30 @@
 }
 
 .btn-b:hover {
-    background: rgb(70, 96, 175);
+    background: rgb(19, 235, 12);
     color: black;
     transition: .5s;
-    box-shadow: 0px 0px 15px  rgb(70, 96, 175);
+    box-shadow: 0px 0px 15px  rgb(19, 235, 12);
+    font-size: 19px;
+}
+
+.btn-c {
+    background: rgb(200, 39, 39);
+    color: #ffffff;
+    font-size: 18px;
+    font-family: 'Roboto', sans-serif;
+    transition: 2s;    
+    font-weight: 500;
+    border-radius: 100px;
+    
+    
+}
+
+.btn-c:hover {
+    background: rgb(230, 11, 11);
+    color: #ffffff;
+    transition: .5s;
+    box-shadow: 0px 0px 15px  rgb(230, 11, 11);
     font-size: 19px;
 }
 
@@ -206,4 +226,15 @@
 
 .mt-8 {
     margin-top: 5rem;
+}
+.mt-6 {
+    margin-top: 3.6rem;
+}
+
+.border-left-primary{
+    border-left: 0.25rem solid rgb(65, 105, 225);
+}
+
+.border-left-secondary{
+    border-left: 0.25rem solid rgb(14, 178, 243);
 }

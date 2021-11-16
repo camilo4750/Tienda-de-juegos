@@ -15,27 +15,46 @@
         <div class="col-3 bg-black  overflow-auto">
             <nav class="primary-nav navbar-expand-md">
                 <div class=" text-center py-3">
-                    <a href="#" class="text-title-menu">Quick Shopping <i class="bi bi-controller"></i></a>
-
+                    <a href="<?= baseUrl ?>Products/index" class="text-title-menu">
+                        Quick Shopping
+                        <i class="bi bi-controller"></i></a>
                     <p class="text-white">Tienda de juegos online</p>
                 </div>
                 <div class="flex-colum">
-                    <a href="#" class="nav-item nav-link text-subtitle-menu">Inicio</a>
-                    <a href="#" class="nav-item nav-link text-subtitle-menu">Nosotros</a>
-                    <a href="#" class="nav-item nav-link text-subtitle-menu">Servicios</a>
-                    <a href="#" class="nav-item nav-link text-subtitle-menu">Portafolio</a>
-                    <a href="#" class="nav-item nav-link text-subtitle-menu">Noticias</a>
-                    <a href="#" class="nav-item nav-link text-subtitle-menu">Comunicate con
-                        nosotros</a>
-                    <a href="<?= baseUrl ?>users/session" class="nav-item nav-link text-subtitle-menu">Iniciar session</a>
-                    <div class="container icons">
-                        <a href=""><i class=" bi bi-twitter mx-1"></i></a>
-                        <a href=""><i class="bi bi-facebook mx-1"></i></a>
-                        <a href=""><i class="bi bi-instagram mx-1"></i></a>
-                        <a href=""><i class="bi bi-xbox mx-1"></i></a>
-                        <a href=""><i class="bi bi-playstation mx-1"></i></a>
-                        <a href=""><i class="bi bi-nintendo-switch mx-1"></i></a>
-                    </div>
+                    <?php if (isset($_SESSION['Admin'])) : ?>
+                        <a href="<?= baseUrl ?>Users/perfil" class="nav-item nav-link text-subtitle-menu">Panel</a>
+                        <a href="#" class="nav-item nav-link text-subtitle-menu">Ver Clientes</a>
+                        <a href="#" class="nav-item nav-link text-subtitle-menu">Lista de Participantes</a>
+                        <a href="#" class="nav-item nav-link text-subtitle-menu">Crear Noticia</a>
+                        <a href="#" class="nav-item nav-link text-subtitle-menu">Crear Evento</a>
+                        <a href="#" class="nav-item nav-link text-subtitle-menu">Crear Producto</a>
+                        <a href="#" class="nav-item nav-link text-subtitle-menu">Crear Categoria</a>
+                        <a href="<?= baseUrl ?>Users/logout" class="nav-item nav-link text-subtitle-menu">Cerrar Session</a>
+
+
+
+
+                    <?php elseif (!isset($_SESSION['Admin'])) : ?>
+                        <a href="#" class="nav-item nav-link text-subtitle-menu">Inicio</a>
+                        <a href="#" class="nav-item nav-link text-subtitle-menu">Nosotros</a>
+                        <a href="#" class="nav-item nav-link text-subtitle-menu">Servicios</a>
+                        <a href="#" class="nav-item nav-link text-subtitle-menu">Portafolio</a>
+                        <a href="#" class="nav-item nav-link text-subtitle-menu">Noticias</a>
+                        <a href="#" class="nav-item nav-link text-subtitle-menu">Comunicate con
+                            nosotros</a>
+                        <a href="<?= baseUrl ?>Clients/sessions" class="nav-item nav-link text-subtitle-menu">
+                            Iniciar session</a>
+                        <a href="<?= baseUrl ?>Users/session" class="nav-item nav-link text-subtitle-menu">Admin</a>
+                        <div class="container icons">
+                            <a href=""><i class=" bi bi-twitter mx-1"></i></a>
+                            <a href=""><i class="bi bi-facebook mx-1"></i></a>
+                            <a href=""><i class="bi bi-instagram mx-1"></i></a>
+                            <a href=""><i class="bi bi-xbox mx-1"></i></a>
+                            <a href=""><i class="bi bi-playstation mx-1"></i></a>
+                            <a href=""><i class="bi bi-nintendo-switch mx-1"></i></a>
+                        </div>
+                    <?php endif; ?>
+
                 </div>
             </nav>
         </div>

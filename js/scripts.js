@@ -23,3 +23,7 @@ function toggle_onclik($win, $navbar, width){
         document.getElementById('menu').style.display = 'none';
     }
 }
+
+setTimeout(function() {
+    $('#mydiv').fadeOut('fast');
+}, 2500); // <-- time in milliseconds
