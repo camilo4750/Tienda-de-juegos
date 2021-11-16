@@ -1,5 +1,5 @@
 <?php
-class Cliente
+class Clients
 {
     private $idclient;
     private $name;
@@ -7,8 +7,6 @@ class Cliente
     private $email;
     private $image;
     private $description;
-    private $location;
-    private $telephone;
     private $password;
     private $create_at;
     private $status;
@@ -81,27 +79,6 @@ class Cliente
         return $this;
     }
 
-    public function getLocation()
-    {
-        return $this->location;
-    }
-    public function setLocation($location)
-    {
-        $this->location = $location;
-        return $this;
-    }
-
-
-    public function getTelephone()
-    {
-        return $this->telephone;
-    }
-    public function setTelephone($telephone)
-    {
-        $this->telephone = $telephone;
-        return $this;
-    }
-
     public function getPassword()
     {
         return password_hash($this->db->real_escape_string($this->password), PASSWORD_BCRYPT, ['cost' => 4]);
@@ -150,5 +127,35 @@ class Cliente
     {
         $this->client_fixed = $client_fixed;
         return $this;
+    }
+
+    public function save()
+    {
+        $SQL = "INSERT INTO clients VALUES(NULL, '{$this->getName()}', '{$this->getSurname()}', '{$this->getEmail()}', '{$this->getImage()}', '{$this->getDescription()}', '{$this->getPassword()}', CURDATE(), '{$this->getStatus()}', '{$this->getRol()}', '{$this->getClient_fixed()}');";
+        $Client = $this->db->query($SQL);
+        $save = false;
+        if ($Client) {
+            $save = true;
+        }
+        return $save;
+    }
+
+    public function login()
+    {
+        $result = false;
+        $email = $this->email;
+        $password = $this->password;
+
+        $SQL = "SELECT * FROM clients WHERE email = '{$email}'";
+        $login = $this->db->query($SQL);
+
+        if ($login && $login->num_rows == 1) {
+            $CLIENT = $login->fetch_object();
+            $verify = password_verify($password, $CLIENT->password);
+            if ($verify) {
+                $result = $CLIENT;
+            }
+        }
+        return $result;
     }
 }

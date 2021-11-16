@@ -14,14 +14,14 @@
                                     </div>
                                     <div class="col-md-6 p-0">
                                         <div class="card p-4 border-0 text-center border-color-blue">
-                                            <h3 class="text-title">Iniciar Session</h3>
-                                            <form action="<?= baseUrl ?>Users/save">
+                                            <h3 class="text-title">Iniciar Session Cliente</h3>
+                                            <form action="<?= baseUrl ?>Clients/login" method="POST">
                                                 <div class="form-floating mb-3">
-                                                    <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com">
+                                                    <input type="email" class="form-control" id="floatingInput" required name="email">
                                                     <label for="floatingInput">Email address</label>
                                                 </div>
                                                 <div class="form-floating">
-                                                    <input type="password" class="form-control" id="floatingPassword" placeholder="Password">
+                                                    <input type="password" class="form-control" id="floatingPassword" placeholder="Password" required name="password">
                                                     <label for="floatingPassword">Password</label>
                                                 </div>
 
@@ -54,21 +54,30 @@
                                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                         </div>
                                         <div class="modal-body">
-                                            <form>
+                                            <form action="<?= baseUrl ?>Clients/save" method="POST" enctype="multipart/form-data">
                                                 <div class="form-floating mb-3">
-                                                    <input type="text" class="form-control" placeholder="Nombre">
-                                                    <label for="floatingInput">Nombre</label>
+                                                    <input type="text" class="form-control" placeholder="Nombre" required name="name">
+                                                    <label for="floatingInput">Nombres</label>
                                                 </div>
                                                 <div class="form-floating mb-3">
-                                                    <input type="text" class="form-control" placeholder="Apellido">
-                                                    <label for="floatingInput">Apellido</label>
+                                                    <input type="text" class="form-control" placeholder="Apellidos" required name="surname">
+                                                    <label for="floatingInput">Apellidos</label>
+                                                </div>
+
+                                                <label for="">Foto perfil:</label>
+                                                <div class="form-control mb-3">
+                                                    <input type="file" class="form-control" required name="image">
                                                 </div>
                                                 <div class="form-floating mb-3">
-                                                    <input type="email" class="form-control" placeholder="Email">
+                                                    <input type="text" class="form-control" placeholder="Descripcion" required name="description">
+                                                    <label for="floatingInput">Descripcion</label>
+                                                </div>
+                                                <div class="form-floating mb-3">
+                                                    <input type="email" class="form-control" placeholder="Email" required name="email">
                                                     <label for="floatingInput">Email</label>
                                                 </div>
                                                 <div class="form-floating mb-3">
-                                                    <input type="email" class="form-control" placeholder="Password">
+                                                    <input type="password" class="form-control" placeholder="password" required name="password">
                                                     <label for="floatingInput">Password</label>
                                                 </div>
                                                 <div class="d-grid gap-2">
@@ -79,9 +88,28 @@
                                     </div>
                                 </div>
                             </div>
-
-
                         </div>
+                        <?php if (isset($_SESSION['save']) && $_SESSION['save'] = "exitoso") : ?>
+                            <div class="row" id="mydiv">
+                                <div class="col-md-4 offset-md-8">
+                                    <div class=" alert alert-success alert-dismissible fade show" role="alert">
+                                        <strong><i class="bi bi-person-check-fill"></i> Felicidades..!</strong> El usuario se ha creado correctamente.
+                                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                                    </div>
+                                </div>
+                            </div>
+                        <?php endif; ?>
+                        <?php if (isset($_SESSION['noIdentity']) && $_SESSION['noIdentity'] = "error1") : ?>
+                            <div class="row" id="mydiv">
+                                <div class="col-md-4 offset-md-8">
+                                    <div class=" alert alert-danger alert-dismissible fade show" role="alert">
+                                        <strong><i class="bi bi-person-x-fill"></i> Error</strong> Correo o contraseña se encuentran incorrectos
+                                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                                    </div>
+                                </div>
+                            </div>
+                        <?php endif; ?>
+                        <?php utilities::deleteSession(); ?>
                     </div>
                 </div>
             </div>

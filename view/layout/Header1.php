@@ -20,6 +20,7 @@
                         <i class="bi bi-controller"></i></a>
                     <p class="text-white">Tienda de juegos online</p>
                 </div>
+
                 <div class="flex-colum">
                     <?php if (isset($_SESSION['Admin'])) : ?>
                         <a href="<?= baseUrl ?>Users/perfil" class="nav-item nav-link text-subtitle-menu">Panel</a>
@@ -30,9 +31,6 @@
                         <a href="#" class="nav-item nav-link text-subtitle-menu">Crear Producto</a>
                         <a href="#" class="nav-item nav-link text-subtitle-menu">Crear Categoria</a>
                         <a href="<?= baseUrl ?>Users/logout" class="nav-item nav-link text-subtitle-menu">Cerrar Session</a>
-
-
-
 
                     <?php elseif (!isset($_SESSION['Admin'])) : ?>
                         <a href="#" class="nav-item nav-link text-subtitle-menu">Inicio</a>
@@ -54,7 +52,6 @@
                             <a href=""><i class="bi bi-nintendo-switch mx-1"></i></a>
                         </div>
                     <?php endif; ?>
-
                 </div>
             </nav>
         </div>
