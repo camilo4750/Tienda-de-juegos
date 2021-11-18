@@ -41,7 +41,7 @@ class UsersController
                 if ($identificado->rol == "Admin") {
                     $identificado->password = null;
                     $_SESSION['Admin'] = $identificado;
-                    header("Location:" . baseUrl . "Users/perfil");
+                    header("Location:" . baseUrl . "Users/panel");
                 }
             } else {
                 $_SESSION['noIdentity'] = "error1";
@@ -53,9 +53,9 @@ class UsersController
         }
     }
 
-    public function perfil()
+    public function panel()
     {
-        require_once('view/users/profile.php');
+        require_once('view/users/panel.php');
     }
 
     public function logout()

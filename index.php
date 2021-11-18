@@ -4,7 +4,6 @@ require_once('autoload.php');
 require_once('config/db.php');
 require_once('config/parameters.php');
 require_once('helpers/utilities.php');
-require_once('View/layout/Header1.php');
 
 function showError()
 {
@@ -35,5 +34,3 @@ if (class_exists($nameController)) {
 } else {
     echo "error3";
 }
-
-require_once('view/layout/Footer1.php');

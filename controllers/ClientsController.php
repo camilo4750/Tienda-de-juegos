@@ -33,6 +33,7 @@ class ClientsController
             $Client->setRol('user');
             $Client->setClient_fixed('inactivo');
             $Save = $Client->save();
+
             if ($Save) {
                 $_SESSION['save'] = "exitoso";
             } else {
