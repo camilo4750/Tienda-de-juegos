@@ -22,10 +22,10 @@
     <div id="wrapper">
 
         <!-- Sidebar -->
-        <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
+        <ul class="navbar-nav bg-gradient-dark  sidebar sidebar-dark accordion" id="accordionSidebar">
 
             <!-- Sidebar - Brand -->
-            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="#">
+            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="<?= baseUrl ?>Users/panel">
                 <div class="sidebar-brand-icon rotate-n-15">
                     <i class="bi bi-cart4"></i>
                 </div>
@@ -66,8 +66,7 @@
                 <div id="collapseTwo1" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">Componentes:</h6>
-                        <a class="collapse-item" href="#">Crear</a>
-                        <a class="collapse-item" href="#">Ver</a>
+                        <a class="collapse-item" href="<?= baseUrl ?>Clients/view">Ver</a>
                     </div>
                 </div>
             </li>
@@ -79,8 +78,7 @@
                 <div id="collapseTwo2" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">Componentes:</h6>
-                        <a class="collapse-item" href="#">Crear</a>
-                        <a class="collapse-item" href="#">Ver</a>
+                        <a class="collapse-item" href="<?= baseUrl ?>Participants/view">Ver</a>
                     </div>
                 </div>
             </li>
@@ -92,7 +90,7 @@
                 <div id="collapseTwo3" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">Componentes:</h6>
-                        <a class="collapse-item" href="#">Crear</a>
+                        <a class="collapse-item" href="<?= baseUrl ?>Tidings/create">Crear</a>
                         <a class="collapse-item" href="#">Ver</a>
                     </div>
                 </div>
@@ -105,7 +103,7 @@
                 <div id="collapseTwo4" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">Componentes:</h6>
-                        <a class="collapse-item" href="#">Crear</a>
+                        <a class="collapse-item" href="<?= baseUrl ?>Events/create">Crear</a>
                         <a class="collapse-item" href="#">Ver</a>
                     </div>
                 </div>
@@ -118,7 +116,7 @@
                 <div id="collapseTwo5" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">Componentes:</h6>
-                        <a class="collapse-item" href="#">Crear</a>
+                        <a class="collapse-item" href="<?= baseUrl ?>Products/create">Crear</a>
                         <a class="collapse-item" href="#">Ver</a>
                     </div>
                 </div>
@@ -131,7 +129,7 @@
                 <div id="collapseTwo6" class="collapse" aria-labelledby="headingTwo6" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">Componentes:</h6>
-                        <a class="collapse-item" href="#">Crear</a>
+                        <a class="collapse-item" href="<?= baseUrl ?>Category/create">Crear</a>
                         <a class="collapse-item" href="#">Ver</a>
                     </div>
                 </div>
@@ -155,7 +153,7 @@
             <!-- Main Content -->
             <div id="content">
                 <!-- Topbar -->
-                <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
+                <nav class="navbar navbar-expand navbar-light bg-dark topbar mb-4 static-top shadow">
                     <!-- Sidebar Toggle (Topbar) -->
                     <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
                         <i class="fa fa-bars"></i>

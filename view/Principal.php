@@ -65,7 +65,7 @@
     <div class="row">
         <?php if (isset($_SESSION['User'])) : ?>
             <div class="col-md-2">
-                <div class="card border-info">
+                <div class="card border-secondary">
                     <h5 class="text-center">Bienvenido: <?= $_SESSION['User']->name ?></h5>
                     <div class="card p-3">
                         <a href="#" class="btn btn-fixed p-0">Productos</a>
@@ -79,10 +79,10 @@
             <?php else : ?>
                 <div class="col-md-12">
                 <?php endif; ?>
-                <div class="card p-3">
+                <div class="card border-secondary p-3">
                     <div class="row">
                         <div class="col-xl-3 col-md-6">
-                            <div class="card mb-2 justify-content-center align-items-center">
+                            <div class="card border-info p-2 mb-2 justify-content-center align-items-center">
                                 <div>
                                     <img src="<?= baseUrl ?>assets/img/consols.jpg" class="bd-placeholder-img rounded-circle" width="140" height="140" alt="">
                                 </div>
@@ -92,7 +92,7 @@
                             </div>
                         </div>
                         <div class="col-xl-3 col-md-6 ">
-                            <div class="card mb-2 justify-content-center align-items-center">
+                            <div class="card mb-2 border-info p-2 justify-content-center align-items-center">
                                 <div>
                                     <img src="<?= baseUrl ?>assets/img/consols.jpg" class="bd-placeholder-img rounded-circle" width="140" height="140" alt="">
                                 </div>
@@ -102,7 +102,7 @@
                             </div>
                         </div>
                         <div class="col-xl-3 col-md-6 ">
-                            <div class="card mb-2 justify-content-center align-items-center">
+                            <div class="card mb-2 border-info p-2 justify-content-center align-items-center">
                                 <div>
                                     <img src="<?= baseUrl ?>assets/img/consols.jpg" class="bd-placeholder-img rounded-circle" width="140" height="140" alt="">
                                 </div>
@@ -112,7 +112,7 @@
                             </div>
                         </div>
                         <div class="col-xl-3 col-md-6 ">
-                            <div class="card justify-content-center align-items-center">
+                            <div class="card border-info p-2 justify-content-center align-items-center">
                                 <div>
                                     <img src="<?= baseUrl ?>assets/img/consols.jpg" class="bd-placeholder-img rounded-circle" width="140" height="140" alt="">
                                 </div>

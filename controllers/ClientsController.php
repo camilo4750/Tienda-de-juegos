@@ -72,4 +72,9 @@ class ClientsController
         }
         header("Location:" . baseUrl . "Products/index");
     }
+
+    public function view()
+    {
+        require_once('view/clients/view.php');
+    }
 }
