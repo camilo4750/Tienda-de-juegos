@@ -23,6 +23,9 @@
                     <li class="nav-item">
                         <a class="nav-link active" aria-current="page" href="<?= baseUrl ?>Products/index">Home</a>
                     </li>
+                    <?php if (isset($_SESSION['Admin'])) : ?>
+                        <?php unset($_SESSION['Admin']) ?>
+                    <?php endif; ?>
                     <li class="nav-item">
                         <a class="nav-link" href="<?= baseUrl ?>Clients/sessions">Iniciar session</a>
                     </li>

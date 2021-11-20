@@ -6,4 +6,27 @@ class CategoryController
     {
         require_once('view/category/create.php');
     }
+
+    public function save()
+    {
+        if (isset($_POST)) {
+            $Category = new Category();
+            $Category->setName($_POST['name']);
+            $Save = $Category->save();
+
+            if ($Save) {
+                $_SESSION['save'] = "exitoso";
+            } else {
+                echo "error en el save";
+            }
+        } else {
+            echo "error en post";
+        }
+        header("Location:" .  baseUrl . "Category/create");
+    }
+
+    public function view()
+    {
+        require_once('view/category/view.php');;
+    }
 }
