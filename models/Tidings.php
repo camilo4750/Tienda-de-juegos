@@ -73,4 +73,22 @@ class Tidings
         $this->status = $status;
         return $this;
     }
+
+    public function save()
+    {
+        $SQL = "INSERT INTO tidings VALUES(NULL, '{$this->getName()}', '{$this->getDescription()}', CURDATE(), '{$this->getImage()}', '{$this->getStatus()}');";
+        $tidings = $this->db->query($SQL);
+
+        $save = false;
+        if ($tidings) {
+            $save = true;
+        }
+        return $save;
+    }
+
+    public function total()
+    {
+        $TIDINGS = $this->db->query("SELECT * FROM tidings");
+        return $TIDINGS;
+    }
 }

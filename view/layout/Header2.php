@@ -14,7 +14,7 @@
     <link rel="stylesheet" href="<?= baseUrl ?>node_modules/bootstrap-icons/font/bootstrap-icons.css">
     <link href="<?= baseUrl ?>assets/css/sb-admin-2.min.css" rel="stylesheet">
     <link href="<?= baseUrl ?>vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
-    <link rel="stylesheet" type="text/css" href="<?= baseUrl ?>node_modules/DataTables/datatables.min.css"/>
+    <link rel="stylesheet" type="text/css" href="<?= baseUrl ?>node_modules/DataTables/datatables.min.css" />
     <link href="<?= baseUrl ?>assets/css/jquery.dataTables.min.css" rel="stylesheet">
 
 </head>
@@ -73,7 +73,7 @@
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">Componentes:</h6>
                         <a class="collapse-item" href="<?= baseUrl ?>Tidings/create">Crear</a>
-                        <a class="collapse-item" href="#">Ver</a>
+                        <a class="collapse-item" href="<?= baseUrl ?>Tidings/view">Ver</a>
                     </div>
                 </div>
             </li>
@@ -112,7 +112,7 @@
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">Componentes:</h6>
                         <a class="collapse-item" href="<?= baseUrl ?>Category/create">Crear</a>
-                        <a class="collapse-item" href="#">Ver</a>
+                        <a class="collapse-item" href="<?= baseUrl ?>Category/view">Ver</a>
                     </div>
                 </div>
             </li>

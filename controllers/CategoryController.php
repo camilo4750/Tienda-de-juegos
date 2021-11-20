@@ -27,6 +27,8 @@ class CategoryController
 
     public function view()
     {
+        $CATEGORY = new Category();
+        $CATEGORY = $CATEGORY->allCategory();
         require_once('view/category/view.php');;
     }
 }

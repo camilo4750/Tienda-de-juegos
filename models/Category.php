@@ -43,12 +43,7 @@ class Category
 
     public function allCategory()
     {
-        $SQL = "SELECT * FROM category";
-        $category = $this->db->query($SQL);
-        $save = false;
-        if ($category) {
-            $save = true;
-        }
-        return $save;
+        $CATEGORY = $this->db->query("SELECT * FROM category");
+        return $CATEGORY;
     }
 }
