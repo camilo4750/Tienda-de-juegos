@@ -1,15 +1,15 @@
-$(document).ready(function() {
-    $('#example').DataTable({
-        "language": {
-            "url": "//cdn.datatables.net/plug-ins/1.10.16/i18n/Spanish.json"
-        },
-        dom: 'Bfrtip',
-        buttons: [
-            'copyHtml5', 'excelHtml5', 'pdfHtml5', 'csvHtml5'
-        ]
-    });
-});
-
 setTimeout(function() {
     $('#mydiv').fadeOut('fast');
 }, 2500); // <-- time in milliseconds
+
+
+
+$(document).ready(function () {
+    $(window).scroll(function () {
+        if ($(document).scrollTop() > 450) {
+            $("#menu").css("background-color", "#FDFEFE");
+        } else {
+            $("#menu").css("background-color", "transparent");
+        }
+    });
+});

@@ -12,6 +12,9 @@
 </head>
 
 <body>
+    <?php if (isset($_SESSION['Admin'])) : ?>
+        <?php unset($_SESSION['Admin']) ?>
+    <?php endif; ?>
     <nav class="navbar navbar-expand-lg fixed-top nav-black" id="menu">
         <div class="container-fluid">
             <a class="navbar-brand text-title-menu" href="">Quick Shopping</a>
@@ -19,15 +22,18 @@
                 <span class="bi bi-card-list fs-1 "></span>
             </button>
             <div class="collapse navbar-collapse float-left" id="navbarScroll">
-                <ul class="navbar-nav  ms-auto  my-2 my-lg-0 navbar-nav-scroll" style="--bs-scroll-height: 100px;">
+                <ul class="navbar-nav  ms-auto  my-2 my-lg-0 navbar-nav-scroll" style="--bs-scroll-height: 150px;">
                     <li class="nav-item">
                         <a class="nav-link active" aria-current="page" href="<?= baseUrl ?>Products/index">Home</a>
                     </li>
-                    <?php if (isset($_SESSION['Admin'])) : ?>
-                        <?php unset($_SESSION['Admin']) ?>
-                    <?php endif; ?>
+                    <?php $CATEGORIES = utilities::allCategory() ?>
+                    <?php while ($CATEGORY = $CATEGORIES->fetch_object()) : ?>
+                        <li class="nav-item">
+                            <a class="nav-link" href="<?= baseUrl ?>Clients/sessions&id=<?= $CATEGORY->idcategory ?>"><?= $CATEGORY->name ?></a>
+                        </li>
+                    <?php endwhile; ?>
                     <li class="nav-item">
-                        <a class="nav-link" href="<?= baseUrl ?>Clients/sessions">Iniciar session</a>
+                        <a class="nav-link" href="<?= baseUrl ?>Clients/sessions">Iniciar Session</a>
                     </li>
 
                 </ul>

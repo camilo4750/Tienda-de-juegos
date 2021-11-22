@@ -14,4 +14,20 @@ class utilities
             $borrado = true;
         }
     }
+
+    public static function allCategory()
+    {
+        require_once('models/Category.php');
+        $CATEGORY = new Category();
+        $CATEGORY = $CATEGORY->allCategory();
+        return $CATEGORY;
+    }
+
+    public static function allTidings()
+    {
+        require_once('models/Tidings.php');
+        $TIDINGS = new Tidings();
+        $TIDINGS = $TIDINGS->total();
+        return $TIDINGS;
+    }
 }

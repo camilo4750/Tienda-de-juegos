@@ -8,7 +8,8 @@
 
 <!-- Custom scripts for all pages-->
 <script src="<?= baseUrl ?>js/sb-admin-2.min.js"></script>
-<script src="<?= baseUrl ?>js/scripts.js"></script>
+<script src="<?= baseUrl ?>js/script2.js"></script>
 <script type="text/javascript" src="<?= baseUrl ?>node_modules/DataTables/dataTables.min.js"></script>
 </body>
+
 </html>

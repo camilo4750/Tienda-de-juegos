@@ -30,7 +30,7 @@
                             <th><?= $tidings->name ?></th>
                             <th><?= $tidings->description ?></th>
                             <th><?= $tidings->create_at ?></th>
-                            <th><?= $tidings->image ?></th>
+                            <th> <img src="<?= baseUrl ?>uploads/Tidings/<?= $tidings->image ?>" height="80" alt=""></th>
                             <th><?= $tidings->status ?></th>
 
                         </tr>

@@ -9,60 +9,66 @@
         </div>
     </figure>
 </div>
-<div class="container">
-    <div class="row m-0 mt-4">
-        <div class="col-xl-3 col-md-6 mb-3">
-            <div class="card border-section">
-                <div class="card-body text-center">
-                    <i class="bi bi-card-checklist icons1"></i>
-                    <h5 class="text-color1">Pedidos Online</h5>
-                    <p class="card-text mb-4">
-                        Crea tu perfil y realiza compras con envios a todo el pais y
-                        garantia de 1 mes dias en todos nuestros productos
-                    </p>
-                </div>
-            </div>
-        </div>
-        <div class="col-xl-3 col-md-6 mb-3">
-            <div class="card border-section">
-                <div class="card-body text-center">
-                    <i class="bi bi-cart-check-fill icons1"></i>
-                    <h5 class="text-color1">Envios al instante</h5>
-                    <p class="card-text">
-                        Al mometo en que realizas la compra, imediatamente Quick Shopping
-                        se toma la responsabilidad enviar tu producto al instante
-                    </p>
-                </div>
-            </div>
-        </div>
-        <div class="col-xl-3 col-md-6 mb-3">
-            <div class="card border-section">
-                <div class="card-body text-center">
-                    <i class="bi bi-credit-card-fill icons1"></i>
-                    <h5 class="text-color1">Pagos en linea</h5>
-                    <div class="card-text">
-                        en Quick Shopping tienes la posibilidad de realizar tus
-                        compras online y al instante o realiza tu pago en puntos
-                        autorizados
+<section class="bg-light">
+    <div class="container">
+        <div class="row m-0 mt-4">
+            <div class="col-xl-3 col-md-6 mb-3">
+                <div class="card border-section">
+                    <div class="card-body text-center">
+                        <i class="bi bi-card-checklist icons1"></i>
+                        <h5 class="text-color1">Pedidos Online</h5>
+                        <p class="card-text mb-4">
+                            Crea tu perfil y realiza compras con envios a todo el pais y
+                            garantia de 1 mes dias en todos nuestros productos
+                        </p>
                     </div>
                 </div>
             </div>
-        </div>
-        <div class="col-xl-3 col-md-6 mb-3">
-            <div class="card border-section">
-                <div class="card-body text-center">
-                    <i class="bi bi-lock-fill icons1"></i>
-                    <h5 class="text-color1">Seguridad</h5>
-                    <div class="card-text mb-4 ">
-                        Nos encargamos de que tus datos esten 100% protegidos y tus compras seguras siempre con la mejor calidad
+            <div class="col-xl-3 col-md-6 mb-3">
+                <div class="card border-section">
+                    <div class="card-body text-center">
+                        <i class="bi bi-cart-check-fill icons1"></i>
+                        <h5 class="text-color1">Envios al instante</h5>
+                        <p class="card-text">
+                            Al mometo en que realizas la compra, imediatamente Quick Shopping
+                            se toma la responsabilidad enviar tu producto al instante
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xl-3 col-md-6 mb-3">
+                <div class="card border-section">
+                    <div class="card-body text-center">
+                        <i class="bi bi-credit-card-fill icons1"></i>
+                        <h5 class="text-color1">Pagos en linea</h5>
+                        <div class="card-text">
+                            en Quick Shopping tienes la posibilidad de realizar tus
+                            compras online y al instante o realiza tu pago en puntos
+                            autorizados
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xl-3 col-md-6 mb-3">
+                <div class="card border-section">
+                    <div class="card-body text-center">
+                        <i class="bi bi-lock-fill icons1"></i>
+                        <h5 class="text-color1">Seguridad</h5>
+                        <div class="card-text mb-4 ">
+                            Nos encargamos de que tus datos esten 100% protegidos y tus compras seguras siempre con la mejor calidad
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
+</section>
 <div class="container-fluid">
     <div class="row">
+        <div class="py-4 px-5">
+            <h2 class="text-title ">NUESTROS PRODUCTOS</h2>
+            <p class="text-primary">"No te quedes con las ganas de obtener el tuyo"</p>
+        </div>
         <?php if (isset($_SESSION['User'])) : ?>
             <div class="col-md-2">
                 <div class="card border-secondary">
@@ -79,52 +85,79 @@
             <?php else : ?>
                 <div class="col-md-12">
                 <?php endif; ?>
-                <div class="card border-secondary p-3">
-                    <div class="row">
-                        <div class="col-xl-3 col-md-6">
-                            <div class="card border-info p-2 mb-2 justify-content-center align-items-center">
-                                <div>
-                                    <img src="<?= baseUrl ?>assets/img/consols.jpg" class="bd-placeholder-img rounded-circle" width="140" height="140" alt="">
-                                </div>
-                                <h2>Heading</h2>
-                                <p>Some representative placeholder content for the three columns of text below the carousel. This is the first column.</p>
-                                <p class=""><a class="btn btn-secondary" href="#">View details »</a></p>
+                <div class="row mb-4">
+                    <div class="col-xl-3 col-md-6">
+                        <div class="card shadow border-secondary border-3  p-2 mb-2 justify-content-center align-items-center">
+                            <div>
+                                <img src="<?= baseUrl ?>assets/img/consols.jpg" class="bd-placeholder-img rounded-circle" width="140" height="140" alt="">
                             </div>
+                            <h2>Heading</h2>
+                            <p>Some representative placeholder content for the three columns of text below the carousel. This is the first column.</p>
+                            <p class=""><a class="btn btn-secondary" href="#">View details »</a></p>
                         </div>
-                        <div class="col-xl-3 col-md-6 ">
-                            <div class="card mb-2 border-info p-2 justify-content-center align-items-center">
-                                <div>
-                                    <img src="<?= baseUrl ?>assets/img/consols.jpg" class="bd-placeholder-img rounded-circle" width="140" height="140" alt="">
-                                </div>
-                                <h2>Heading</h2>
-                                <p>Some representative placeholder content for the three columns of text below the carousel. This is the first column.</p>
-                                <p><a class="btn btn-secondary" href="#">View details »</a></p>
+                    </div>
+                    <div class="col-xl-3 col-md-6 ">
+                        <div class="card mb-2 border-info p-2 justify-content-center align-items-center">
+                            <div>
+                                <img src="<?= baseUrl ?>assets/img/consols.jpg" class="bd-placeholder-img rounded-circle" width="140" height="140" alt="">
                             </div>
+                            <h2>Heading</h2>
+                            <p>Some representative placeholder content for the three columns of text below the carousel. This is the first column.</p>
+                            <p><a class="btn btn-secondary" href="#">View details »</a></p>
                         </div>
-                        <div class="col-xl-3 col-md-6 ">
-                            <div class="card mb-2 border-info p-2 justify-content-center align-items-center">
-                                <div>
-                                    <img src="<?= baseUrl ?>assets/img/consols.jpg" class="bd-placeholder-img rounded-circle" width="140" height="140" alt="">
-                                </div>
-                                <h2>Heading</h2>
-                                <p>Some representative placeholder content for the three columns of text below the carousel. This is the first column.</p>
-                                <p><a class="btn btn-secondary" href="#">View details »</a></p>
+                    </div>
+                    <div class="col-xl-3 col-md-6 ">
+                        <div class="card mb-2 border-info p-2 justify-content-center align-items-center">
+                            <div>
+                                <img src="<?= baseUrl ?>assets/img/consols.jpg" class="bd-placeholder-img rounded-circle" width="140" height="140" alt="">
                             </div>
+                            <h2>Heading</h2>
+                            <p>Some representative placeholder content for the three columns of text below the carousel. This is the first column.</p>
+                            <p><a class="btn btn-secondary" href="#">View details »</a></p>
                         </div>
-                        <div class="col-xl-3 col-md-6 ">
-                            <div class="card border-info p-2 justify-content-center align-items-center">
-                                <div>
-                                    <img src="<?= baseUrl ?>assets/img/consols.jpg" class="bd-placeholder-img rounded-circle" width="140" height="140" alt="">
-                                </div>
-                                <h2>Heading</h2>
-                                <p>Some representative placeholder content for the three columns of text below the carousel. This is the first column.</p>
-                                <p><a class="btn btn-secondary" href="#">View details »</a></p>
+                    </div>
+                    <div class="col-xl-3 col-md-6 ">
+                        <div class="card border-info p-2 justify-content-center align-items-center">
+                            <div>
+                                <img src="<?= baseUrl ?>assets/img/consols.jpg" class="bd-placeholder-img rounded-circle" width="140" height="140" alt="">
                             </div>
+                            <h2>Heading</h2>
+                            <p>Some representative placeholder content for the three columns of text below the carousel. This is the first column.</p>
+                            <p><a class="btn btn-secondary" href="#">View details »</a></p>
                         </div>
-                    </div><!-- /.row -->
-                </div>
+                    </div>
+                </div><!-- /.row -->
+
                 </div>
             </div>
+    </div>
+</div>
+<div class="container-fluid">
+    <?php $TIDINGS = utilities::allTidings(); ?>
+    <div class="row bg-light">
+        <div class="py-4 px-5">
+            <h2 class="text-title ">NOTICIAS DE ULTIMA HORA</h2>
+            <p class="text-primary">"Conoce todo lo que sucede en el mundo de los videojuegos no te quedes sin ninguna novedad..!"</p>
+        </div>
+
+        <?php while ($TIDING = $TIDINGS->fetch_object()) : ?>
+            <div class="col-xl-6 col-md-6">
+                <div class="card mb-3 shadow">
+                    <div class="row g-0">
+                        <div class="col-md-5">
+                            <img src="<?= baseUrl ?>uploads/Tidings/<?= $TIDING->image ?>" class="img-fluid rounded-start p-0" alt="...">
+                        </div>
+                        <div class="col-md-7">
+                            <div class="card-body">
+                                <h5 class="card-title"><?= $TIDING->name ?></h5>
+                                <p class="card-text"><?= $TIDING->description ?></p>
+                                <p class="card-text"><small class="text-muted">Ultima actializacion: <?= $TIDING->create_at ?></small></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        <?php endwhile; ?>
     </div>
 </div>
 <?php require_once('view/layout/Footer1.php'); ?>

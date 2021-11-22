@@ -23,18 +23,29 @@
     transition: .5s;
 }
 
-.text-title {
-    font-size: 30px;
-    color: rgb(65, 105, 225);
-    font-family: 'Roboto', sans-serif;
-}
-
 .text-title-menu:hover{
     color: #ffffff;
     transition: .4s;
     font-size: 31px;
     font-family: 'Roboto', sans-serif;
 }
+
+.text-title {
+    font-size: 40px;
+    font-weight: 500;
+    color: rgb(65, 105, 225);
+    font-family: 'Roboto', sans-serif;
+}
+
+.text-primary {
+    font-size: 23px;
+    line-height: 10px;
+    font-weight: 300;
+    color: black !important; 
+    font-family: 'Roboto', sans-serif;
+}
+
+
 
 .envase {
     width: 100%;
