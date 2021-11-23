@@ -8,7 +8,7 @@
         </ol>
     </nav>
     <?php if (isset($_SESSION['save']) && $_SESSION['save'] == "exitoso") : ?>
-        <div class="row" id="mydiv">
+        <div class="row" id="alerta">
             <div class="col-md-12 ">
                 <div class=" text-center alert alert-success alert-dismissible fade show" role="alert">
                     <strong> <i class="bi bi-newspaper"></i>

@@ -75,6 +75,8 @@ class ClientsController
 
     public function view()
     {
+        $CLIENTS = new Clients();
+        $CLIENTS = $CLIENTS->allClients();
         require_once('view/clients/view.php');
     }
 }

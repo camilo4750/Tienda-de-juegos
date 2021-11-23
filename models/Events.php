@@ -84,4 +84,21 @@ class Events
         $this->status = $status;
         return $this;
     }
+
+    public function save()
+    {
+        $SQL = "INSERT INTO events VALUES(NULL, '{$this->getName()}', '{$this->getDescription()}', '{$this->getCreate_at()}', '{$this->getExpires_in()}', '{$this->getImage()}', '{$this->getStatus()}');";
+        $event = $this->db->query($SQL);
+        $Save = false;
+        if ($event) {
+            $Save = true;
+        }
+        return $Save;
+    }
+
+    public function all()
+    {
+        $EVENTS = $this->db->query("SELECT * FROM events");
+        return $EVENTS;
+    }
 }

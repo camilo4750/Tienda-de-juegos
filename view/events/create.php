@@ -1,5 +1,16 @@
 <?php require_once('view/layout/Header2.php') ?>
 <div class="container">
+    <?php if (isset($_SESSION['save']) && $_SESSION['save'] == "exitoso") : ?>
+        <div class="row" id="alerta">
+            <div class="col-md-12 ">
+                <div class=" text-center alert alert-success alert-dismissible fade show" role="alert">
+                    <strong> <i class="bi bi-calendar-day-fill"></i>
+                        El evento se ha creado exitosamente..!</strong>
+                </div>
+            </div>
+        </div>
+    <?php endif; ?>
+    <?php utilities::deleteSession(); ?>
     <nav style="--bs-breadcrumb-divider: url(&#34;data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='8' height='8'%3E%3Cpath d='M2.5 0L1 1.5 3.5 4 1 6.5 2.5 8l4-4-4-4z' fill='currentColor'/%3E%3C/svg%3E&#34;);" aria-label="breadcrumb">
         <ol class="breadcrumb">
             <li class="breadcrumb-item"><a href="<?= baseUrl ?>Events/create">Crear</a></li>
@@ -12,7 +23,6 @@
             <h6 class="m-0 font-weight-bold text-primary">EVENTOS</h6>
         </div>
         <div class="card-body">
-
             <form class="user" action="<?= baseUrl ?>Events/save" method="POST" enctype="multipart/form-data">
                 <div class="form-group row">
                     <div class="col-sm-6 mb-3 mb-sm-0">
@@ -45,12 +55,12 @@
                         </select>
                     </div>
                 </div>
-                <a href="#" class="btn btn-success btn-icon-split float-right   ">
+                <button class="btn btn-success btn-icon-split float-right" type="submit">
                     <span class="icon text-white-50">
                         <i class="bi bi-check-circle-fill"></i>
                     </span>
-                    <span class="text">CREAR EVENTOS</span>
-                </a>
+                    <span class="text">CREAR CATEGORIA</span>
+                </button>
             </form>
         </div>
     </div>

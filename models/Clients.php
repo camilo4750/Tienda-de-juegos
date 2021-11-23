@@ -158,4 +158,10 @@ class Clients
         }
         return $result;
     }
+
+    public function allClients()
+    {
+        $CLIENTS = $this->db->query("SELECT * FROM clients");
+        return $CLIENTS;
+    }
 }

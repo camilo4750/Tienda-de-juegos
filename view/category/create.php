@@ -1,7 +1,7 @@
 <?php require_once('view/layout/Header2.php') ?>
 <div class="container">
     <?php if (isset($_SESSION['save']) && $_SESSION['save'] == "exitoso") : ?>
-        <div class="row" id="mydiv">
+        <div class="row" id="alerta">
             <div class="col-md-12 ">
                 <div class=" text-center alert alert-success alert-dismissible fade show" role="alert">
                     <strong> <i class="bi bi-file-earmark-plus-fill"></i> La categoria se ha creado exitosamente..!</strong>

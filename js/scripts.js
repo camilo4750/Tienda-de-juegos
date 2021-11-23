@@ -7,9 +7,9 @@ setTimeout(function() {
 $(document).ready(function () {
     $(window).scroll(function () {
         if ($(document).scrollTop() > 450) {
-            $("#menu").css("background-color", "#FDFEFE");
+            $("#menu").css("background-color", "rgb(0, 0, 0)");
         } else {
-            $("#menu").css("background-color", "transparent");
+            $("#menu").css("background-color", "rgb(0, 0, 0, .6)");
         }
     });
 });

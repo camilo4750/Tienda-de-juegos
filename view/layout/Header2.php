@@ -86,7 +86,7 @@
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">Componentes:</h6>
                         <a class="collapse-item" href="<?= baseUrl ?>Events/create">Crear</a>
-                        <a class="collapse-item" href="#">Ver</a>
+                        <a class="collapse-item" href="<?= baseUrl ?>Events/view">Ver</a>
                     </div>
                 </div>
             </li>

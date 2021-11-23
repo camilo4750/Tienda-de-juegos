@@ -1,5 +1,5 @@
 <?php
-class Productos
+class Products
 {
     private $idproduct;
     private $name;
@@ -105,5 +105,18 @@ class Productos
     {
         $this->Category_id = $Category_id;
         return $this;
+    }
+
+    public function save()
+    {
+        $SQL = "INSERT INTO products VALUES(NULL, '{$this->getName()}', '{$this->getDescription()}', '{$this->getPrice()}', '{$this->getStock()}', '{$this->getDiscount()}', '{$this->getImage()}', '{$this->getCreate_at()}', '{$this->getCategory_id()}');";
+        echo $SQL;
+        die();
+        $PRODCUTS = $this->db->query($SQL);
+        $Save = false;
+        if ($PRODCUTS) {
+            $Save = true;
+        }
+        return $Save;
     }
 }

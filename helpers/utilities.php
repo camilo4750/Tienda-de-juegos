@@ -30,4 +30,12 @@ class utilities
         $TIDINGS = $TIDINGS->total();
         return $TIDINGS;
     }
+
+    public static function allEvent()
+    {
+        require_once('models/Events.php');
+        $EVENTS = new Events();
+        $EVENTS = $EVENTS->all();
+        return $EVENTS;
+    }
 }

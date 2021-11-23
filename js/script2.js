@@ -9,3 +9,7 @@ $(document).ready(function() {
         ]
     });
 });
+
+setTimeout(function() {
+    $('#alerta').fadeOut('fast');
+}, 2500); // <-- time in milliseconds

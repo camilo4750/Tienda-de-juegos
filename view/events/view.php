@@ -12,24 +12,38 @@
             <h6 class="m-0 font-weight-bold text-primary">CATEGORIAS</h6>
         </div>
         <div class="card-body">
-            <table id="example" class="display table responsive  table-striped table-bordered" style="width:100%">
+            <table id="example" class="display" style="width:100%">
                 <thead class="bg-gradient-secondary text-white">
                     <tr>
                         <th>ID</th>
                         <th>Nombre</th>
+                        <th>Descripcion</th>
+                        <th>Inicio</th>
+                        <th>FIn</th>
+                        <th>Imagen</th>
+                        <th>Estado</th>
                     </tr>
                 </thead>
-
-                <?php while ($categoria = $CATEGORY->fetch_object()) : ?>
+                <?php while ($EVENT = $EVENTS->fetch_object()) : ?>
                     <tr>
-                        <td> <?= $categoria->idcategory ?></td>
-                        <td><?= $categoria->name ?></td>
+                        <th><?= $EVENT->idevent ?></th>
+                        <th><?= $EVENT->name ?></th>
+                        <th><?= $EVENT->description ?></th>
+                        <th><?= $EVENT->create_at ?></th>
+                        <th><?= $EVENT->expires_in ?></th>
+                        <th><?= $EVENT->image ?></th>
+                        <th><?= $EVENT->status ?></th>
                     </tr>
                 <?php endwhile; ?>
                 <tbody>
                     <tr>
                         <td class="bg-gradient-secondary text-white">ID</td>
                         <td class="bg-gradient-secondary text-white">Nombre</td>
+                        <td class="bg-gradient-secondary text-white">Descripcion</td>
+                        <td class="bg-gradient-secondary text-white">Inicio</td>
+                        <td class="bg-gradient-secondary text-white">FIn</td>
+                        <td class="bg-gradient-secondary text-white">Imagen</td>
+                        <td class="bg-gradient-secondary text-white">Estado</td>
 
                     </tr>
                     </tfoot>

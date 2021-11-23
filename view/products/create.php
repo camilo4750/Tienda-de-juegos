@@ -13,32 +13,53 @@
         </div>
         <div class="card-body">
 
-            <form class="user">
+            <form class="user" action="<?= baseUrl ?>Products/save" method="POST" enctype="multipart/form-data">
                 <div class="form-group row">
                     <div class="col-sm-6 mb-3 mb-sm-0">
-                        <input type="text" class="form-control form-control-user" id="exampleFirstName" placeholder="First Name">
+                        <input type="text" class="form-control form-control-user" placeholder="Nombre del producto" name="name" required>
                     </div>
                     <div class="col-sm-6">
-                        <input type="text" class="form-control form-control-user" id="exampleLastName" placeholder="Last Name">
+                        <input type="text" class="form-control form-control-user" placeholder="Descripcion" name="description" required>
                     </div>
-                </div>
-                <div class="form-group">
-                    <input type="email" class="form-control form-control-user" id="exampleInputEmail" placeholder="Email Address">
                 </div>
                 <div class="form-group row">
                     <div class="col-sm-6 mb-3 mb-sm-0">
-                        <input type="password" class="form-control form-control-user" id="exampleInputPassword" placeholder="Password">
+                        <input type="number" class="form-control form-control-user" placeholder="Precio del producto" name="price" required>
                     </div>
                     <div class="col-sm-6">
-                        <input type="password" class="form-control form-control-user" id="exampleRepeatPassword" placeholder="Repeat Password">
+                        <input type="number" class="form-control form-control-user" placeholder="Cantidad de productos disponibles" name="stock" required>
                     </div>
                 </div>
-                <a href="#" class="btn btn-success btn-icon-split float-right   ">
+                <div class="form-group row">
+                    <div class="col-sm-6">
+                        <label for="">Seleccionar la cateoria</label>
+                        <select class="form-control " aria-label="Default select example" name="Category_id">
+                            <?php $CATEGORIES = utilities::allCategory(); ?>
+                            <?php while ($CATEGORY = $CATEGORIES->fetch_object()) : ?>
+                                <option value="<?= $CATEGORY->idcategory ?>"><?= $CATEGORY->name ?></option>
+                            <?php endwhile; ?>
+                        </select>
+                    </div>
+                    <div class="col-sm-6">
+                        <label for="">Imagen del producto</label>
+                        <input type="file" class="form-control" name="image" required>
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <div class="col-sm-6 mb-3 mb-sm-0">
+                        <input type="number" class="form-control form-control-user" placeholder="Descuento aplicado" name="discount" required>
+                    </div>
+                    <div class="col-sm-6">
+                        <input type="date" class="form-control form-control-user" placeholder="Cantidad de productos disponibles" name="create_at" required>
+                    </div>
+                </div>
+                <button class="btn btn-success btn-icon-split float-right" type="submit">
                     <span class="icon text-white-50">
                         <i class="bi bi-check-circle-fill"></i>
                     </span>
-                    <span class="text">CREAR PRODUCTOS</span>
-                </a>
+                    <span class="text">CREAR PRODUCTO</span>
+                </button>
             </form>
         </div>
     </div>

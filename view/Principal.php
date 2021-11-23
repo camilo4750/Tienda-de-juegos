@@ -132,6 +132,24 @@
             </div>
     </div>
 </div>
+
+<div class="container-fluid p-0">
+    <div class="card border-0 bg-dark text-white">
+        <?php $EVENTS = utilities::allEvent(); ?>
+        <?php while ($EVENT = $EVENTS->fetch_object()) : ?>
+            <img src="<?= baseUrl ?>Uploads/events/<?= $EVENT->image ?>" class="card-img" height="550" width="100" alt="...">
+            <div class="fondo">
+                <div class="card-img-overlay mt-5">
+                    <h5 class="card-title text-title text-white"><?= $EVENT->name ?></h5>
+                    <p class="card-text text-primary2"><?= $EVENT->description ?></p>
+                    <p class="card-text text-primary2">Fecha Inicio De Inscripciones: <?= $EVENT->create_at ?> Fecha Fin De Inscripcion: <?= $EVENT->expires_in ?></p>
+                    <a href="" class="btn btn-success">CLICK PARA REGISTRARTE EN ESTE EVENTO</a>
+                </div>
+            </div>
+        <?php endwhile; ?>
+    </div>
+</div>
+
 <div class="container-fluid">
     <?php $TIDINGS = utilities::allTidings(); ?>
     <div class="row bg-light">
