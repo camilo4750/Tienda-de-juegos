@@ -249,3 +249,7 @@
     background: rgb(0, 0, 0, .4);
     text-align: center;
 }
+
+.mx-6 {
+    margin-left: 6.5rem;
+}

@@ -42,6 +42,13 @@ class ProductsController
                 $_SESSION['save'] = "exitoso";
             }
         }
-        header("loacation:" . baseUrl . "Products/create");
+        header("location:" . baseUrl . "Products/create");
+    }
+
+    public function view()
+    {
+        $PRODUCTS = new Products();
+        $PRODUCTS = $PRODUCTS->all();
+        require_once('view/products/view.php');
     }
 }

@@ -86,48 +86,32 @@
                 <div class="col-md-12">
                 <?php endif; ?>
                 <div class="row mb-4">
-                    <div class="col-xl-3 col-md-6">
-                        <div class="card shadow border-secondary border-3  p-2 mb-2 justify-content-center align-items-center">
-                            <div>
-                                <img src="<?= baseUrl ?>assets/img/consols.jpg" class="bd-placeholder-img rounded-circle" width="140" height="140" alt="">
-                            </div>
-                            <h2>Heading</h2>
-                            <p>Some representative placeholder content for the three columns of text below the carousel. This is the first column.</p>
-                            <p class=""><a class="btn btn-secondary" href="#">View details »</a></p>
-                        </div>
-                    </div>
-                    <div class="col-xl-3 col-md-6 ">
-                        <div class="card mb-2 border-info p-2 justify-content-center align-items-center">
-                            <div>
-                                <img src="<?= baseUrl ?>assets/img/consols.jpg" class="bd-placeholder-img rounded-circle" width="140" height="140" alt="">
-                            </div>
-                            <h2>Heading</h2>
-                            <p>Some representative placeholder content for the three columns of text below the carousel. This is the first column.</p>
-                            <p><a class="btn btn-secondary" href="#">View details »</a></p>
-                        </div>
-                    </div>
-                    <div class="col-xl-3 col-md-6 ">
-                        <div class="card mb-2 border-info p-2 justify-content-center align-items-center">
-                            <div>
-                                <img src="<?= baseUrl ?>assets/img/consols.jpg" class="bd-placeholder-img rounded-circle" width="140" height="140" alt="">
-                            </div>
-                            <h2>Heading</h2>
-                            <p>Some representative placeholder content for the three columns of text below the carousel. This is the first column.</p>
-                            <p><a class="btn btn-secondary" href="#">View details »</a></p>
-                        </div>
-                    </div>
-                    <div class="col-xl-3 col-md-6 ">
-                        <div class="card border-info p-2 justify-content-center align-items-center">
-                            <div>
-                                <img src="<?= baseUrl ?>assets/img/consols.jpg" class="bd-placeholder-img rounded-circle" width="140" height="140" alt="">
-                            </div>
-                            <h2>Heading</h2>
-                            <p>Some representative placeholder content for the three columns of text below the carousel. This is the first column.</p>
-                            <p><a class="btn btn-secondary" href="#">View details »</a></p>
-                        </div>
-                    </div>
-                </div><!-- /.row -->
+                    <?php $PRODUCTS = utilities::allProducts(); ?>
+                    <?php while ($PRODUCT = $PRODUCTS->fetch_object()) : ?>
+                        <div class="col-xl-3 col-md-6">
+                            <div class="card shadow border-secondary border-3  p-2 mb-2 justify-content-center align-items-center">
+                                <div>
+                                    <img src="<?= baseUrl ?>Uploads/products/<?= $PRODUCT->image ?>" class="bd-placeholder-img rounded shadow" width="120" height="140" alt="">
+                                </div>
+                                <h2><?= $PRODUCT->name ?></h2>
+                                <div class="text-center">
+                                    <h5 class="text-warning">$<?= $PRODUCT->price ?></h5>
+                                    <h6>Disponibles: <?= $PRODUCT->stock ?> - Descuento: <?= $PRODUCT->discount ?>%</h6>
+                                </div>
+                                <p><?= $PRODUCT->descriptionCor ?></p>
+                                <div class="mx-6">
+                                    <a class="btn btn-fixed" href="#">Ver »</a>
+                                    <?php if (isset($_SESSION['User'])) : ?>
+                                        <a class="btn btn-b" href="#">Comprar »</a>
+                                    <?php else : ?>
+                                        <a class="btn btn-b " onclick="alert('Debes iniciar Session...!');" href="#">Comprar »</a>
+                                    <?php endif; ?>
+                                </div>
 
+                            </div>
+                        </div>
+                    <?php endwhile; ?>
+                </div>
                 </div>
             </div>
     </div>

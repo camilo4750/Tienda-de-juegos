@@ -110,13 +110,16 @@ class Products
     public function save()
     {
         $SQL = "INSERT INTO products VALUES(NULL, '{$this->getName()}', '{$this->getDescription()}', '{$this->getPrice()}', '{$this->getStock()}', '{$this->getDiscount()}', '{$this->getImage()}', '{$this->getCreate_at()}', '{$this->getCategory_id()}');";
-        echo $SQL;
-        die();
         $PRODCUTS = $this->db->query($SQL);
         $Save = false;
         if ($PRODCUTS) {
             $Save = true;
         }
         return $Save;
+    }
+    public function all()
+    {
+        $PRODUCTS = $this->db->query("SELECT P.*, LEFT(P.description, 80) AS 'descriptionCor', C.name AS 'category' FROM products P INNER JOIN category C ON P.idproduct = C.idcategory ORDER BY idproduct");
+        return $PRODUCTS;
     }
 }

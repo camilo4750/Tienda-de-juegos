@@ -1,9 +1,19 @@
 <?php require_once('view/layout/Header2.php') ?>
 <div class="container">
+    <?php if (isset($_SESSION['save']) && $_SESSION['save'] == "exitoso") : ?>
+        <div class="row" id="alerta">
+            <div class="col-md-12 ">
+                <div class=" text-center alert alert-success alert-dismissible fade show" role="alert">
+                    <strong> <i class="bi bi-bag-plus-fill"></i> El producto se ha creado exitosamente..!</strong>
+                </div>
+            </div>
+        </div>
+    <?php endif; ?>
+    <?php utilities::deleteSession(); ?>
     <nav style="--bs-breadcrumb-divider: url(&#34;data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='8' height='8'%3E%3Cpath d='M2.5 0L1 1.5 3.5 4 1 6.5 2.5 8l4-4-4-4z' fill='currentColor'/%3E%3C/svg%3E&#34;);" aria-label="breadcrumb">
         <ol class="breadcrumb">
             <li class="breadcrumb-item"><a href="<?= baseUrl ?>Products/create">Crear</a></li>
-            <li class="breadcrumb-item"><a href="#">Ver Tabla</a></li>
+            <li class="breadcrumb-item"><a href="<?= baseUrl ?>Products/view">Ver Tabla</a></li>
 
         </ol>
     </nav>

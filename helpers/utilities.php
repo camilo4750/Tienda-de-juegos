@@ -38,4 +38,12 @@ class utilities
         $EVENTS = $EVENTS->all();
         return $EVENTS;
     }
+
+    public static function allProducts()
+    {
+        require_once('models/Products.php');
+        $PRODUCTS = new Products();
+        $PRODUCTS = $PRODUCTS->all();
+        return $PRODUCTS;
+    }
 }
