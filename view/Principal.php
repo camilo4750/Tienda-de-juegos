@@ -100,7 +100,16 @@
                                 </div>
                                 <p><?= $PRODUCT->descriptionCor ?></p>
                                 <div class="mx-6">
-                                    <a class="btn btn-fixed" href="#">Ver »</a>
+                                    <a href="#" class="btn btn-fixed" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-controls="offcanvasRight">ver »</a>
+                                    <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasRight" aria-labelledby="offcanvasRightLabel">
+                                        <div class="offcanvas-header">
+                                            <h5 id="offcanvasRightLabel">Offcanvas right</h5>
+                                            <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+                                        </div>
+                                        <div class="offcanvas-body">
+                                            ...
+                                        </div>
+                                    </div>
                                     <?php if (isset($_SESSION['User'])) : ?>
                                         <a class="btn btn-b" href="#">Comprar »</a>
                                     <?php else : ?>

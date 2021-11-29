@@ -3,6 +3,7 @@ class Category
 {
     private $idcategory;
     private $name;
+    private $status;
     private $db;
 
     public function __construct()
@@ -19,6 +20,7 @@ class Category
         $this->idcategory = $idcategory;
         return $this;
     }
+
     public function getName()
     {
         return $this->name;
@@ -26,6 +28,16 @@ class Category
     public function setName($name)
     {
         $this->name = $name;
+        return $this;
+    }
+
+    public function getStatus()
+    {
+        return $this->status;
+    }
+    public function setStatus($status)
+    {
+        $this->status = $status;
         return $this;
     }
 
@@ -41,9 +53,55 @@ class Category
         return $save;
     }
 
-    public function allCategory()
+    public function allCategories()
     {
-        $CATEGORY = $this->db->query("SELECT * FROM category");
-        return $CATEGORY;
+        $CATEGORIES = $this->db->query("SELECT * FROM category");
+        return $CATEGORIES;
+    }
+
+
+    public function menuCategories()
+    {
+        $CATEGORIES = $this->db->query("SELECT * FROM category WHERE status = 'Activo'");
+        return $CATEGORIES;
+    }
+
+    public function oneCategory()
+    {
+        $CATEGORY = $this->db->query("SELECT * FROM category WHERE idcategory = {$this->getIdcategory()}");
+        return $CATEGORY->fetch_object();
+    }
+
+    public function editCategory()
+    {
+        $SQL = "UPDATE category SET name = '{$this->getName()}' WHERE idcategory = '{$this->getIdcategory()}'";
+        $Category = $this->db->query($SQL);
+        $edit = false;
+        if ($Category) {
+            $edit = true;
+        }
+        return $edit;
+    }
+
+    public function active()
+    {
+        $SQL = "UPDATE category SET status = '{$this->getStatus()}' WHERE idcategory = '{$this->getIdcategory()}'";
+        $activeCategory = $this->db->query($SQL);
+        $Active = false;
+        if ($activeCategory) {
+            $Active = true;
+        }
+        return $Active;
+    }
+
+    public function inactive()
+    {
+        $SQL = "UPDATE category SET status = '{$this->getStatus()}' WHERE idcategory = '{$this->getIdcategory()}'";
+        $inactiveCategory = $this->db->query($SQL);
+        $Inactive = false;
+        if ($inactiveCategory) {
+            $Inactive = true;
+        }
+        return $Inactive;
     }
 }

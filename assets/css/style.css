@@ -1,6 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;500&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;500&display=swap');
-
+@import url('https://fonts.googleapis.com/css2?family=Comforter+Brush&display=swap');
 .nav-link{
     margin: 3px;
     font-size: 20px;
@@ -19,7 +19,7 @@
     font-size: 30px;
     color: rgb(65, 105, 225);
     text-decoration: none;
-    font-family: 'Roboto', sans-serif;
+    font-family: 'Comforter Brush', cursive;
     transition: .5s;
 }
 
@@ -27,7 +27,7 @@
     color: #ffffff;
     transition: .4s;
     font-size: 31px;
-    font-family: 'Roboto', sans-serif;
+    font-family: 'Comforter Brush', cursive;
 }
 
 .text-title {
@@ -252,4 +252,8 @@
 
 .mx-6 {
     margin-left: 6.5rem;
+}
+.text-footer  {
+    font-family: 'Comforter Brush', cursive;
+    color: rgb(65, 105, 225);
 }

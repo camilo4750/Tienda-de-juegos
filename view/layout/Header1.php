@@ -17,7 +17,7 @@
     <?php endif; ?>
     <nav class="navbar navbar-expand-lg fixed-top nav-black" id="menu">
         <div class="container-fluid">
-            <a class="navbar-brand text-title-menu" href="">Quick Shopping</a>
+            <a class="navbar-brand text-title-menu" href="">Quick Shopping Game</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarScroll" aria-controls="navbarScroll" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="bi bi-card-list fs-1 "></span>
             </button>

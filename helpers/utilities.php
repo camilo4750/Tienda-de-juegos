@@ -9,6 +9,21 @@ class utilities
             $borrado = true;
         }
 
+        if (isset($_SESSION['edit']) && $_SESSION['edit'] = "exitoso") {
+            $_SESSION['edit'] = null;
+            $borrado = true;
+        }
+
+        if (isset($_SESSION['active']) && $_SESSION['active'] = "exitoso") {
+            $_SESSION['active'] = null;
+            $borrado = true;
+        }
+
+        if (isset($_SESSION['inactive']) && $_SESSION['edit'] = "inactive") {
+            $_SESSION['inactive'] = null;
+            $borrado = true;
+        }
+
         if (isset($_SESSION['noIdentity']) && $_SESSION['noIdentity'] == "error1") {
             $_SESSION['noIdentity'] = null;
             $borrado = true;
@@ -19,7 +34,7 @@ class utilities
     {
         require_once('models/Category.php');
         $CATEGORY = new Category();
-        $CATEGORY = $CATEGORY->allCategory();
+        $CATEGORY = $CATEGORY->menuCategories();
         return $CATEGORY;
     }
 
