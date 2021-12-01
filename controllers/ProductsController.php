@@ -51,4 +51,15 @@ class ProductsController
         $PRODUCTS = $PRODUCTS->all();
         require_once('view/products/view.php');
     }
+
+    public function viewProduct()
+    {
+        if ($_GET['id']) {
+            $id = $_GET['id'];
+            $Product = new Products();
+            $Product->setIdproduct($id);
+            $PRODUCT = $Product->allone();
+            require_once('view/products');
+        }
+    }
 }

@@ -76,7 +76,7 @@ class Tidings
 
     public function save()
     {
-        $SQL = "INSERT INTO tidings VALUES(NULL, '{$this->getName()}', '{$this->getDescription()}', CURDATE(), '{$this->getImage()}', '{$this->getStatus()}');";
+        $SQL = "INSERT INTO tidings VALUES(NULL, '{$this->getName()}', '{$this->getDescription()}', '{$this->getCreate_at()}', '{$this->getImage()}', '{$this->getStatus()}');";
         $tidings = $this->db->query($SQL);
 
         $save = false;
@@ -90,5 +90,26 @@ class Tidings
     {
         $TIDINGS = $this->db->query("SELECT * FROM tidings");
         return $TIDINGS;
+    }
+
+    public function allOne()
+    {
+        $Tiding = $this->db->query("SELECT * FROM tidings WHERE idtiding = '{$this->getIdtiding()}'");
+        return $Tiding->fetch_object();
+    }
+
+    public function editTiding()
+    {
+        $SQL = "UPDATE tidings SET name = '{$this->getName()}', description = '{$this->getDescription()}', create_at = '{$this->getCreate_at()}'  ";
+        if ($this->getImage() != null) {
+            $SQL .= ", image = '{$this->getImage()}'";
+        }
+        $SQL .= "WHERE idtiding = '{$this->getIdtiding()}'";
+        $Tiding = $this->db->query($SQL);
+        $edit = false;
+        if ($Tiding) {
+            $edit = true;
+        }
+        return $edit;
     }
 }

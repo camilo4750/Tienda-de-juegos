@@ -49,46 +49,49 @@
             <h6 class="m-0 font-weight-bold text-primary">CATEGORIAS</h6>
         </div>
         <div class="card-body">
-            <table id="example" class="display table responsive  table-striped table-bordered" style="width:100%">
-                <thead class="bg-gradient-secondary text-white">
-                    <tr>
-                        <th>ID</th>
-                        <th>Nombre</th>
-                        <th>Mostar</th>
-                        <th>Acciones</th>
-                    </tr>
-                </thead>
-
-                <?php while ($categoria = $CATEGORIES->fetch_object()) : ?>
-                    <tr>
-                        <td> <?= $categoria->idcategory ?></td>
-                        <td><?= $categoria->name ?></td>
-                        <?php if ($categoria->status === "Activo") : ?>
-                            <td class="text-success"><?= $categoria->status ?></td>
-                        <?php else : ?>
-                            <td class="text-danger"><?= $categoria->status ?></td>
-                        <?php endif; ?>
-                        <td>
-                            <a href="<?= baseUrl ?>Category/edit&id=<?= $categoria->idcategory ?>" class="mx-2 btn-sm btn-warning" data-toggle="tooltip" data-placement="top" title="Editar Categoria">
-                                <i class="bi bi-pencil-square"></i>
-                            </a>
-                            <?php if ($categoria->status === 'Activo') : ?>
-                                <a href="<?= baseUrl ?>Category/inactive&id=<?= $categoria->idcategory ?>" class="btn-sm btn-danger" data-toggle="tooltip" data-placement="top" title="Inactivar Categoria"><i class="bi bi-exclamation-circle"></i></a>
-                            <?php else : ?>
-                                <a href="<?= baseUrl ?>Category/active&id=<?= $categoria->idcategory ?>" class="btn-sm btn-success" data-toggle="tooltip" data-placement="top" title="Activar Categoria"><i class="bi bi-check2-circle"></i></a>
-                            <?php endif; ?>
-                        </td>
-                    </tr>
-                <?php endwhile; ?>
-                <tbody>
-                    <tr>
-                        <td class="bg-gradient-secondary text-white">ID</td>
-                        <td class="bg-gradient-secondary text-white">Nombre</td>
-                        <td class="bg-gradient-secondary text-white">Mostrar</td>
-                        <td class="bg-gradient-secondary text-white">Acciones</td>
-                    </tr>
+            <div class="table-responsive">
+                <table id="example" class="display table responsive  table-striped table-bordered" style="width:100%">
+                    <thead class="bg-gradient-secondary text-white">
+                        <tr>
+                            <th>ID</th>
+                            <th>Nombre</th>
+                            <th>Mostar</th>
+                            <th>Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <?php while ($categoria = $CATEGORIES->fetch_object()) : ?>
+                            <tr>
+                                <td> <?= $categoria->idcategory ?></td>
+                                <td><?= $categoria->name ?></td>
+                                <?php if ($categoria->status === "Activo") : ?>
+                                    <td class="text-success"><?= $categoria->status ?></td>
+                                <?php else : ?>
+                                    <td class="text-danger"><?= $categoria->status ?></td>
+                                <?php endif; ?>
+                                <td>
+                                    <a href="<?= baseUrl ?>Category/edit&id=<?= $categoria->idcategory ?>" class="mx-2 btn-sm btn-warning" data-toggle="tooltip" data-placement="top" title="Editar Categoria">
+                                        <i class="bi bi-pencil-square"></i>
+                                    </a>
+                                    <?php if ($categoria->status === 'Activo') : ?>
+                                        <a href="<?= baseUrl ?>Category/inactive&id=<?= $categoria->idcategory ?>" class="btn-sm btn-danger" data-toggle="tooltip" data-placement="top" title="Inactivar Categoria"><i class="bi bi-exclamation-circle"></i></a>
+                                    <?php else : ?>
+                                        <a href="<?= baseUrl ?>Category/active&id=<?= $categoria->idcategory ?>" class="btn-sm btn-success" data-toggle="tooltip" data-placement="top" title="Activar Categoria"><i class="bi bi-check2-circle"></i></a>
+                                    <?php endif; ?>
+                                </td>
+                            </tr>
+                        <?php endwhile; ?>
+                    </tbody>
+                    <tfoot>
+                        <tr class="bg-gradient-secondary text-white">
+                            <th>ID</th>
+                            <th>Nombre</th>
+                            <th>Mostrar</th>
+                            <th>Acciones</th>
+                        </tr>
                     </tfoot>
-            </table>
+                </table>
+            </div>
         </div>
     </div>
 </div>

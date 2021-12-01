@@ -13,6 +13,7 @@ class TidingsController
             $tidings = new Tidings();
             $tidings->setName($_POST['name']);
             $tidings->setDescription($_POST['description']);
+            $tidings->setCreate_at($_POST['create_at']);
             if (isset($_FILES['image'])) {
                 $file = $_FILES['image'];
                 $fileName = $file['name'];
@@ -29,12 +30,21 @@ class TidingsController
                 }
             }
             $tidings->setStatus('Activo');
-            $Save = $tidings->save();
+            if (isset($_GET['id'])) {
+                $id = $_GET['id'];
+                $tidings->setIdtiding($id);
+                $Edit = $tidings->editTiding();
+            } else {
+                $Save = $tidings->save();
+            }
+            if ($Edit) {
+                $_SESSION['edit'] = "exitoso";
+            }
             if ($Save) {
                 $_SESSION['save'] = "exitoso";
             }
         }
-        header("Location:" . baseUrl . "Tidings/create");
+        header("Location:" . baseUrl . "Tidings/view");
     }
 
     public function view()
@@ -42,5 +52,18 @@ class TidingsController
         $TIDINGS = new Tidings();
         $TIDINGS = $TIDINGS->total();
         require_once('view/tidings/view.php');
+    }
+
+    public function edit()
+    {
+        if (isset($_GET['id'])) {
+            $id = $_GET['id'];
+            $Tidings = new Tidings();
+            $Tidings->setIdtiding($id);
+            $TIDINGS = $Tidings->allOne();
+            require_once('view/tidings/create.php');
+        } else {
+            header("Location:" . baseUrl . "Tidings/view");
+        }
     }
 }

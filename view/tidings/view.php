@@ -7,13 +7,34 @@
 
         </ol>
     </nav>
+    <?php if (isset($_SESSION['save']) && $_SESSION['save'] == "exitoso") : ?>
+        <div class="row" id="alerta">
+            <div class="col-md-12 ">
+                <div class=" text-center alert alert-success alert-dismissible fade show" role="alert">
+                    <strong> <i class="bi bi-newspaper"></i>
+                        La noticia se ha creado correctamente..!</strong>
+                </div>
+            </div>
+        </div>
+    <?php endif; ?>
+    <?php if (isset($_SESSION['edit']) && $_SESSION['edit'] == "exitoso") : ?>
+        <div class="row" id="alerta">
+            <div class="col-md-12 ">
+                <div class=" text-center alert alert-warning alert-dismissible fade show" role="alert">
+                    <strong> <i class="bi bi-newspaper"></i>
+                        La noticia se ha editado correctamente..!</strong>
+                </div>
+            </div>
+        </div>
+    <?php endif; ?>
+    <?php utilities::deleteSession() ?>
     <div class="card shadow mb-4">
         <div class="card-header py-3">
             <h6 class="m-0 font-weight-bold text-primary">CATEGORIAS</h6>
         </div>
         <div class="card-body">
             <div class="table-responsive">
-                <table id="example" class="display table responsive  table-striped table-bordered" style="width:100%">
+                <table id="example" class="display table responsive table-striped table-bordered" style="width:100%">
                     <thead class="bg-gradient-secondary text-white ">
                         <tr>
                             <th>ID</th>
@@ -22,20 +43,39 @@
                             <th>Creado</th>
                             <th>Imagen</th>
                             <th>Estado</th>
+                            <th>Acciones</th>
                         </tr>
                     </thead>
-                    <?php while ($tidings = $TIDINGS->fetch_object()) : ?>
-                        <tr>
-                            <th><?= $tidings->idtiding ?></th>
-                            <th><?= $tidings->name ?></th>
-                            <th><?= $tidings->description ?></th>
-                            <th><?= $tidings->create_at ?></th>
-                            <th> <img src="<?= baseUrl ?>uploads/Tidings/<?= $tidings->image ?>" height="80" alt=""></th>
-                            <th><?= $tidings->status ?></th>
-
-                        </tr>
-                    <?php endwhile; ?>
                     <tbody>
+                        <?php while ($tidings = $TIDINGS->fetch_object()) : ?>
+                            <tr>
+                                <td><?= $tidings->idtiding ?></td>
+                                <td><?= $tidings->name ?></td>
+                                <td><?= $tidings->description ?></td>
+                                <td><?= $tidings->create_at ?></td>
+                                <td> <img src="<?= baseUrl ?>uploads/Tidings/<?= $tidings->image ?>" height="80" alt=""></td>
+                                <?php if ($tidings->status === "Activo") : ?>
+                                    <td class="text-success"><?= $tidings->status ?></td>
+                                <?php else : ?>
+                                    <td class="text-danger"><?= $tidings->status ?></td>
+                                <?php endif; ?>
+                                <td>
+                                    <a href="<?= baseUrl ?>Tidings/viewEvent&id=<?= $tidings->idtiding  ?>" class="btn-sm btn-info ms-2 mb-1" type="button" data-bs-toggle="tooltip" data-bs-placement="top" title="Ver Noticia">
+                                        <i class="bi bi-eye"></i>
+                                    </a>
+                                    <a href="<?= baseUrl ?>Tidings/edit&id=<?= $tidings->idtiding ?>" type="button" class="btn-sm btn-warning" data-toggle="tooltip" data-placement="top" title="Editar Noticia">
+                                        <i class="bi bi-pencil-square"></i>
+                                    </a>
+                                    <?php if ($tidings->status === 'Activo') : ?>
+                                        <a href="<?= baseUrl ?>Tidings/inactive&id=<?= $tidings->idtiding  ?>" type="button" class="btn-sm btn-danger" data-toggle="tooltip" data-placement="top" title="Inactivar Noticia"><i class="bi bi-exclamation-circle"></i></a>
+                                    <?php else : ?>
+                                        <a href="<?= baseUrl ?>Tidings/active&id=<?= $tidings->idtiding  ?>" type="button" class="btn-sm btn-success" data-toggle="tooltip" data-placement="top" title="Activar Noticia"><i class="bi bi-check2-circle"></i></a>
+                                    <?php endif; ?>
+                                </td>
+                            </tr>
+                        <?php endwhile; ?>
+                    </tbody>
+                    <tfoot>
                         <tr class="bg-gradient-secondary text-white">
                             <th>ID</th>
                             <th>Titulo</th>
@@ -43,8 +83,9 @@
                             <th>Creado</th>
                             <th>Imagen</th>
                             <th>Estado</th>
+                            <th>Acciones</th>
                         </tr>
-                        </tfoot>
+                    </tfoot>
                 </table>
             </div>
         </div>
