@@ -27,6 +27,26 @@
             </div>
         </div>
     <?php endif; ?>
+    <?php if (isset($_SESSION['active']) && $_SESSION['active'] == "exitoso") : ?>
+        <div class="row" id="alerta">
+            <div class="col-md-12 ">
+                <div class=" text-center alert alert-info alert-dismissible fade show" role="alert">
+                    <strong> <i class="bi bi-newspaper"></i>
+                        La noticia se ha activado correctamente..!</strong>
+                </div>
+            </div>
+        </div>
+    <?php endif; ?>
+    <?php if (isset($_SESSION['inactive']) && $_SESSION['inactive'] == "exitoso") : ?>
+        <div class="row" id="alerta">
+            <div class="col-md-12 ">
+                <div class=" text-center alert alert-warning alert-dismissible fade show" role="alert">
+                    <strong> <i class="bi bi-newspaper"></i>
+                        La noticia se ha Inactivado correctamente..!</strong>
+                </div>
+            </div>
+        </div>
+    <?php endif; ?>
     <?php utilities::deleteSession() ?>
     <div class="card shadow mb-4">
         <div class="card-header py-3">
@@ -60,7 +80,7 @@
                                     <td class="text-danger"><?= $tidings->status ?></td>
                                 <?php endif; ?>
                                 <td>
-                                    <a href="<?= baseUrl ?>Tidings/viewEvent&id=<?= $tidings->idtiding  ?>" class="btn-sm btn-info ms-2 mb-1" type="button" data-bs-toggle="tooltip" data-bs-placement="top" title="Ver Noticia">
+                                    <a href="<?= baseUrl ?>Tidings/viewTiding&id=<?= $tidings->idtiding  ?>" class="btn-sm btn-info ms-2 mb-1" type="button" data-bs-toggle="tooltip" data-bs-placement="top" title="Ver Noticia">
                                         <i class="bi bi-eye"></i>
                                     </a>
                                     <a href="<?= baseUrl ?>Tidings/edit&id=<?= $tidings->idtiding ?>" type="button" class="btn-sm btn-warning" data-toggle="tooltip" data-placement="top" title="Editar Noticia">

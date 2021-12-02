@@ -83,7 +83,7 @@ class Category
         return $edit;
     }
 
-    public function active()
+    public function changeStatus()
     {
         $SQL = "UPDATE category SET status = '{$this->getStatus()}' WHERE idcategory = '{$this->getIdcategory()}'";
         $activeCategory = $this->db->query($SQL);
@@ -92,16 +92,5 @@ class Category
             $Active = true;
         }
         return $Active;
-    }
-
-    public function inactive()
-    {
-        $SQL = "UPDATE category SET status = '{$this->getStatus()}' WHERE idcategory = '{$this->getIdcategory()}'";
-        $inactiveCategory = $this->db->query($SQL);
-        $Inactive = false;
-        if ($inactiveCategory) {
-            $Inactive = true;
-        }
-        return $Inactive;
     }
 }

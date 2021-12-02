@@ -66,4 +66,47 @@ class TidingsController
             header("Location:" . baseUrl . "Tidings/view");
         }
     }
+
+    public function viewTiding()
+    {
+        if (isset($_GET['id'])) {
+            $id = $_GET['id'];
+            $Tiding = new Tidings();
+            $Tiding->setIdtiding($id);
+            $TIDING = $Tiding->allOne();
+            require_once('view/tidings/viewTiding.php');
+        } else {
+            header("Location:" . baseUrl . "Tidings/view");
+        }
+    }
+
+    public function active()
+    {
+        if (isset($_GET['id'])) {
+            $id = $_GET['id'];
+            $Tiding = new Tidings();
+            $Tiding->setIdtiding($id);
+            $Tiding->setStatus('Activo');
+            $TIDING = $Tiding->changeStatus();
+            if ($TIDING) {
+                $_SESSION['active'] = "exitoso";
+            }
+        }
+        header("Location:" . baseUrl . "Tidings/view");
+    }
+
+    public function inactive()
+    {
+        if (isset($_GET['id'])) {
+            $id = $_GET['id'];
+            $Tiding = new Tidings();
+            $Tiding->setIdtiding($id);
+            $Tiding->setStatus('Inactivo');
+            $TIDING = $Tiding->changeStatus();
+            if ($TIDING) {
+                $_SESSION['inactive'] = "exitoso";
+            }
+        }
+        header("Location:" . baseUrl . "Tidings/view");
+    }
 }

@@ -38,7 +38,7 @@ class EventsController
                 }
             }
         }
-        header("Location:" . baseUrl . "Events/create");
+        header("Location:" . baseUrl . "Events/view");
     }
 
     public function view()
@@ -46,5 +46,58 @@ class EventsController
         $EVENTS = new Events();
         $EVENTS = $EVENTS->all();
         require_once('view/events/view.php');
+    }
+
+
+    public function active()
+    {
+        if (isset($_GET['id'])) {
+            $id = $_GET['id'];
+            $Event = new Events();
+            $Event->setIdevent($id);
+            $Event->setStatus('Activo');
+            $EVENT = $Event->changeStatus();
+            if ($EVENT) {
+                $_SESSION['active'] = "exitoso";
+            }
+        }
+        header("Location:" . baseUrl . "Events/view");
+    }
+
+    public function inactive()
+    {
+        if (isset($_GET['id'])) {
+            $id = $_GET['id'];
+            $Event = new Events();
+            $Event->setIdevent($id);
+            $Event->setStatus('Inactivo');
+            $EVENT = $Event->changeStatus();
+            if ($EVENT) {
+                $_SESSION['inactive'] = "exitoso";
+            }
+        }
+        header("Location:" . baseUrl . "Events/view");
+    }
+
+    public function viewEvent()
+    {
+        if (isset($_GET['id'])) {
+            $id = $_GET['id'];
+            $Event = new Events();
+            $Event->setIdevent($id);
+            $EVENT = $Event->oneEvent();
+            require('view/events/viewEvent.php');
+        }
+    }
+
+    public function edit()
+    {
+        if (isset($_GET['id'])) {
+            $id = $_GET['id'];
+            $Event = new Events();
+            $Event->setIdevent($id);
+            $oneEvent = $Event->oneEvent();
+            require('view/events/create.php');
+        }
     }
 }

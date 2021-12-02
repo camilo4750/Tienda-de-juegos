@@ -63,7 +63,7 @@ class CategoryController
             $Category = new Category();
             $Category->setIdcategory($id);
             $Category->setStatus('Activo');
-            $Active = $Category->active();
+            $Active = $Category->changeStatus();
             if ($Active) {
                 $_SESSION['active'] = "exitoso";
             }
@@ -78,7 +78,7 @@ class CategoryController
             $Category = new Category();
             $Category->setIdcategory($id);
             $Category->setStatus('Inactivo');
-            $Inactive = $Category->inactive();
+            $Inactive = $Category->changeStatus();
             if ($Inactive) {
                 $_SESSION['inactive'] = "exitoso";
             }

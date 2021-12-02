@@ -1,16 +1,5 @@
 <?php require_once('view/layout/Header2.php') ?>
 <div class="container">
-    <?php if (isset($_SESSION['save']) && $_SESSION['save'] == "exitoso") : ?>
-        <div class="row" id="alerta">
-            <div class="col-md-12 ">
-                <div class=" text-center alert alert-success alert-dismissible fade show" role="alert">
-                    <strong> <i class="bi bi-calendar-day-fill"></i>
-                        El evento se ha creado exitosamente..!</strong>
-                </div>
-            </div>
-        </div>
-    <?php endif; ?>
-    <?php utilities::deleteSession(); ?>
     <nav style="--bs-breadcrumb-divider: url(&#34;data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='8' height='8'%3E%3Cpath d='M2.5 0L1 1.5 3.5 4 1 6.5 2.5 8l4-4-4-4z' fill='currentColor'/%3E%3C/svg%3E&#34;);" aria-label="breadcrumb">
         <ol class="breadcrumb">
             <li class="breadcrumb-item"><a href="<?= baseUrl ?>Events/create">Crear</a></li>
@@ -20,26 +9,32 @@
     </nav>
     <div class="card shadow mb-4">
         <div class="card-header py-3">
-            <h6 class="m-0 font-weight-bold text-primary">EVENTOS</h6>
+            <?php if (isset($oneEvent) && is_object($oneEvent)) : ?>
+                <h6 class="m-0 font-weight-bold text-primary">EDITAR EVENTO</h6>
+                <?php $typeAction = baseUrl . "Events/save&id=" . $oneEvent->idevent ?>
+            <?php else : ?>
+                <h6 class="m-0 font-weight-bold text-primary">CREAR EVENTO</h6>
+                <?php $typeAction = baseUrl . "Events/save" ?>
+            <?php endif; ?>
         </div>
         <div class="card-body">
-            <form class="user" action="<?= baseUrl ?>Events/save" method="POST" enctype="multipart/form-data">
+            <form class="user" action="<?= $typeAction ?>" method="POST" enctype="multipart/form-data">
                 <div class="form-group row">
                     <div class="col-sm-6 mb-3 mb-sm-0">
-                        <input type="text" class="form-control form-control-user" id="exampleFirstName" placeholder="Nombre del evento" name="name" required>
+                        <input type="text" class="form-control form-control-user" id="exampleFirstName" placeholder="Nombre del evento" name="name" required value="<?= isset($oneEvent) && is_object($oneEvent) ? $oneEvent->name : "" ?>">
                     </div>
                     <div class="col-sm-6">
-                        <input type="text" class="form-control form-control-user" id="exampleLastName" placeholder="Descripcion" name="description" required>
+                        <input type="text" class="form-control form-control-user" id="exampleLastName" placeholder="Descripcion" name="description" required value="<?= isset($oneEvent) && is_object($oneEvent) ? $oneEvent->description : "" ?>">
                     </div>
                 </div>
                 <div class="form-group row">
                     <div class="col-sm-6 mb-3 mb-sm-0">
                         <label for="">Fecha inicio de inscripciones</label>
-                        <input type="date" class="form-control form-control-user" id="exampleInputPassword" required name="create_at">
+                        <input type="date" class="form-control form-control-user" id="exampleInputPassword" required name="create_at" value="<?= isset($oneEvent) && is_object($oneEvent) ? $oneEvent->create_at : "" ?>">
                     </div>
                     <div class="col-sm-6">
                         <label for="">Fecha fin de inscripciones</label>
-                        <input type="datetime-local" class="form-control form-control-user" id="exampleRepeatPassword" required name="expires_in">
+                        <input type="datetime-local" class="form-control form-control-user" id="exampleRepeatPassword" required name="expires_in" value="<?= isset($oneEvent) && is_object($oneEvent) ? $oneEvent->expires_in : "" ?>">
                     </div>
                 </div>
                 <div class="form-group row">

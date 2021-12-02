@@ -98,7 +98,35 @@ class Events
 
     public function all()
     {
-        $EVENTS = $this->db->query("SELECT * FROM events");
+        $EVENTS = $this->db->query("SELECT idevent, name, description, LEFT(description, 80) AS 'descriptionCor', create_at, expires_in, image, status FROM events;");
         return $EVENTS;
+    }
+
+    public function oneEvent()
+    {
+        $EVENT = $this->db->query("SELECT * FROM events WHERE idevent = '{$this->getIdevent()}'");
+        return $EVENT->fetch_object();
+    }
+
+    public function changeStatus()
+    {
+        $SQL = "UPDATE events SET status = '{$this->getStatus()}' WHERE idevent = '{$this->getIdevent()}'";
+        $status = $this->db->query($SQL);
+        $edit = false;
+        if ($status) {
+            $edit = true;
+        }
+        return $edit;
+    }
+
+    public function edit()
+    {
+        $SQL = "UPDATE events SET status = '{$this->getStatus()}' WHERE idevent = '{$this->getIdevent()}'";
+        $status = $this->db->query($SQL);
+        $edit = false;
+        if ($status) {
+            $edit = true;
+        }
+        return $edit;
     }
 }

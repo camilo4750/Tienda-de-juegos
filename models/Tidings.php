@@ -112,4 +112,15 @@ class Tidings
         }
         return $edit;
     }
+
+    public function changeStatus()
+    {
+        $SQL = "UPDATE tidings SET status = '{$this->getStatus()}' WHERE idtiding = '{$this->getIdtiding()}'";
+        $status = $this->db->query($SQL);
+        $edit = false;
+        if ($status) {
+            $edit = true;
+        }
+        return $edit;
+    }
 }
