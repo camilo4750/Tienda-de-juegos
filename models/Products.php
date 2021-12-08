@@ -9,6 +9,7 @@ class Products
     private $discount;
     private $image;
     private $create_at;
+    private $status;
     private $Category_id;
     private $db;
 
@@ -97,6 +98,16 @@ class Products
         return $this;
     }
 
+    public function getStatus()
+    {
+        return $this->status;
+    }
+    public function setStatus($status)
+    {
+        $this->status = $status;
+        return $this;
+    }
+
     public function getCategory_id()
     {
         return $this->Category_id;
@@ -109,7 +120,7 @@ class Products
 
     public function save()
     {
-        $SQL = "INSERT INTO products VALUES(NULL, '{$this->getName()}', '{$this->getDescription()}', '{$this->getPrice()}', '{$this->getStock()}', '{$this->getDiscount()}', '{$this->getImage()}', '{$this->getCreate_at()}', '{$this->getCategory_id()}');";
+        $SQL = "INSERT INTO products VALUES(NULL, '{$this->getName()}', '{$this->getDescription()}', '{$this->getPrice()}', '{$this->getStock()}', '{$this->getDiscount()}', '{$this->getImage()}', '{$this->getCreate_at()}', '{$this->getStatus()}', '{$this->getCategory_id()}');";
         $PRODCUTS = $this->db->query($SQL);
         $Save = false;
         if ($PRODCUTS) {
@@ -117,9 +128,42 @@ class Products
         }
         return $Save;
     }
+
     public function all()
     {
-        $PRODUCTS = $this->db->query("SELECT P.*, LEFT(P.description, 80) AS 'descriptionCor', C.name AS 'category' FROM products P INNER JOIN category C ON P.idproduct = C.idcategory ORDER BY idproduct");
+        $PRODUCTS = $this->db->query("SELECT P.*, LEFT(P.description, 50) AS 'descriptionCor', C.name AS 'category' FROM products P INNER JOIN category C ON P.idproduct = C.idcategory ORDER BY idproduct");
         return $PRODUCTS;
+    }
+
+    public function oneProduct()
+    {
+        $PRODUCTS = $this->db->query("SELECT P.*, LEFT(P.description, 80) AS 'descriptionCor', C.name AS 'category' FROM products P INNER JOIN category C ON P.idproduct = C.idcategory WHERE idproduct = '{$this->getIdproduct()}'");
+        return $PRODUCTS->fetch_object();
+    }
+
+    public function editProduct()
+    {
+        $SQL = "UPDATE products SET name = '{$this->getName()}', description = '{$this->description}', price = '{$this->getPrice()}', stock = '{$this->getStock()}', discount = '{$this->getDiscount()}'  ";
+        if ($this->getImage() != null) {
+            $SQL .= ", image = '{$this->getImage()}'";
+        }
+        $SQL .= ", create_at = '{$this->getCreate_at()}', status = '{$this->getStatus()}', Category_id = '{$this->getCategory_id()}' WHERE idproduct = '{$this->getIdproduct()}'";
+        $PRODCUTS = $this->db->query($SQL);
+        $Edit = false;
+        if ($PRODCUTS) {
+            $Edit = true;
+        }
+        return $Edit;
+    }
+
+    public function changeStatus()
+    {
+        $SQL = "UPDATE products SET status = '{$this->getStatus()}' WHERE idproduct = '{$this->getIdproduct()}'";
+        $status = $this->db->query($SQL);
+        $edit = false;
+        if ($status) {
+            $edit = true;
+        }
+        return $edit;
     }
 }

@@ -33,29 +33,54 @@
                         <input type="date" class="form-control form-control-user" id="exampleInputPassword" required name="create_at" value="<?= isset($oneEvent) && is_object($oneEvent) ? $oneEvent->create_at : "" ?>">
                     </div>
                     <div class="col-sm-6">
-                        <label for="">Fecha fin de inscripciones</label>
-                        <input type="datetime-local" class="form-control form-control-user" id="exampleRepeatPassword" required name="expires_in" value="<?= isset($oneEvent) && is_object($oneEvent) ? $oneEvent->expires_in : "" ?>">
+                        <?php if (isset($oneEvent) && is_object($oneEvent)) : ?>
+                            <label for="">Fecha fin: "<?= $oneEvent->expires_in ?>" - Seleccione otra Fecha para cambiar</label>
+                        <?php else : ?>
+                            <label for="">Fecha fin de inscripciones:</label>
+                        <?php endif; ?>
+                        <input type="datetime-local" class="form-control form-control-user" id="exampleRepeatPassword" name="expires_in" value="<?= isset($oneEvent) && is_object($oneEvent) ? $oneEvent->expires_in : "" ?>">
                     </div>
                 </div>
                 <div class="form-group row">
                     <div class="col-sm-6 mb-3 mb-sm-0">
-                        <label for="">Imagen del evento</label>
-                        <input type="file" class="form-control" id="exampleInputPassword" name="image" required>
+                        <?php if (isset($oneEvent) && is_object($oneEvent)) : ?>
+                            <label for="">Imagen del evento:</label>
+                            <input type="file" class="form-control" id="exampleInputPassword" name="image">
+                            <img src="<?= baseUrl ?>Uploads/events/<?= $oneEvent->image ?>" class="mt-2
+                            " height="90" width="180" alt="">
+                        <?php else : ?>
+                            <label for="">Imagen del evento</label>
+                            <input type="file" class="form-control" id="exampleInputPassword" name="image" required>
+                        <?php endif; ?>
+
                     </div>
-                    <div class="col-sm-6">
-                        <label for="">Mostrar la publicacion</label>
-                        <select class="form-control " aria-label="Default select example" name="status">
-                            <option value="Inactivo">Inactivo</option>
-                            <option value="Activo">Activo</option>
-                        </select>
-                    </div>
+                    <?php if (!isset($oneEvent)) : ?>
+                        <div class="col-sm-6">
+                            <label for="">Mostrar la publicacion</label>
+                            <select class="form-control " aria-label="Default select example" name="status" value="<?= isset($oneEvent) && is_object($oneEvent) ? $oneEvent->status : "" ?>">
+                                <option value="Activo">Activo</option>
+                                <option value="Inactivo">Inactivo</option>
+                            </select>
+                        </div>
+                    <?php endif; ?>
                 </div>
-                <button class="btn btn-success btn-icon-split float-right" type="submit">
-                    <span class="icon text-white-50">
-                        <i class="bi bi-check-circle-fill"></i>
-                    </span>
-                    <span class="text">CREAR CATEGORIA</span>
-                </button>
+
+                <?php if (isset($oneEvent) && is_object($oneEvent)) : ?>
+                    <button class="btn btn-warning btn-icon-split float-right" type="submit">
+                        <span class="icon text-white-50">
+                            <i class="bi bi-check-circle-fill"></i>
+                        </span>
+                        <span class="text">EDITAR CATEGORIA</span>
+                    </button>
+                <?php else : ?>
+                    <button class="btn btn-success btn-icon-split float-right" type="submit">
+                        <span class="icon text-white-50">
+                            <i class="bi bi-check-circle-fill"></i>
+                        </span>
+                        <span class="text">CREAR CATEGORIA</span>
+                    </button>
+                <?php endif; ?>
+
             </form>
         </div>
     </div>

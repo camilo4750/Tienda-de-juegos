@@ -31,10 +31,20 @@ class EventsController
                     $_FILES['image'] = null;
                 }
                 $event->setStatus($_POST['status']);
-                $Save = $event->save();
+                if (isset($_GET['id'])) {
+                    $id = $_GET['id'];
+                    $event->setIdevent($id);
+                    $Edit = $event->editEvent();
+                } else {
+                    $Save = $event->save();
+                }
 
                 if ($Save) {
                     $_SESSION['save'] = "exitoso";
+                }
+
+                if ($Edit) {
+                    $_SESSION['edit'] = "exitoso";
                 }
             }
         }

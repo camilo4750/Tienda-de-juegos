@@ -9,7 +9,6 @@
     <div class="container-fluid p-0">
         <div class="card-header">
             <h6 class="m-0 font-weight-bold text-primary">PREVISUALIZACIÓN EVENTO N°<?= $EVENT->idevent ?></h6>
-
         </div>
         <div class="card border-0 bg-dark text-white">
             <?php if (isset($EVENT) && is_object($EVENT)) : ?>

@@ -119,9 +119,17 @@ class Events
         return $edit;
     }
 
-    public function edit()
+    public function editEvent()
     {
-        $SQL = "UPDATE events SET status = '{$this->getStatus()}' WHERE idevent = '{$this->getIdevent()}'";
+        $SQL = "UPDATE events SET name = '{$this->getName()}', description = '{$this->getDescription()}', create_at = '{$this->getCreate_at()}'   ";
+        if ($this->getExpires_in() != null) {
+            $SQL .= ", expires_in = '{$this->getExpires_in()}'";
+        }
+        if ($this->getImage() != null) {
+            $SQL .= ", image = '{$this->getImage()}'";
+        }
+        $SQL .= "WHERE idevent = '{$this->getIdevent()}'";
+
         $status = $this->db->query($SQL);
         $edit = false;
         if ($status) {

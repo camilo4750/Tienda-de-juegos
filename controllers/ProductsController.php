@@ -36,13 +36,23 @@ class ProductsController
                 }
             }
             $product->setCreate_at($_POST['create_at']);
+            $product->setStatus($_POST['status']);
             $product->setCategory_id($_POST['Category_id']);
-            $Save = $product->save();
+            if (isset($_GET['id'])) {
+                $id = $_GET['id'];
+                $product->setIdproduct($id);
+                $Edit = $product->editProduct();
+            } else {
+                $Save = $product->save();
+            }
             if ($Save) {
                 $_SESSION['save'] = "exitoso";
             }
+            if ($Edit) {
+                $_SESSION['edit'] = "exitoso";
+            }
         }
-        header("location:" . baseUrl . "Products/create");
+        header("location:" . baseUrl . "Products/view");
     }
 
     public function view()
@@ -58,8 +68,49 @@ class ProductsController
             $id = $_GET['id'];
             $Product = new Products();
             $Product->setIdproduct($id);
-            $PRODUCT = $Product->allone();
-            require_once('view/products');
+            $PRODUCT = $Product->oneProduct();
+            require_once('view/products/viewProduct.php');
         }
+    }
+
+    public function edit()
+    {
+        if ($_GET['id']) {
+            $id = $_GET['id'];
+            $Product = new Products();
+            $Product->setIdproduct($id);
+            $editProduct = $Product->oneProduct();
+            require_once('view/products/create.php');
+        }
+    }
+
+    public function active()
+    {
+        if (isset($_GET['id'])) {
+            $id = $_GET['id'];
+            $Event = new Products();
+            $Event->setIdproduct($id);
+            $Event->setStatus('Activo');
+            $EVENT = $Event->changeStatus();
+            if ($EVENT) {
+                $_SESSION['active'] = "exitoso";
+            }
+        }
+        header("Location:" . baseUrl . "Products/view");
+    }
+
+    public function inactive()
+    {
+        if (isset($_GET['id'])) {
+            $id = $_GET['id'];
+            $Event = new Products();
+            $Event->setIdproduct($id);
+            $Event->setStatus('Inactivo');
+            $EVENT = $Event->changeStatus();
+            if ($EVENT) {
+                $_SESSION['inactive'] = "exitoso";
+            }
+        }
+        header("Location:" . baseUrl . "Products/view");
     }
 }

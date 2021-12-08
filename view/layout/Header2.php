@@ -14,9 +14,10 @@
     <link rel="stylesheet" href="<?= baseUrl ?>node_modules/bootstrap-icons/font/bootstrap-icons.css">
     <link href="<?= baseUrl ?>assets/css/sb-admin-2.min.css" rel="stylesheet">
     <link href="<?= baseUrl ?>vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+
     <link rel="stylesheet" type="text/css" href="<?= baseUrl ?>node_modules/DataTables/datatables.min.css" />
     <link rel="stylesheet" href="<?= baseUrl ?>assets/css/style.css?v=<?php echo time(); ?>">
-
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/responsive/2.2.9/css/responsive.dataTables.min.css">
 </head>
 
 <body id="page-top">

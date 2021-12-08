@@ -50,7 +50,7 @@
     <?php utilities::deleteSession() ?>
     <div class="card shadow mb-4">
         <div class="card-header py-3">
-            <h6 class="m-0 font-weight-bold text-primary">CATEGORIAS</h6>
+            <h6 class="m-0 font-weight-bold text-primary">NOTICIAS</h6>
         </div>
         <div class="card-body">
             <div class="table-responsive">
@@ -69,7 +69,7 @@
                     <tbody>
                         <?php while ($tidings = $TIDINGS->fetch_object()) : ?>
                             <tr>
-                                <td><?= $tidings->idtiding ?></td>
+                                <td class="w-80"><?= $tidings->idtiding ?></td>
                                 <td><?= $tidings->name ?></td>
                                 <td><?= $tidings->description ?></td>
                                 <td><?= $tidings->create_at ?></td>
