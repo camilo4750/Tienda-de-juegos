@@ -1,5 +1,6 @@
 <?php
 require_once('models/Products.php');
+require_once('models/Comments.php');
 class ProductsController
 {
     public function index()
@@ -121,6 +122,11 @@ class ProductsController
             $Product = new Products();
             $Product->setIdproduct($id);
             $seeProduct = $Product->oneProduct();
+
+            $Comment = new Comments();
+            $Comment->setProducts_id($id);
+            $COMMENTS = $Comment->seeComments();
+            $Count = $Comment->CountComments();
             require_once('view/products/seeProductBuy.php');
         }
     }

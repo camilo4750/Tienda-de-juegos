@@ -143,7 +143,7 @@
         </div>
 
         <?php while ($TIDING = $TIDINGS->fetch_object()) : ?>
-            <div class="col-xl-6 col-md-6">
+            <div class="col-xl-6 col-md-12">
                 <div class="card mb-3 shadow">
                     <div class="row g-0">
                         <div class="col-md-5">

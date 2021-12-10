@@ -131,13 +131,13 @@ class Products
 
     public function all()
     {
-        $PRODUCTS = $this->db->query("SELECT P.*, LEFT(P.description, 50) AS 'descriptionCor', C.name AS 'category' FROM products P INNER JOIN category C ON P.idproduct = C.idcategory ORDER BY idproduct");
+        $PRODUCTS = $this->db->query("SELECT P.*, LEFT(P.description, 50) AS 'descriptionCor', C.name AS 'category' FROM products P INNER JOIN category C ON P.Category_id  = C.idcategory ORDER BY idproduct");
         return $PRODUCTS;
     }
 
     public function oneProduct()
     {
-        $PRODUCTS = $this->db->query("SELECT P.*, LEFT(P.description, 80) AS 'descriptionCor', C.name AS 'category' FROM products P INNER JOIN category C ON P.idproduct = C.idcategory WHERE idproduct = '{$this->getIdproduct()}'");
+        $PRODUCTS = $this->db->query("SELECT P.*, LEFT(P.description, 80) AS 'descriptionCor', C.name AS 'category' FROM products P INNER JOIN category C ON P.Category_id  = C.idcategory WHERE idproduct = '{$this->getIdproduct()}'");
         return $PRODUCTS->fetch_object();
     }
 

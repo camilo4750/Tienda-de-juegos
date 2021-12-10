@@ -14,6 +14,12 @@ class utilities
             $borrado = true;
         }
 
+        if (isset($_SESSION['delete']) && $_SESSION['delete'] = "exitoso") {
+            $_SESSION['deletes'] = null;
+            $borrado = true;
+        }
+
+
         if (isset($_SESSION['active']) && $_SESSION['active'] = "exitoso") {
             $_SESSION['active'] = null;
             $borrado = true;

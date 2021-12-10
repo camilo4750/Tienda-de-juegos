@@ -62,4 +62,49 @@ class Comments
         $this->Clients_id = $Clients_id;
         return $this;
     }
+
+    public function save()
+    {
+        $SQL = "INSERT INTO comments VALUES(NULL, '{$this->getComment()}', CURDATE(), '{$this->getProducts_id()}', '{$this->getClients_id()}');";
+        $Comment = $this->db->query($SQL);
+        $save = false;
+        if ($Comment) {
+            $save = true;
+        }
+        return $save;
+    }
+
+    public function seeComments()
+    {
+        $Comments = $this->db->query("SELECT C.*, P.* FROM comments C INNER JOIN clients P ON C.Clients_id = P.idclient WHERE Products_id = '{$this->getProducts_id()}' ORDER BY C.idcomment");
+        return $Comments;
+    }
+
+    public function CountComments()
+    {
+        $Count = $this->db->query("SELECT COUNT(*) AS 'count' FROM comments WHERE Products_id = '{$this->getProducts_id()}'");
+        return $Count->fetch_object();
+    }
+
+    public function editComment()
+    {
+        $SQL = "UPDATE comments SET comment = '{$this->getComment()}' WHERE idcomment = '{$this->getIdcomment()}'";
+        $Comment = $this->db->query($SQL);
+        $Edit = false;
+        if ($Comment) {
+            $Edit = true;
+        }
+        return $Edit;
+    }
+
+    public function deleteComment()
+    {
+        $SQL = "DELETE FROM comments WHERE idcomment = '{$this->getIdcomment()}'";
+        $Comment = $this->db->query($SQL);
+        $Delete = false;
+        if ($Comment) {
+            $Delete = true;
+        }
+        return $Delete;
+    }
 }
