@@ -88,7 +88,7 @@ class Tidings
 
     public function total()
     {
-        $TIDINGS = $this->db->query("SELECT * FROM tidings");
+        $TIDINGS = $this->db->query("SELECT idtiding, name, LEFT(description, 55) AS 'descriptionCor', description, create_at, image, status   FROM tidings");
         return $TIDINGS;
     }
 

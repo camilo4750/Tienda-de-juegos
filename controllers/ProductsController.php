@@ -88,11 +88,11 @@ class ProductsController
     {
         if (isset($_GET['id'])) {
             $id = $_GET['id'];
-            $Event = new Products();
-            $Event->setIdproduct($id);
-            $Event->setStatus('Activo');
-            $EVENT = $Event->changeStatus();
-            if ($EVENT) {
+            $Product = new Products();
+            $Product->setIdproduct($id);
+            $Product->setStatus('Activo');
+            $PRODUCT = $Product->changeStatus();
+            if ($PRODUCT) {
                 $_SESSION['active'] = "exitoso";
             }
         }
@@ -103,14 +103,25 @@ class ProductsController
     {
         if (isset($_GET['id'])) {
             $id = $_GET['id'];
-            $Event = new Products();
-            $Event->setIdproduct($id);
-            $Event->setStatus('Inactivo');
-            $EVENT = $Event->changeStatus();
-            if ($EVENT) {
+            $Product = new Products();
+            $Product->setIdproduct($id);
+            $Product->setStatus('Inactivo');
+            $PRODUCT = $Product->changeStatus();
+            if ($PRODUCT) {
                 $_SESSION['inactive'] = "exitoso";
             }
         }
         header("Location:" . baseUrl . "Products/view");
+    }
+
+    public function seeProduct()
+    {
+        if (isset($_GET['id'])) {
+            $id = $_GET['id'];
+            $Product = new Products();
+            $Product->setIdproduct($id);
+            $seeProduct = $Product->oneProduct();
+            require_once('view/products/seeProductBuy.php');
+        }
     }
 }

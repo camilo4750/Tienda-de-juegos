@@ -99,17 +99,8 @@
                                     <h6>Disponibles: <?= $PRODUCT->stock ?> - Descuento: <?= $PRODUCT->discount ?>%</h6>
                                 </div>
                                 <p><?= $PRODUCT->descriptionCor ?></p>
-                                <div class="mx-6">
-                                    <a href="<?= baseUrl ?>Products/viewProduct&id=<?= $PRODUCT->idproduct ?>" class="btn btn-fixed" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-controls="offcanvasRight">ver »</a>
-                                    <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasRight" aria-labelledby="offcanvasRightLabel">
-                                        <div class="offcanvas-header">
-                                            <h5 id="offcanvasRightLabel">Offcanvas right</h5>
-                                            <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
-                                        </div>
-                                        <div class="offcanvas-body">
-                                            <h1><?= $PRODUCT->idproduct ?></h1>
-                                        </div>
-                                    </div>
+                                <div class="ms-auto">
+                                    <a href="<?= baseUrl ?>Products/seeProduct&id=<?= $PRODUCT->idproduct ?>" class="btn btn-fixed" type="button">ver »</a>
                                     <?php if (isset($_SESSION['User'])) : ?>
                                         <a class="btn btn-b" href="#">Comprar »</a>
                                     <?php else : ?>

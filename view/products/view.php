@@ -78,12 +78,12 @@
                                 <td><?= $PRODUCT->discount ?>%</td>
                                 <td> <img src="<?= baseUrl ?>Uploads/products/<?= $PRODUCT->image ?>" width="65" height="80" alt=""> </td>
                                 <td><?= $PRODUCT->create_at ?></td>
+                                <td><?= $PRODUCT->category ?></td>
                                 <?php if ($PRODUCT->status === 'Activo') : ?>
                                     <td class="text-success"><?= $PRODUCT->status ?></td>
                                 <?php else : ?>
                                     <td class="text-danger"><?= $PRODUCT->status ?></td>
                                 <?php endif; ?>
-                                <td><?= $PRODUCT->category ?></td>
                                 <td>
                                     <a href="<?= baseUrl ?>Products/viewProduct&id=<?= $PRODUCT->idproduct  ?>" class="btn-sm btn-info ms-2 mb-1" type="button" data-bs-toggle="tooltip" data-bs-placement="top" title="Ver Noticia">
                                         <i class="bi bi-eye"></i>

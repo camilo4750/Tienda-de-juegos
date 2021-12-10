@@ -71,7 +71,7 @@
                             <tr>
                                 <td class="w-80"><?= $tidings->idtiding ?></td>
                                 <td><?= $tidings->name ?></td>
-                                <td><?= $tidings->description ?></td>
+                                <td><?= $tidings->descriptionCor ?></td>
                                 <td><?= $tidings->create_at ?></td>
                                 <td> <img src="<?= baseUrl ?>uploads/Tidings/<?= $tidings->image ?>" height="80" alt=""></td>
                                 <?php if ($tidings->status === "Activo") : ?>

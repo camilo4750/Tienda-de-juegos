@@ -37,6 +37,21 @@
     font-family: 'Roboto', sans-serif;
 }
 
+.text-options {
+    font-size: 21px;
+    font-weight: 300;
+    color: black !important; 
+    font-family: 'Roboto', sans-serif;  
+    list-style:none
+}
+
+.text-description {
+    font-size: 18px;
+    font-weight: 300;
+    color: black !important; 
+    font-family: 'Roboto', sans-serif;
+}
+
 .text-primary {
     font-size: 23px;
     line-height: 19px;
@@ -253,9 +268,17 @@
 .mx-6 {
     margin-left: 6.5rem;
 }
+
+.mt-7 {
+    margin-top: 5rem !important; 
+}
 .text-footer  {
     font-family: 'Comforter Brush', cursive;
     color: rgb(65, 105, 225);
+}
+.imageProduct {
+    height: 100%;
+    width: 60%;
 }
 
 div.container { max-width: 1200px }

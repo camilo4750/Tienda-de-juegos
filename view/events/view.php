@@ -53,59 +53,62 @@
             <h6 class="m-0 font-weight-bold text-primary">EVENTOS</h6>
         </div>
         <div class="card-body">
-            <table id="example" class="display table responsive  table-striped table-bordered">
-                <thead class="bg-gradient-secondary text-white">
-                    <tr>
-                        <th>ID</th>
-                        <th>Nombre</th>
-                        <th>Descripcion</th>
-                        <th>Inicio</th>
-                        <th>FIn</th>
-                        <th>Imagen</th>
-                        <th>Estado</th>
-                        <th>Acciones</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <?php while ($EVENT = $EVENTS->fetch_object()) : ?>
+            <div class="table-responsive">
+                <table id="example" class="display table responsive table-striped table-bordered" style="width:100%">
+                    <thead class="bg-gradient-secondary text-white">
                         <tr>
-                            <td><?= $EVENT->idevent ?></td>
-                            <td><?= $EVENT->name ?></td>
-                            <td><?= $EVENT->descriptionCor ?></td>
-                            <td><?= $EVENT->create_at ?></td>
-                            <td><?= $EVENT->expires_in ?></td>
-                            <td> <img src="<?= baseUrl ?>Uploads/events/<?= $EVENT->image ?>" alt="" height="70" width="100"></td>
-                            <?php if ($EVENT->status === 'Activo') : ?>
-                                <td class="text-success"><?= $EVENT->status ?></td>
-                            <?php else : ?>
-                                <td class="text-danger"><?= $EVENT->status ?></td>
-                            <?php endif; ?>
-                            <td>
-                                <a href="<?= baseUrl ?>Events/viewEvent&id=<?= $EVENT->idevent  ?>" type="button" class="btn-sm btn-info ms-4 mb-1" data-bs-toggle="tooltip" data-bs-placement="top" title="Ver presentacion del evento"><i class="bi bi-eye"></i></a>
-                                <a href="<?= baseUrl ?>Events/edit&id=<?= $EVENT->idevent ?>" type="button" class="btn-sm btn-warning" data-toggle="tooltip" data-placement="top" title="Editar Evento">
-                                    <i class="bi bi-pencil-square"></i>
-                                </a>
-                                <?php if ($EVENT->status === 'Activo') : ?>
-                                    <a href="<?= baseUrl ?>Events/inactive&id=<?= $EVENT->idevent  ?>" type="button" class="btn-sm btn-danger" data-toggle="tooltip" data-placement="top" title="Inactivar Evento"><i class="bi bi-exclamation-circle"></i></a>
-                                <?php else : ?>
-                                    <a href="<?= baseUrl ?>Events/active&id=<?= $EVENT->idevent  ?>" type="button" class="btn-sm btn-success" data-toggle="tooltip" data-placement="top" title="Activar Evento"><i class="bi bi-check2-circle"></i></a>
-                                <?php endif; ?>
-                            </td>
+                            <th>ID</th>
+                            <th>Nombre</th>
+                            <th>Descripcion</th>
+                            <th>Inicio</th>
+                            <th>FIn</th>
+                            <th>Imagen</th>
+                            <th>Estado</th>
+                            <th>Acciones</th>
                         </tr>
-                    <?php endwhile; ?>
-                </tbody>
-                <tr>
-                    <th class="bg-gradient-secondary text-white">ID</th>
-                    <th class="bg-gradient-secondary text-white">Nombre</th>
-                    <th class="bg-gradient-secondary text-white">Descripcion</th>
-                    <th class="bg-gradient-secondary text-white">Inicio</th>
-                    <th class="bg-gradient-secondary text-white">FIn</th>
-                    <th class="bg-gradient-secondary text-white">Imagen</th>
-                    <th class="bg-gradient-secondary text-white">Estado</th>
-                    <th class="bg-gradient-secondary text-white">Acciones</th>
-                </tr>
-                </tfoot>
-            </table>
+                    </thead>    
+                    <tbody>
+                        <?php while ($EVENT = $EVENTS->fetch_object()) : ?>
+                            <tr>
+                                <td><?= $EVENT->idevent ?></td>
+                                <td><?= $EVENT->name ?></td>
+                                <td><?= $EVENT->descriptionCor ?></td>
+                                <td><?= $EVENT->create_at ?></td>
+                                <td><?= $EVENT->expires_in ?></td>
+                                <td> <img src="<?= baseUrl ?>Uploads/events/<?= $EVENT->image ?>" alt="" height="70" width="100"></td>
+                                <?php if ($EVENT->status === 'Activo') : ?>
+                                    <td class="text-success"><?= $EVENT->status ?></td>
+                                <?php else : ?>
+                                    <td class="text-danger"><?= $EVENT->status ?></td>
+                                <?php endif; ?>
+                                <td>
+                                    <a href="<?= baseUrl ?>Events/viewEvent&id=<?= $EVENT->idevent  ?>" type="button" class="btn-sm btn-info ms-4 mb-1" data-bs-toggle="tooltip" data-bs-placement="top" title="Ver presentacion del evento"><i class="bi bi-eye"></i></a>
+                                    <a href="<?= baseUrl ?>Events/edit&id=<?= $EVENT->idevent ?>" type="button" class="btn-sm btn-warning" data-toggle="tooltip" data-placement="top" title="Editar Evento">
+                                        <i class="bi bi-pencil-square"></i>
+                                    </a>
+                                    <?php if ($EVENT->status === 'Activo') : ?>
+                                        <a href="<?= baseUrl ?>Events/inactive&id=<?= $EVENT->idevent  ?>" type="button" class="btn-sm btn-danger" data-toggle="tooltip" data-placement="top" title="Inactivar Evento"><i class="bi bi-exclamation-circle"></i></a>
+                                    <?php else : ?>
+                                        <a href="<?= baseUrl ?>Events/active&id=<?= $EVENT->idevent  ?>" type="button" class="btn-sm btn-success" data-toggle="tooltip" data-placement="top" title="Activar Evento"><i class="bi bi-check2-circle"></i></a>
+                                    <?php endif; ?>
+                                </td>
+                            </tr>
+                        <?php endwhile; ?>
+                    </tbody>
+                    <tfoot>
+                        <tr class="bg-gradient-secondary text-white">
+                            <th>ID</th>
+                            <th>Nombre</th>
+                            <th>Descripcion</th>
+                            <th>Inicio</th>
+                            <th>FIn</th>
+                            <th>Imagen</th>
+                            <th>Estado</th>
+                            <th>Acciones</th>
+                        </tr>
+                    </tfoot>
+                </table>
+            </div>
         </div>
     </div>
 </div>
