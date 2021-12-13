@@ -164,4 +164,10 @@ class Clients
         $CLIENTS = $this->db->query("SELECT * FROM clients");
         return $CLIENTS;
     }
+
+    public function countClients()
+    {
+        $Clients = $this->db->query("SELECT COUNT(*) AS 'total' FROM clients");
+        return $Clients->fetch_object();
+    }
 }

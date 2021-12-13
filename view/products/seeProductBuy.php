@@ -147,9 +147,8 @@
                                                 <div class="row">
                                                     <div class="col-sm-12 col-md-12 col-lg-10">
                                                         <div class="container">
-                                                            <div class="card p-1">
-
-                                                                <?= isset($comment) && is_object($comment) ? $comment->comment : '' ?>
+                                                            <div class="card border-0 p-1">
+                                                                - <?= isset($comment) && is_object($comment) ? $comment->comment : '' ?>
                                                                 <div class="collapse" id="collapseExample<?= $comment->idcomment ?>">
                                                                     <div class="card card-body">
                                                                         <form action="<?= baseUrl ?>Comments/save&id=<?= $comment->idcomment ?>" method="POST">

@@ -9,6 +9,19 @@
         </div>
     </figure>
 </div>
+<?php if (isset($_SESSION['save']) && $_SESSION['save'] == "exitoso") : ?>
+    <div class="row" id="alerta">
+        <div class="col-md-12 ">
+            <div class=" text-center alert alert-success alert-dismissible fade show" role="alert">
+                <strong> <i class="bi bi-controller"></i> Felicidades <?= $_SESSION['User']->name ?> <?= $_SESSION['User']->surname ?> tu registro ha sido
+                    exitoso...! Procesaremos tu informacion y en tu menu de compras aparecera un boton extra llamado "Evento" donde tendras el resto de la informacion
+                    adicionalmente enviaremos un mensaje de texto al numero registrado.
+                </strong>
+            </div>
+        </div>
+    </div>
+<?php endif; ?>
+<?= utilities::deleteSession(); ?>
 <section class="bg-light">
     <div class="container">
         <div class="row m-0 mt-4">
@@ -127,7 +140,62 @@
                     <h5 class="card-title text-title text-white"><?= $EVENT->name ?></h5>
                     <p class="card-text text-primary2"><?= $EVENT->description ?></p>
                     <p class="card-text text-primary2">Fecha Inicio De Inscripciones: <?= $EVENT->create_at ?> Fecha Fin De Inscripcion: <?= $EVENT->expires_in ?></p>
-                    <a href="" class="btn btn-success">CLICK PARA REGISTRARTE EN ESTE EVENTO</a>
+                    <?php if (isset($_SESSION['User'])) : ?>
+                        <!-- Button trigger modal -->
+                        <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+                            CLICK PARA REGISTRARTE EN ESTE EVENTO
+                        </button>
+
+                        <!-- Modal -->
+                        <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title text-dark" id="staticBackdropLabel">Registro de participacion</h5>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <form action="<?= baseUrl ?>Participants/register" method="POST">
+                                            <div class="mb-3">
+                                                <label for="exampleFormControlTextarea1" class="form-label text-dark">Tienes buenas habilidades en este juego? cuentanos cueles:</label>
+                                                <textarea class="form-control" id="exampleFormControlTextarea1" name="reason" required rows="3"></textarea>
+                                            </div>
+                                            <div class="mt-2">
+                                                <label for="" class="text-dark">Numero Celular:</label>
+                                                <input type="number" class="form-control" required name="telephone">
+                                            </div>
+                                            <label for="" class="text-dark mx-2 mt-3">Aceptas teminos:</label>
+                                            <div class="form-check form-check-inline text-dark">
+                                                <input class="form-check-input" name="terms" type="checkbox" required value="Si">
+                                                <label class="form-check-label" for="inlineCheckbox1">Si</label>
+                                            </div>
+                                            <div class="form-check form-check-inline text-dark">
+                                                <input class="form-check-input" name="terms" type="checkbox" value="No">
+                                                <label class="form-check-label" for="inlineCheckbox2">No</label>
+                                            </div>
+                                            <label for="" class="text-dark mx-2 mt-3">El juego debes tenerlo instalado, cuentas con esto?</label> <br>
+                                            <div class="form-check form-check-inline text-dark">
+                                                <input class="form-check-input" name="install" type="checkbox" required value="Si">
+                                                <label class="form-check-label" for="inlineCheckbox1">Si</label>
+                                            </div>
+                                            <div class="form-check form-check-inline text-dark">
+                                                <input class="form-check-input" name="install" type="checkbox" value="No">
+                                                <label class="form-check-label" for="inlineCheckbox2">No</label>
+                                            </div>
+                                            <input type="hidden" name="Events_id" value="<?= $EVENT->idevent ?>">
+                                            <input type="hidden" name="Clients_id" value="<?= isset($_SESSION['User']) ? $_SESSION['User']->idclient : "" ?>">
+
+                                            <div class="modal-footer">
+                                                <button type="submit" class="btn btn-success">Registrar</button>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    <?php else : ?>
+                        <a href="#" onclick="alert('Debes iniciar Session...!');" class="btn btn-success">CLICK PARA REGISTRARTE EN ESTE EVENTO</a>
+                    <?php endif; ?>
                 </div>
             </div>
         <?php endwhile; ?>

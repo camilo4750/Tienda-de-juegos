@@ -128,4 +128,72 @@ class Participants
         $this->Clients_id = $Clients_id;
         return $this;
     }
+
+    public function countParticipants()
+    {
+        $Participant =  $this->db->query("SELECT COUNT(*) AS 'total' FROM participants");
+        return $Participant->fetch_object();
+    }
+
+    public function save()
+    {
+        $SQL = "INSERT INTO participants VALUES(NULL, '{$this->getReason()}', '{$this->getTerms()}', '{$this->getTelephone()}', '{$this->getInstall()}', '{$this->getStatus()}', '{$this->getQuarters()}', '{$this->getSemifinal()}', '{$this->getFinal()}', '{$this->getEvents_id()}', '{$this->getClients_id()}');";
+        $saveParticipants = $this->db->query($SQL);
+        $Save = false;
+        if ($saveParticipants) {
+            $Save =  true;
+        }
+        return $Save;
+    }
+
+    public function allParticipants()
+    {
+        $allParticipants = $this->db->query("SELECT P.*, C.name, C.surname, E.name AS 'event' FROM participants P INNER JOIN clients C ON P.Clients_id = C.idclient INNER JOIN events E ON P.Events_id = E.idevent ORDER BY P.idparticipant;");
+        return $allParticipants;
+    }
+
+    public function status()
+    {
+        $SQL = "UPDATE participants SET status = '{$this->getStatus()}' WHERE idparticipant = '{$this->getIdparticipant()}'";
+        $changeStatus = $this->db->query($SQL);
+        $Save = false;
+        if ($changeStatus) {
+            $Save =  true;
+        }
+        return $Save;
+    }
+
+    public function statusQuarters()
+    {
+        $SQL = "UPDATE participants SET quarters = '{$this->getQuarters()}' WHERE idparticipant = '{$this->getIdparticipant()}'";
+        $changeQuarters = $this->db->query($SQL);
+        $Save = false;
+        if ($changeQuarters) {
+            $Save =  true;
+        }
+        return $Save;
+    }
+
+    public function statusSemifinal()
+    {
+        $SQL = "UPDATE participants SET semifinal = '{$this->getSemifinal()}' WHERE idparticipant = '{$this->getIdparticipant()}'";
+        $changeSemifinal = $this->db->query($SQL);
+        $Save = false;
+        if ($changeSemifinal) {
+            $Save =  true;
+        }
+        return $Save;
+    }
+
+
+    public function statusFinal()
+    {
+        $SQL = "UPDATE participants SET final = '{$this->getFinal()}' WHERE idparticipant = '{$this->getIdparticipant()}'";
+        $changeFinal = $this->db->query($SQL);
+        $Save = false;
+        if ($changeFinal) {
+            $Save =  true;
+        }
+        return $Save;
+    }
 }

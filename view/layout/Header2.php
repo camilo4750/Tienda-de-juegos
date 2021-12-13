@@ -21,7 +21,7 @@
 </head>
 
 <body id="page-top">
-    <div id="wrapper">
+    <div id="wrapper" class="overflow-auto">
         <ul class="navbar-nav bg-gradient-dark  sidebar sidebar-dark accordion" id="accordionSidebar">
             <a class="sidebar-brand d-flex align-items-center justify-content-center" href="<?= baseUrl ?>Users/panel">
                 <div class="sidebar-brand-icon rotate-n-15">
@@ -53,6 +53,7 @@
                     </div>
                 </div>
             </li>
+
             <li class="nav-item">
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo2" aria-expanded="true" aria-controls="collapseTwo2">
                     <i class="bi bi-joystick"></i>

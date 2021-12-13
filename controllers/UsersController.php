@@ -1,5 +1,10 @@
 <?php
 require_once('models/Users.php');
+require_once('models/Clients.php');
+require_once('models/Participants.php');
+require_once('models/Events.php');
+require_once('models/Products.php');
+require_once('models/Comments.php');
 class UsersController
 {
     public function session()
@@ -55,6 +60,16 @@ class UsersController
 
     public function panel()
     {
+        $Clients = new Clients();
+        $totalClients = $Clients->countClients();
+        $Participants = new Participants();
+        $totalParticipants = $Participants->countParticipants();
+        $Events = new Events();
+        $totalEvents = $Events->countEvents();
+        $Products = new Products();
+        $totalProducts = $Products->countProducts();
+        $Comments = new Comments();
+        $totalComments = $Comments->totalCount();
         require_once('view/users/panel.php');
     }
 

@@ -137,4 +137,10 @@ class Events
         }
         return $edit;
     }
+
+    public function countEvents()
+    {
+        $Events = $this->db->query("SELECT COUNT(*) AS 'total' FROM events");
+        return $Events->fetch_object();
+    }
 }

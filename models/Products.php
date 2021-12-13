@@ -166,4 +166,10 @@ class Products
         }
         return $edit;
     }
+
+    public function countProducts()
+    {
+        $Products = $this->db->query("SELECT COUNT(*) AS 'total' FROM products");
+        return  $Products->fetch_object();
+    }
 }

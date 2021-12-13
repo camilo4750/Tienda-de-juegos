@@ -107,4 +107,9 @@ class Comments
         }
         return $Delete;
     }
+    public function totalCount()
+    {
+        $Comments = $this->db->query("SELECT COUNT(*) AS 'total' FROM comments");
+        return $Comments->fetch_object();
+    }
 }
