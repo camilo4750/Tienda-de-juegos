@@ -78,9 +78,9 @@
 </section>
 <div class="container-fluid">
     <div class="row">
-        <div class="py-4 px-5">
-            <h2 class="text-title ">NUESTROS PRODUCTOS</h2>
-            <p class="text-primary">"No te quedes con las ganas de obtener el tuyo"</p>
+        <div class="py-4 px-4">
+            <h2 class="text-title lh-1">NUESTROS PRODUCTOS</h2>
+            <p class="text-primary lh-1">"No te quedes con las ganas de obtener el tuyo"</p>
         </div>
         <?php if (isset($_SESSION['User'])) : ?>
             <div class="col-md-2">
@@ -102,7 +102,7 @@
                     <?php $PRODUCTS = utilities::allProducts(); ?>
                     <?php while ($PRODUCT = $PRODUCTS->fetch_object()) : ?>
                         <div class="col-xl-3 col-md-6">
-                            <div class="card shadow border-secondary border-3  p-2 mb-2 justify-content-center align-items-center">
+                            <div class="card shadow border-0 p-2 mb-2 justify-content-center align-items-center">
                                 <div>
                                     <img src="<?= baseUrl ?>Uploads/products/<?= $PRODUCT->image ?>" class="bd-placeholder-img rounded shadow" width="120" height="140" alt="">
                                 </div>
@@ -130,84 +130,127 @@
     </div>
 </div>
 
-<div class="container-fluid p-0">
-    <div class="card border-0 bg-dark text-white">
-        <?php $EVENTS = utilities::allEvent(); ?>
-        <?php while ($EVENT = $EVENTS->fetch_object()) : ?>
-            <img src="<?= baseUrl ?>Uploads/events/<?= $EVENT->image ?>" class="card-img" height="550" width="100" alt="...">
-            <div class="fondo">
-                <div class="card-img-overlay mt-5">
-                    <h5 class="card-title text-title text-white"><?= $EVENT->name ?></h5>
-                    <p class="card-text text-primary2"><?= $EVENT->description ?></p>
-                    <p class="card-text text-primary2">Fecha Inicio De Inscripciones: <?= $EVENT->create_at ?> Fecha Fin De Inscripcion: <?= $EVENT->expires_in ?></p>
-                    <?php if (isset($_SESSION['User'])) : ?>
-                        <!-- Button trigger modal -->
-                        <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
-                            CLICK PARA REGISTRARTE EN ESTE EVENTO
-                        </button>
-
-                        <!-- Modal -->
-                        <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-                            <div class="modal-dialog">
-                                <div class="modal-content">
-                                    <div class="modal-header">
-                                        <h5 class="modal-title text-dark" id="staticBackdropLabel">Registro de participacion</h5>
-                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+<section class="bg-light">
+    <div class="container-fluid">
+        <div class="row justify-content-center">
+            <div class="py-4 px-4">
+                <h2 class="text-title lh-1">TORNEOS EN DESARROLLO</h2>
+                <p class="text-primary lh-1">"Quieres demostrar tus excelentes habilidades como gamer, inscribete..!"</p>
+            </div>
+            <?php $ongoing = utilities::ongoingEvents(); ?>
+            <?php while ($currentEvent = $ongoing->fetch_object()) : ?>
+                <div class="col-sm-12 col-md-7 col-lg-5 col-xl-4 ml-auto">
+                    <a href="<?= baseUrl ?>Events/seeEvent&id=<?= $currentEvent->idevent ?>">
+                        <div class="card bg-dark rounded text-white  border-events">
+                            <img src="<?= baseUrl ?>Uploads/events/<?= $currentEvent->image ?>" class="card-img" alt="..." height="240">
+                            <div class="card-img-overlay fondImage p-2">
+                                <h3 class="card-title lh-1"><?= $currentEvent->name ?></h3>
+                                <div>
+                                    <span class="fw-bold">FIN DE INSCRIPCIÓN</span> <br>
+                                    <p class="card-text"> <?= $currentEvent->expires_in ?> </p>
+                                </div>
+                                <div>
+                                    <span class="fw-bold">INICIO</span> <br>
+                                    <p class="card-text"> <?= $currentEvent->create_at ?> </p>
+                                </div>
+                                <div>
+                                    <span class="fw-bold">MAXIMO DE PARTICIPANTES</span> <br>
+                                    <p class="card-text"> <?= $currentEvent->numberParticipants . " " . $currentEvent->type ?> </p>
+                                </div>
+                                <div class="row">
+                                    <div class="col-auto me-auto"> <span class="fw-bold">INSCRITOS HASTA LA FECHA</span> <br>
+                                        <?php $idEvent = $currentEvent->idevent ?>
+                                        <?php $countParticipants = utilities::countParticipants($idEvent); ?>
+                                        <p class="card-text"> <?= isset($countParticipants) && is_object($countParticipants) ? $countParticipants->total . " " . $currentEvent->type : "" ?> </p>
                                     </div>
-                                    <div class="modal-body">
-                                        <form action="<?= baseUrl ?>Participants/register" method="POST">
-                                            <div class="mb-3">
-                                                <label for="exampleFormControlTextarea1" class="form-label text-dark">Tienes buenas habilidades en este juego? cuentanos cueles:</label>
-                                                <textarea class="form-control" id="exampleFormControlTextarea1" name="reason" required rows="3"></textarea>
-                                            </div>
-                                            <div class="mt-2">
-                                                <label for="" class="text-dark">Numero Celular:</label>
-                                                <input type="number" class="form-control" required name="telephone">
-                                            </div>
-                                            <label for="" class="text-dark mx-2 mt-3">Aceptas teminos:</label>
-                                            <div class="form-check form-check-inline text-dark">
-                                                <input class="form-check-input" name="terms" type="checkbox" required value="Si">
-                                                <label class="form-check-label" for="inlineCheckbox1">Si</label>
-                                            </div>
-                                            <div class="form-check form-check-inline text-dark">
-                                                <input class="form-check-input" name="terms" type="checkbox" value="No">
-                                                <label class="form-check-label" for="inlineCheckbox2">No</label>
-                                            </div>
-                                            <label for="" class="text-dark mx-2 mt-3">El juego debes tenerlo instalado, cuentas con esto?</label> <br>
-                                            <div class="form-check form-check-inline text-dark">
-                                                <input class="form-check-input" name="install" type="checkbox" required value="Si">
-                                                <label class="form-check-label" for="inlineCheckbox1">Si</label>
-                                            </div>
-                                            <div class="form-check form-check-inline text-dark">
-                                                <input class="form-check-input" name="install" type="checkbox" value="No">
-                                                <label class="form-check-label" for="inlineCheckbox2">No</label>
-                                            </div>
-                                            <input type="hidden" name="Events_id" value="<?= $EVENT->idevent ?>">
-                                            <input type="hidden" name="Clients_id" value="<?= isset($_SESSION['User']) ? $_SESSION['User']->idclient : "" ?>">
-
-                                            <div class="modal-footer">
-                                                <button type="submit" class="btn btn-success">Registrar</button>
-                                            </div>
-                                        </form>
+                                    <div class="col-auto">
+                                        <p class="text-success fw-bold textfin2">EN CURSO</p>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                    <?php else : ?>
-                        <a href="#" onclick="alert('Debes iniciar Session...!');" class="btn btn-success">CLICK PARA REGISTRARTE EN ESTE EVENTO</a>
-                    <?php endif; ?>
+                    </a>
+                </div>
+            <?php endwhile; ?>
+        </div>
+    </div>
+
+    <div class="container-fluid ">
+        <div class="row">
+            <div class="py-4 px-4">
+                <h2 class="text-title lh-1">TORNEOS FINALIZADOS</h2>
+                <p class="text-primary lh-1">"hecha un vistaso de como fue el proceso y sus ganadores"</p>
+            </div>
+            <?php $completed = utilities::completedEvents() ?>
+            <?php while ($eventFinalized = $completed->fetch_object()) : ?>
+
+                <div class="col-sm-12 col-md-7 col-lg-5 col-xl-4 ml-auto">
+                    <a href="<?= baseUrl ?>Events/seeEvent&id=<?= $eventFinalized->idevent ?>">
+                        <div class="card bg-dark rounded text-white border-events mb-3">
+                            <img src="<?= baseUrl ?>Uploads/events/<?= $eventFinalized->image ?>" class="card-img" alt="..." height="240">
+                            <div class="card-img-overlay fondImage p-2">
+                                <h4 class="card-title lh-1"><?= $eventFinalized->name ?></h3>
+                                    <div>
+                                        <span class="fw-bold">FIN DE INSCRIPCIÓN</span> <br>
+                                        <p class="card-text"> <?= $eventFinalized->expires_in ?> </p>
+                                    </div>
+                                    <div>
+                                        <span class="fw-bold">INICIO</span> <br>
+                                        <p class="card-text"> <?= $eventFinalized->create_at ?> </p>
+                                    </div>
+                                    <div>
+                                        <span class="fw-bold">MAXIMO DE PARTICIPANTES</span> <br>
+                                        <p class="card-text"> <?= $eventFinalized->numberParticipants . " " . $eventFinalized->type ?> </p>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-auto me-auto"> <span class="fw-bold">INSCRITOS HASTA LA FECHA</span> <br>
+                                            <?php if (isset($countParticipants)) : ?>
+                                                <?php $idEvent = $eventFinalized->idevent ?>
+                                                <?php $countParticipants = utilities::countParticipants($idEvent); ?>
+                                                <p class="card-text"> <?= isset($countParticipants) && is_object($countParticipants) ? $countParticipants->total . " " . $eventFinalized->type : "" ?> </p>
+                                            <?php endif; ?>
+                                        </div>
+                                        <div class="col-auto">
+                                            <p class="text-danger fw-bold textfin">FINALIZADO</p>
+                                        </div>
+                                    </div>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            <?php endwhile; ?>
+        </div>
+    </div>
+</section>
+
+<section class="mt-3 mb-3">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="image3 p-0">
+                <div class="fondImage2">
+
+                    <ul class="normas">
+                        <h1>NORMAS PRINCIPALES</h1>
+                        <li class="fs-5 ">1. Los jugadores deberan contar con alguno de estos dispositivos para poder participar (XBOX, PLAYSTATION , CELULAR, PC, TABLED) </li>
+                        <li class="fs-5">2. deberan contar con una edad mayor a los 18 años</li>
+                        <li class="fs-5">3. Rcuerden tener en cuenta la region del servidor</li>
+                        <li class="fs-5">4. registrate con anticipacion, al llenarce los cupos ya no podras participar</li>
+                        <li class="fs-5">5. si tienes dudas o preguntas puedes escribirnos al correo quickshopping@gmail.com</li>
+                    </ul>
                 </div>
             </div>
-        <?php endwhile; ?>
-    </div>
-</div>
 
-<div class="container-fluid">
+        </div>
+
+    </div>
+
+</section>
+<div class=" container-fluid">
     <?php $TIDINGS = utilities::allTidings(); ?>
     <div class="row bg-light">
-        <div class="py-4 px-5">
-            <h2 class="text-title ">NOTICIAS DE ULTIMA HORA</h2>
-            <p class="text-primary">"Conoce todo lo que sucede en el mundo de los videojuegos no te quedes sin ninguna novedad..!"</p>
+        <div class="py-4 px-4">
+            <h2 class="text-title lh-1">NOTICIAS DE ULTIMA HORA</h2>
+            <p class="text-primary lh-1">"Conoce todo lo que sucede en el mundo de los videojuegos no te quedes sin ninguna novedad..!"</p>
         </div>
 
         <?php while ($TIDING = $TIDINGS->fetch_object()) : ?>

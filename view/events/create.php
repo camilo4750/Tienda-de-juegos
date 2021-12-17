@@ -38,32 +38,46 @@
                         <?php else : ?>
                             <label for="">Fecha fin de inscripciones:</label>
                         <?php endif; ?>
-                        <input type="datetime-local" class="form-control form-control-user" id="exampleRepeatPassword" name="expires_in" value="<?= isset($oneEvent) && is_object($oneEvent) ? $oneEvent->expires_in : "" ?>">
+                        <input type="datetime-local" class="form-control form-control-user" name="expires_in" value="<?= isset($oneEvent) && is_object($oneEvent) ? $oneEvent->expires_in : "" ?>">
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <div class="col-sm-6">
+                        <label for="">Cantidad de usuarios a participar</label>
+                        <input type="number" class="form-control form-control-user" required name="numberParticipants" value="<?= isset($oneEvent) && is_object($oneEvent) ? $oneEvent->numberParticipants : "" ?>">
+                    </div>
+                    <div class="col-sm-6">
+
+                        <label for="">Tipo de jugabilidad</label>
+                        <select class="form-control" aria-label="Default select example" name="type" value="<?= isset($oneEvent) && is_object($oneEvent) ? $oneEvent->status : "" ?>">
+                            <option value="Usuarios">Usuarios</option>
+                            <option value="Equipos">Equipos</option>
+                            <option value="Ilimitado">Ilimitado</option>
+                        </select>
                     </div>
                 </div>
                 <div class="form-group row">
                     <div class="col-sm-6 mb-3 mb-sm-0">
                         <?php if (isset($oneEvent) && is_object($oneEvent)) : ?>
                             <label for="">Imagen del evento:</label>
-                            <input type="file" class="form-control" id="exampleInputPassword" name="image">
+                            <input type="file" class="form-control" name="image">
                             <img src="<?= baseUrl ?>Uploads/events/<?= $oneEvent->image ?>" class="mt-2
-                            " height="90" width="180" alt="">
+                            " height="80" width="160" alt="">
                         <?php else : ?>
                             <label for="">Imagen del evento</label>
-                            <input type="file" class="form-control" id="exampleInputPassword" name="image" required>
+                            <input type="file" class="form-control"  name="image" required>
                         <?php endif; ?>
 
                     </div>
-                    <?php if (!isset($oneEvent)) : ?>
+
+                    <?php if (isset($oneEvent)) : ?>
                         <div class="col-sm-6">
-                            <label for="">Mostrar la publicacion</label>
-                            <select class="form-control " aria-label="Default select example" name="status" value="<?= isset($oneEvent) && is_object($oneEvent) ? $oneEvent->status : "" ?>">
-                                <option value="Activo">Activo</option>
-                                <option value="Inactivo">Inactivo</option>
-                            </select>
+                            <label for="">Link del video presentacion evento final "para esto te vas al video en youtube le das COMPARTIR seleccionas "Insertar" y copias el "SRC que esta en el link que te muestra" "</label>
+                            <input type="text" class="form-control" name="link" value="<?= isset($oneEvent) && is_object($oneEvent) ? $oneEvent->link : "" ?>">
                         </div>
                     <?php endif; ?>
                 </div>
+
 
                 <?php if (isset($oneEvent) && is_object($oneEvent)) : ?>
                     <button class="btn btn-warning btn-icon-split float-right" type="submit">

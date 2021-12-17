@@ -135,6 +135,11 @@ class Participants
         return $Participant->fetch_object();
     }
 
+    public function oneCountParticipants($idEvent)
+    {
+        $Participant =  $this->db->query("SELECT COUNT(*) AS 'total' FROM participants WHERE Events_id = '$idEvent' ");
+        return $Participant->fetch_object();
+    }
     public function save()
     {
         $SQL = "INSERT INTO participants VALUES(NULL, '{$this->getReason()}', '{$this->getTerms()}', '{$this->getTelephone()}', '{$this->getInstall()}', '{$this->getStatus()}', '{$this->getQuarters()}', '{$this->getSemifinal()}', '{$this->getFinal()}', '{$this->getEvents_id()}', '{$this->getClients_id()}');";
@@ -195,5 +200,17 @@ class Participants
             $Save =  true;
         }
         return $Save;
+    }
+
+    public function oneParticipant()
+    {
+        $oneParticipant = $this->db->query("SELECT P.*, C.idclient, C.name, C.surname, C.email, C.image AS 'imageClient', C.description AS 'descriptionClient', C.create_at AS 'createClient', C.client_fixed, E.name AS 'nameEvent', E.description, E.create_at AS 'createEvent', E.expires_in, E.image AS 'imageEvent' FROM participants P INNER JOIN clients C ON P.Clients_id = C.idclient INNER JOIN events E ON P.Events_id = E.idevent WHERE idparticipant = '{$this->getIdparticipant()}' ORDER BY P.idparticipant;");
+        return $oneParticipant->fetch_object();
+    }
+
+    public function ClassificationForEvents($idEvent)
+    {
+        $Classification = $this->db->query("SELECT P.*, C.name, C.surname, C.email, C.image, C.status FROM participants P INNER JOIN clients C ON P.Clients_id = C.idclient  WHERE Events_id = '{$idEvent}';");
+        return $Classification;
     }
 }

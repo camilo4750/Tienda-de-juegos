@@ -103,7 +103,7 @@ class ParticipantsController
                 $_SESSION['active'] = "exitoso";
             }
         }
-        header("Location:" . baseUrl . "Participants/view"); 
+        header("Location:" . baseUrl . "Participants/view");
     }
 
     public function inactiveSemifinal()
@@ -118,7 +118,7 @@ class ParticipantsController
                 $_SESSION['inactive'] = "exitoso";
             }
         }
-        header("Location:" . baseUrl . "Participants/view"); 
+        header("Location:" . baseUrl . "Participants/view");
     }
 
     public function activeFinal()
@@ -133,12 +133,12 @@ class ParticipantsController
                 $_SESSION['active'] = "exitoso";
             }
         }
-        header("Location:" . baseUrl . "Participants/view"); 
+        header("Location:" . baseUrl . "Participants/view");
     }
 
     public function inactiveFinal()
     {
-        
+
         if (isset($_GET['id'])) {
             $id = $_GET['id'];
             $inactive = new Participants();
@@ -149,6 +149,17 @@ class ParticipantsController
                 $_SESSION['inactive'] = "exitoso";
             }
         }
-        header("Location:" . baseUrl . "Participants/view"); 
+        header("Location:" . baseUrl . "Participants/view");
+    }
+
+    public function seeParticipant()
+    {
+        if (isset($_GET['id'])) {
+            $id = $_GET['id'];
+            $Participant = new Participants();
+            $Participant->setIdparticipant($id);
+            $oneParticipant = $Participant->oneParticipant();
+            require_once('view/participants/SeeParticipant.php');
+        }
     }
 }

@@ -64,9 +64,13 @@
                             <th>FIn</th>
                             <th>Imagen</th>
                             <th>Estado</th>
+                            <th>Participantes</th>
+                            <th>Jugabilidad</th>
+                            <th>Finalizado</th>
+                            <th>Link</th>
                             <th>Acciones</th>
                         </tr>
-                    </thead>    
+                    </thead>
                     <tbody>
                         <?php while ($EVENT = $EVENTS->fetch_object()) : ?>
                             <tr>
@@ -81,6 +85,10 @@
                                 <?php else : ?>
                                     <td class="text-danger"><?= $EVENT->status ?></td>
                                 <?php endif; ?>
+                                <td><?= $EVENT->numberParticipants ?></td>
+                                <td><?= $EVENT->type ?></td>
+                                <td><?= $EVENT->finalized ?></td>
+                                <td><?= $EVENT->link ?></td>
                                 <td>
                                     <a href="<?= baseUrl ?>Events/viewEvent&id=<?= $EVENT->idevent  ?>" type="button" class="btn-sm btn-info ms-4 mb-1" data-bs-toggle="tooltip" data-bs-placement="top" title="Ver presentacion del evento"><i class="bi bi-eye"></i></a>
                                     <a href="<?= baseUrl ?>Events/edit&id=<?= $EVENT->idevent ?>" type="button" class="btn-sm btn-warning" data-toggle="tooltip" data-placement="top" title="Editar Evento">
@@ -104,6 +112,10 @@
                             <th>FIn</th>
                             <th>Imagen</th>
                             <th>Estado</th>
+                            <th>Participantes</th>
+                            <th>Jugabilidad</th>
+                            <th>Finalizado</th>
+                            <th>Link</th>
                             <th>Acciones</th>
                         </tr>
                     </tfoot>

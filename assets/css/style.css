@@ -1,6 +1,13 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;500&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;500&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Comforter+Brush&display=swap');
+
+body {
+    margin:0;
+    padding:0;
+    border:0;
+}
+
 .nav-link{
     margin: 2px;
     font-size: 20px;
@@ -54,7 +61,6 @@
 
 .text-primary {
     font-size: 23px;
-    line-height: 19px;
     font-weight: 300;
     color: black !important; 
     font-family: 'Roboto', sans-serif;
@@ -136,6 +142,19 @@
 
 }
 
+.border-events {
+    border-color: #E3D956;
+    transition: .3s;
+    border-radius: 10px;
+}
+
+.border-events:hover {
+    border-color: #E3D956;
+    transition: .3s;
+    box-shadow: 0px 0px 17px #E3D956;
+
+}
+
 .text-color1{
     color: rgb(65, 105, 225);
 }
@@ -192,7 +211,7 @@
     color: black;
     font-size: 18px;
     font-family: 'Roboto', sans-serif;
-    transition: 2s;    
+    transition: .5s;    
     font-weight: 500;
     border-radius: 100px;
     
@@ -274,11 +293,93 @@
 }
 .text-footer  {
     font-family: 'Comforter Brush', cursive;
-    color: rgb(65, 105, 225);
+    color: #4169e1;
 }
 .imageProduct {
     height: 100%;
     width: 60%;
 }
 
-div.container { max-width: 1200px }
+
+.stats {
+    background: #f2f5f8 !important;
+    color: #000 !important
+}
+
+.articles {
+    font-size: 10px;
+    color: #a1aab9
+}
+
+.number1 {
+    font-weight: 500
+}
+
+.followers {
+    font-size: 10px;
+    color: #a1aab9
+}
+
+.number2 {
+    font-weight: 500
+}
+
+.rating {
+    font-size: 10px;
+    color: #a1aab9
+}
+
+.number3 {
+    font-weight: 500
+}
+
+.fondImage {
+    background: rgb(0, 0, 0, .4);
+    font-size: 85%;
+}
+
+.fondImage2 {
+    background: rgb(0, 0, 0, .6);
+    height: 400px;
+    text-align: center;
+    color: #ffffff;
+}
+.textfin{
+    font-size: 18px;
+    box-shadow: 0px 0px 15px rgb(230, 11, 11); 
+    background: rgb(0, 0, 0, .6);
+}
+.textfin:hover {
+    font-size: 20px;
+    box-shadow: 0px 0px 15px rgb(230, 11, 11); 
+    background: rgb(0, 0, 0, .6);
+}
+
+.textfin2{
+    font-size: 18px;
+    box-shadow: 0px 0px 15px rgb(7, 228, 55); 
+    background: rgb(0, 0, 0, .6);
+}
+.textfin2:hover {
+    font-size: 20px;
+    box-shadow: 0px 0px 15px rgb(7, 228, 55); 
+    background: rgb(0, 0, 0, .6);
+}
+
+ 
+
+.image3 {
+    position:relative;
+    background: url("../img/Web_Detail.jpg") no-repeat fixed;
+    background-position: center center;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    min-height: 400px;
+}
+
+.normas {
+    list-style-type:none;
+    padding-top: 5%;
+}

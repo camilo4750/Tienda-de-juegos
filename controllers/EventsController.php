@@ -30,7 +30,11 @@ class EventsController
                 } else {
                     $_FILES['image'] = null;
                 }
-                $event->setStatus($_POST['status']);
+                $event->setStatus('Activo');
+                $event->setNumberParticipants($_POST['numberParticipants']);
+                $event->setType($_POST['type']);
+                $event->setFinalized('No');
+                $event->setLink($_POST['link']);
                 if (isset($_GET['id'])) {
                     $id = $_GET['id'];
                     $event->setIdevent($id);
@@ -108,6 +112,17 @@ class EventsController
             $Event->setIdevent($id);
             $oneEvent = $Event->oneEvent();
             require('view/events/create.php');
+        }
+    }
+
+    public function seeEvent()
+    {
+        if (isset($_GET['id'])) {
+            $id = $_GET['id'];
+            $see = new Events();
+            $see->setIdevent($id);
+            $seeEvent = $see->seeEventOne();
+            require_once('view/events/seeEvent.php');
         }
     }
 }

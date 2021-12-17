@@ -95,8 +95,7 @@
                                     <?php else : ?>
                                         <a href="<?= baseUrl ?>Participants/activeFinal&id=<?= $Participant->idparticipant  ?>" type="button" class="btn-sm btn-success mb-1" data-toggle="tooltip" data-placement="top" title="Activar Inscripción"><i class="bi bi-flag-fill"></i></a>
                                     <?php endif; ?>
-                                    <a href="<?= baseUrl ?>Participants/seeInfoEvent&id=<?= $Participant->idparticipant  ?>" type="button" class="btn-sm btn-info" data-toggle="tooltip" data-placement="top" title="Activar Inscripción"><i class="bi bi-eye-fill"></i></a>
-
+                                    <a href="<?= baseUrl ?>Participants/seeParticipant&id=<?= $Participant->idparticipant  ?>" type="button" class="btn-sm btn-info" data-toggle="tooltip" data-placement="top" title="Activar Inscripción"><i class="bi bi-eye-fill"></i></a>
                                 </td>
                             </tr>
                         <?php endwhile; ?>

@@ -24,6 +24,9 @@
             <div class="collapse navbar-collapse float-left" id="navbarScroll">
                 <ul class="navbar-nav  ms-auto  my-2 my-lg-0 navbar-nav-scroll" style="--bs-scroll-height: 150px;">
                     <li class="nav-item">
+                        <a class="nav-link" href="<?= baseUrl ?>Clients/sessions">Iniciar Session</a>
+                    </li>
+                    <li class="nav-item">
                         <a class="nav-link active" aria-current="page" href="<?= baseUrl ?>Products/index">Home</a>
                     </li>
                     <?php $CATEGORIES = utilities::allCategory() ?>
@@ -32,10 +35,6 @@
                             <a class="nav-link" href="<?= baseUrl ?>Clients/sessions&id=<?= $CATEGORY->idcategory ?>"><?= $CATEGORY->name ?></a>
                         </li>
                     <?php endwhile; ?>
-                    <li class="nav-item">
-                        <a class="nav-link" href="<?= baseUrl ?>Clients/sessions">Iniciar Session</a>
-                    </li>
-
                 </ul>
             </div>
         </div>

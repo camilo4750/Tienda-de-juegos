@@ -8,6 +8,10 @@ class Events
     private $expires_in;
     private $image;
     private $status;
+    private $numberParticipants;
+    private $type;
+    private $link;
+    private $finalized;
     private $db;
 
     public function __construct()
@@ -85,9 +89,48 @@ class Events
         return $this;
     }
 
+    public function getNumberParticipants()
+    {
+        return $this->numberParticipants;
+    }
+    public function setNumberParticipants($numberParticipants)
+    {
+        $this->numberParticipants = $numberParticipants;
+        return $this;
+    }
+
+    public function getType()
+    {
+        return $this->type;
+    }
+    public function setType($type)
+    {
+        $this->type = $type;
+        return $this;
+    }
+
+    public function getFinalized()
+    {
+        return $this->finalized;
+    }
+    public function setFinalized($finalized)
+    {
+        $this->finalized = $finalized;
+        return $this;
+    }
+
+    public function getLink()
+    {
+        return $this->link;
+    }
+    public function setLink($link)
+    {
+        $this->link = $link;
+        return $this;
+    }
     public function save()
     {
-        $SQL = "INSERT INTO events VALUES(NULL, '{$this->getName()}', '{$this->getDescription()}', '{$this->getCreate_at()}', '{$this->getExpires_in()}', '{$this->getImage()}', '{$this->getStatus()}');";
+        $SQL = "INSERT INTO events VALUES(NULL, '{$this->getName()}', '{$this->getDescription()}', '{$this->getCreate_at()}', '{$this->getExpires_in()}', '{$this->getImage()}', '{$this->getStatus()}', '{$this->getNumberParticipants()}', '{$this->getType()}', '{$this->getFinalized()}', 'Null');";
         $event = $this->db->query($SQL);
         $Save = false;
         if ($event) {
@@ -98,7 +141,7 @@ class Events
 
     public function all()
     {
-        $EVENTS = $this->db->query("SELECT idevent, name, description, LEFT(description, 80) AS 'descriptionCor', create_at, expires_in, image, status FROM events;");
+        $EVENTS = $this->db->query("SELECT idevent, name, description, LEFT(description, 40) AS 'descriptionCor', create_at, expires_in, image, status, numberParticipants, type, finalized, link FROM events;");
         return $EVENTS;
     }
 
@@ -121,14 +164,17 @@ class Events
 
     public function editEvent()
     {
-        $SQL = "UPDATE events SET name = '{$this->getName()}', description = '{$this->getDescription()}', create_at = '{$this->getCreate_at()}'   ";
+        $SQL = "UPDATE events SET name = '{$this->getName()}', description = '{$this->getDescription()}', create_at = '{$this->getCreate_at()}', numberParticipants = '{$this->getNumberParticipants()}', type = '{$this->getType()}'  ";
         if ($this->getExpires_in() != null) {
             $SQL .= ", expires_in = '{$this->getExpires_in()}'";
         }
         if ($this->getImage() != null) {
             $SQL .= ", image = '{$this->getImage()}'";
         }
-        $SQL .= "WHERE idevent = '{$this->getIdevent()}'";
+        if ($this->getLink() != null) {
+            $SQL .= ", link = '{$this->getLink()}'";
+        }
+        $SQL .= " WHERE idevent = '{$this->getIdevent()}'";
 
         $status = $this->db->query($SQL);
         $edit = false;
@@ -142,5 +188,22 @@ class Events
     {
         $Events = $this->db->query("SELECT COUNT(*) AS 'total' FROM events");
         return $Events->fetch_object();
+    }
+
+    public function ongoingEvents()
+    {
+        $ongoing = $this->db->query("SELECT * FROM events WHERE Finalized = 'No'");
+        return $ongoing;
+    }
+    public function completedEvents()
+    {
+        $ongoing = $this->db->query("SELECT * FROM events WHERE Finalized = 'Si'");
+        return $ongoing;
+    }
+
+    public function seeEventOne()
+    {
+        $seeEvent = $this->db->query("SELECT * FROM events WHERE idevent = '{$this->getIdevent()}'");
+        return $seeEvent->fetch_object();
     }
 }

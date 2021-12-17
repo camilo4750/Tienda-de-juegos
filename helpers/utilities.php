@@ -67,4 +67,37 @@ class utilities
         $PRODUCTS = $PRODUCTS->all();
         return $PRODUCTS;
     }
+    // eventos actuales - 
+    public static function ongoingEvents()
+    {
+        require_once('models/Events.php');
+        $currentEvents = new Events();
+        $currentEvents = $currentEvents->ongoingEvents();
+        return $currentEvents;
+    }
+    // eventos finalizados - 
+    public static function completedEvents()
+    {
+        require_once('models/Events.php');
+        $FinalizedEvents = new Events();
+        $FinalizedEvents = $FinalizedEvents->completedEvents();
+        return $FinalizedEvents;
+    }
+
+
+    public static function countParticipants($idEvent)
+    {
+        require_once('models/Participants.php');
+        $currentEvents = new Participants();
+        $currentEvents = $currentEvents->oneCountParticipants($idEvent);
+        return $currentEvents;
+    }
+
+    public static function classificationResult($idEvent)
+    {
+        require_once('models/Participants.php');
+        $Classification = new Participants();
+        $ResultClassification = $Classification->ClassificationForEvents($idEvent);
+        return $ResultClassification;
+    }
 }

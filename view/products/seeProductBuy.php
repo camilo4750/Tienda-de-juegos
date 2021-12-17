@@ -67,7 +67,7 @@
                     <?php $PRODUCTS = utilities::allProducts(); ?>
                     <?php while ($PRODUCT = $PRODUCTS->fetch_object()) : ?>
                         <div class="col-xl-3 col-md-6">
-                            <div class="card shadow border-secondary border-3  p-2 mb-2 justify-content-center align-items-center">
+                            <div class="card shadow border-0 p-2 mb-2 justify-content-center align-items-center">
                                 <div>
                                     <img src="<?= baseUrl ?>Uploads/products/<?= $PRODUCT->image ?>" class="bd-placeholder-img rounded shadow" width="120" height="140" alt="">
                                 </div>
@@ -145,7 +145,7 @@
                                             <div class="card p-2 mt-1 mb-1">
                                                 <h6><?= isset($comment) && is_object($comment) ? $comment->name : '' ?> <?= isset($comment) && is_object($comment) ? $comment->surname : '' ?> <i class="bi bi-person-circle"></i></h6>
                                                 <div class="row">
-                                                    <div class="col-sm-12 col-md-12 col-lg-10">
+                                                    <div class="col-sm-12 col-md-12 col-lg-9">
                                                         <div class="container">
                                                             <div class="card border-0 p-1">
                                                                 - <?= isset($comment) && is_object($comment) ? $comment->comment : '' ?>
@@ -167,7 +167,7 @@
                                                         </div>
                                                     </div>
                                                     <?php if (isset($_SESSION['User']) && $_SESSION['User']->idclient = $comment->Clients_id) : ?>
-                                                        <div class="col-sm-12 col-md-12 col-lg-2">
+                                                        <div class="col-sm-12 col-md-12 col-lg-3">
                                                             <div class="container">
                                                                 <div class="ms-auto py-1">
                                                                     <button class="btn btn-a btn-sm" type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample<?= $comment->idcomment ?>" aria-expanded="false" aria-controls="collapseExample">
