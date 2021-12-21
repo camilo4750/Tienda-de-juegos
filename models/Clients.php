@@ -5,6 +5,7 @@ class Clients
     private $name;
     private $surname;
     private $email;
+    private $nickname;
     private $image;
     private $description;
     private $password;
@@ -129,9 +130,19 @@ class Clients
         return $this;
     }
 
+    public function getNickname()
+    {
+        return $this->nickname;
+    }
+    public function setNickname($nickname)
+    {
+        $this->nickname = $nickname;
+        return $this;
+    }
+
     public function save()
     {
-        $SQL = "INSERT INTO clients VALUES(NULL, '{$this->getName()}', '{$this->getSurname()}', '{$this->getEmail()}', '{$this->getImage()}', '{$this->getDescription()}', '{$this->getPassword()}', CURDATE(), '{$this->getStatus()}', '{$this->getRol()}', '{$this->getClient_fixed()}');";
+        $SQL = "INSERT INTO clients VALUES(NULL, '{$this->getName()}', '{$this->getSurname()}', '{$this->getEmail()}', '{$this->getNickname()}', '{$this->getImage()}', '{$this->getDescription()}', '{$this->getPassword()}', CURDATE(), '{$this->getStatus()}', '{$this->getRol()}', '{$this->getClient_fixed()}');";
         $Client = $this->db->query($SQL);
         $save = false;
         if ($Client) {
@@ -165,9 +176,30 @@ class Clients
         return $CLIENTS;
     }
 
+    public function oneClient()
+    {
+        $CLIENTS = $this->db->query("SELECT * FROM clients WHERE idclient = '{$this->getIdclient()}'");
+        return $CLIENTS->fetch_object();
+    }
+
     public function countClients()
     {
         $Clients = $this->db->query("SELECT COUNT(*) AS 'total' FROM clients");
         return $Clients->fetch_object();
+    }
+
+    public function updateClient()
+    {
+        $SQL = "UPDATE clients SET name = '{$this->getName()}', surname = '{$this->getSurname()}', email = '{$this->getEmail()}', nickname = '{$this->getNickname()}', description = '{$this->getDescription()}'  ";
+        if ($this->getImage() != null) {
+            $SQL .= ", image = '{$this->getImage()}'";
+        }
+        $SQL .= " WHERE idclient = '{$this->getIdclient()}'";
+        $Client = $this->db->query($SQL);
+        $save = false;
+        if ($Client) {
+            $save = true;
+        }
+        return $save;
     }
 }

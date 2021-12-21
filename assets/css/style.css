@@ -1,6 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;500&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;500&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Comforter+Brush&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Shadows+Into+Light&display=swap');
 
 body {
     margin:0;
@@ -151,7 +152,7 @@ body {
 .border-events:hover {
     border-color: #E3D956;
     transition: .3s;
-    box-shadow: 0px 0px 17px #E3D956;
+    box-shadow: 4px 4px 22px #E3D956;
 
 }
 
@@ -366,8 +367,6 @@ body {
     background: rgb(0, 0, 0, .6);
 }
 
- 
-
 .image3 {
     position:relative;
     background: url("../img/Web_Detail.jpg") no-repeat fixed;
@@ -382,4 +381,8 @@ body {
 .normas {
     list-style-type:none;
     padding-top: 5%;
+}
+
+.apodo {
+    font-family: 'Shadows Into Light', cursive;
 }

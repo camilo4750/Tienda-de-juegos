@@ -7,6 +7,7 @@ class CommentsController
         if (isset($_POST)) {
             $Comment = new Comments();
             $Comment->setComment($_POST['comment']);
+            $Comment->setProducts_id($_POST['Products_id']);
             $Comment->setClients_id($_POST['Clients_id']);
             if (isset($_GET['id'])) {
                 $id = $_GET['id'];

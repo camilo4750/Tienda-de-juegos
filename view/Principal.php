@@ -9,19 +9,7 @@
         </div>
     </figure>
 </div>
-<?php if (isset($_SESSION['save']) && $_SESSION['save'] == "exitoso") : ?>
-    <div class="row" id="alerta">
-        <div class="col-md-12 ">
-            <div class=" text-center alert alert-success alert-dismissible fade show" role="alert">
-                <strong> <i class="bi bi-controller"></i> Felicidades <?= $_SESSION['User']->name ?> <?= $_SESSION['User']->surname ?> tu registro ha sido
-                    exitoso...! Procesaremos tu informacion y en tu menu de compras aparecera un boton extra llamado "Evento" donde tendras el resto de la informacion
-                    adicionalmente enviaremos un mensaje de texto al numero registrado.
-                </strong>
-            </div>
-        </div>
-    </div>
-<?php endif; ?>
-<?= utilities::deleteSession(); ?>
+
 <section class="bg-light">
     <div class="container">
         <div class="row m-0 mt-4">
@@ -87,10 +75,10 @@
                 <div class="card border-secondary">
                     <h5 class="text-center">Bienvenido: <?= $_SESSION['User']->name ?></h5>
                     <div class="card p-3">
-                        <a href="#" class="btn btn-fixed p-0">Productos</a>
-                        <a href="#" class="btn btn-b mt-1 p-0">Total:</a>
-                        <a href="#" class="btn btn-a mt-1 p-0">Ver Carrito</a>
-                        <a href="<?= baseUrl ?>Clients/logout" class="btn btn-c p-0 mt-1">Cerrar Session</a>
+                        <a href="<?= baseUrl ?>Clients/myProfile&id=<?= $_SESSION['User']->idclient ?>" class="btn btn-fixed p-0">MI PERFIL</a>
+                        <a href="#" class="btn btn-b mt-1 p-0">TOTAL:</a>
+                        <a href="#" class="btn btn-a mt-1 p-0">VER CARRITO</a>
+                        <a href="<?= baseUrl ?>Clients/logout" class="btn btn-c p-0 mt-1">CERRAR SESSION</a>
                     </div>
                 </div>
             </div>
@@ -164,7 +152,11 @@
                                         <p class="card-text"> <?= isset($countParticipants) && is_object($countParticipants) ? $countParticipants->total . " " . $currentEvent->type : "" ?> </p>
                                     </div>
                                     <div class="col-auto">
-                                        <p class="text-success fw-bold textfin2">EN CURSO</p>
+                                        <?php if ($currentEvent->finalized == 'Si') : ?>
+                                            <p class="text-danger fw-bold textfin">FINALIZADO</p>
+                                        <?php else : ?>
+                                            <p class="text-success fw-bold textfin2">EN CURSO</p>
+                                        <?php endif; ?>
                                     </div>
                                 </div>
                             </div>
@@ -211,7 +203,11 @@
                                             <?php endif; ?>
                                         </div>
                                         <div class="col-auto">
-                                            <p class="text-danger fw-bold textfin">FINALIZADO</p>
+                                            <?php if ($eventFinalized->finalized == 'Si') : ?>
+                                                <p class="text-danger fw-bold textfin">FINALIZADO</p>
+                                            <?php else : ?>
+                                                <p class="text-success fw-bold textfin2">EN CURSO</p>
+                                            <?php endif; ?>
                                         </div>
                                     </div>
                             </div>
@@ -223,12 +219,11 @@
     </div>
 </section>
 
-<section class="mt-3 mb-3">
+<section class="">
     <div class="container-fluid">
         <div class="row">
             <div class="image3 p-0">
                 <div class="fondImage2">
-
                     <ul class="normas">
                         <h1>NORMAS PRINCIPALES</h1>
                         <li class="fs-5 ">1. Los jugadores deberan contar con alguno de estos dispositivos para poder participar (XBOX, PLAYSTATION , CELULAR, PC, TABLED) </li>
@@ -239,11 +234,8 @@
                     </ul>
                 </div>
             </div>
-
         </div>
-
     </div>
-
 </section>
 <div class=" container-fluid">
     <?php $TIDINGS = utilities::allTidings(); ?>

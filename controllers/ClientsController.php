@@ -28,19 +28,33 @@ class ClientsController
             }
             $Client->setDescription($_POST['description']);
             $Client->setEmail($_POST['email']);
+            $Client->setNickname($_POST['nickname']);
             $Client->setPassword($_POST['password']);
             $Client->setStatus('activo');
             $Client->setRol('user');
             $Client->setClient_fixed('inactivo');
-            $Save = $Client->save();
+            if (isset($_GET['id'])) {
+                $id = $_GET['id'];
+                $Client->setIdclient($id);
+                $Edit = $Client->UpdateClient();
+            } else {
+                $Save = $Client->save();
+            }
+
+            if ($Edit) {
+                $_SESSION['edit'] = "exitoso";
+                header("location:" . baseUrl . "Clients/myProfile&id=" . $_SESSION['User']->idclient);
+            } else {
+                echo "error2";
+            }
 
             if ($Save) {
                 $_SESSION['save'] = "exitoso";
+                header("location:" . baseUrl . "Clients/sessions");
             } else {
                 echo "error2";
             }
         }
-        header("location:" . baseUrl . "Clients/sessions");
     }
 
     public function login()
@@ -78,5 +92,16 @@ class ClientsController
         $CLIENTS = new Clients();
         $CLIENTS = $CLIENTS->allClients();
         require_once('view/clients/view.php');
+    }
+
+    public function myProfile()
+    {
+        if (isset($_GET['id'])) {
+            $id = $_GET['id'];
+            $Client = new Clients();
+            $Client->setIdclient($id);
+            $Client = $Client->oneClient();
+            require_once('view/clients/myProfile.php');
+        }
     }
 }

@@ -1,5 +1,6 @@
 <?php
 require_once('models/Events.php');
+require_once('models/Participants.php');
 
 class EventsController
 {
@@ -122,6 +123,7 @@ class EventsController
             $see = new Events();
             $see->setIdevent($id);
             $seeEvent = $see->seeEventOne();
+
             require_once('view/events/seeEvent.php');
         }
     }

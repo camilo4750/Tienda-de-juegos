@@ -100,6 +100,10 @@
                                         <label for="floatingInput">Email</label>
                                     </div>
                                     <div class="form-floating mb-3">
+                                        <input type="text" class="form-control" placeholder="Ingrese el apodo de tu perfil" required name="nickname">
+                                        <label for="floatingInput">Apodo</label>
+                                    </div>
+                                    <div class="form-floating mb-3">
                                         <input type="password" class="form-control" placeholder="password" required name="password">
                                         <label for="floatingInput">Password</label>
                                     </div>

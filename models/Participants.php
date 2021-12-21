@@ -10,6 +10,7 @@ class Participants
     private $quarters;
     private $semifinal;
     private $final;
+    private $winner;
     private $Events_id;
     private $Clients_id;
     private $db;
@@ -129,9 +130,19 @@ class Participants
         return $this;
     }
 
-    public function countParticipants()
+    public function getWinner()
     {
-        $Participant =  $this->db->query("SELECT COUNT(*) AS 'total' FROM participants");
+        return $this->winner;
+    }
+    public function setWinner($winner)
+    {
+        $this->winner = $winner;
+        return $this;
+    }
+
+    public function idClient($idclient)
+    {
+        $Participant =  $this->db->query("SELECT * FROM participants WHERE Clients_id = '{$idclient}'");
         return $Participant->fetch_object();
     }
 
@@ -142,7 +153,7 @@ class Participants
     }
     public function save()
     {
-        $SQL = "INSERT INTO participants VALUES(NULL, '{$this->getReason()}', '{$this->getTerms()}', '{$this->getTelephone()}', '{$this->getInstall()}', '{$this->getStatus()}', '{$this->getQuarters()}', '{$this->getSemifinal()}', '{$this->getFinal()}', '{$this->getEvents_id()}', '{$this->getClients_id()}');";
+        $SQL = "INSERT INTO participants VALUES(NULL, '{$this->getReason()}', '{$this->getTerms()}', '{$this->getTelephone()}', '{$this->getInstall()}', '{$this->getStatus()}', '{$this->getQuarters()}', '{$this->getSemifinal()}', '{$this->getFinal()}', '{$this->getWinner()}', '{$this->getEvents_id()}', '{$this->getClients_id()}');";
         $saveParticipants = $this->db->query($SQL);
         $Save = false;
         if ($saveParticipants) {
@@ -202,15 +213,52 @@ class Participants
         return $Save;
     }
 
+    public function statusWinner()
+    {
+        $SQL = "UPDATE participants SET winner = '{$this->getWinner()}' WHERE idparticipant = '{$this->getIdparticipant()}'";
+        $changeFinal = $this->db->query($SQL);
+        $Save = false;
+        if ($changeFinal) {
+            $Save =  true;
+        }
+        return $Save;
+    }
+
     public function oneParticipant()
     {
         $oneParticipant = $this->db->query("SELECT P.*, C.idclient, C.name, C.surname, C.email, C.image AS 'imageClient', C.description AS 'descriptionClient', C.create_at AS 'createClient', C.client_fixed, E.name AS 'nameEvent', E.description, E.create_at AS 'createEvent', E.expires_in, E.image AS 'imageEvent' FROM participants P INNER JOIN clients C ON P.Clients_id = C.idclient INNER JOIN events E ON P.Events_id = E.idevent WHERE idparticipant = '{$this->getIdparticipant()}' ORDER BY P.idparticipant;");
         return $oneParticipant->fetch_object();
     }
 
-    public function ClassificationForEvents($idEvent)
+    public function ClassificationForQuarters($idEvent)
     {
-        $Classification = $this->db->query("SELECT P.*, C.name, C.surname, C.email, C.image, C.status FROM participants P INNER JOIN clients C ON P.Clients_id = C.idclient  WHERE Events_id = '{$idEvent}';");
-        return $Classification;
+        $ClassificationForQuarters = $this->db->query("SELECT P.*, C.idclient, C.name, C.surname, C.email, C.nickname, C.image, C.status FROM participants P INNER JOIN clients C ON P.Clients_id = C.idclient  WHERE Events_id = '{$idEvent}' AND quarters = 'Activo';");
+        return $ClassificationForQuarters;
+    }
+
+    public function ClassificationForSemifinal($idEvent)
+    {
+        $ClassificationForSemifinal = $this->db->query("SELECT P.*, C.idclient, C.name, C.surname, C.email, C.nickname, C.image, C.status FROM participants P INNER JOIN clients C ON P.Clients_id = C.idclient  WHERE Events_id = '{$idEvent}' AND semifinal = 'Activo';");
+        return $ClassificationForSemifinal;
+    }
+
+
+    public function ClassificationForFinal($idEvent)
+    {
+        $ClassificationForFinal = $this->db->query("SELECT P.*, C.idclient, C.name, C.surname, C.email, C.nickname, C.image, C.status FROM participants P INNER JOIN clients C ON P.Clients_id = C.idclient  WHERE Events_id = '{$idEvent}' AND final = 'Activo';");
+        return $ClassificationForFinal;
+    }
+
+
+    public function ClassificationForWinner($idEvent)
+    {
+        $ClassificationForWinner = $this->db->query("SELECT P.*, C.idclient, C.name, C.surname, C.email, C.nickname, C.image, C.status FROM participants P INNER JOIN clients C ON P.Clients_id = C.idclient  WHERE Events_id = '{$idEvent}' AND winner = 'Activo';");
+        return $ClassificationForWinner;
+    }
+
+    public function EventsForClient($idClient)
+    {
+        $ForClient = $this->db->query("SELECT P.*, E.* FROM participants P INNER JOIN events E ON P.Events_id = E.idevent WHERE P.Clients_id = '{$idClient}';");
+        return $ForClient;
     }
 }

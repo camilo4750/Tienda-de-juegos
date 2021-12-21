@@ -93,11 +93,44 @@ class utilities
         return $currentEvents;
     }
 
-    public static function classificationResult($idEvent)
+    public static function classificationQuarters($idEvent)
     {
         require_once('models/Participants.php');
         $Classification = new Participants();
-        $ResultClassification = $Classification->ClassificationForEvents($idEvent);
-        return $ResultClassification;
+        $ResultClassificationQuarters = $Classification->ClassificationForQuarters($idEvent);
+        return $ResultClassificationQuarters;
+    }
+
+    public static function classificationSemifinal($idEvent)
+    {
+        require_once('models/Participants.php');
+        $Classification = new Participants();
+        $ResultClassificationSemifinal = $Classification->ClassificationForSemifinal($idEvent);
+        return $ResultClassificationSemifinal;
+    }
+
+    public static function classificationFinal($idEvent)
+    {
+        require_once('models/Participants.php');
+        $Classification = new Participants();
+        $ResultClassificationFinal = $Classification->ClassificationForFinal($idEvent);
+        return $ResultClassificationFinal;
+    }
+
+
+    public static function classificationWinner($idEvent)
+    {
+        require_once('models/Participants.php');
+        $Classification = new Participants();
+        $ResultClassificationWinner = $Classification->ClassificationForWinner($idEvent);
+        return $ResultClassificationWinner;
+    }
+
+    public static function EventsForClients($idClient)
+    {
+        require_once('models/Participants.php');
+        $events = new Participants();
+        $resultParticipation = $events->EventsForClient($idClient);
+        return $resultParticipation;
     }
 }

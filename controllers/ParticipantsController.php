@@ -21,6 +21,7 @@ class ParticipantsController
             $Participant->setQuarters('Inactivo');
             $Participant->setSemifinal('Inactivo');
             $Participant->setFinal('Inactivo');
+            $Participant->setWinner('Inactivo');
             $Participant->setEvents_id($_POST['Events_id']);
             $Participant->setClients_id($_POST['Clients_id']);
             $Save = $Participant->save();
@@ -28,7 +29,7 @@ class ParticipantsController
                 $_SESSION['save'] = "exitoso";
             }
         }
-        header("Location:" . baseUrl . "Products/index");
+        header("Location:" . baseUrl . "Events/seeEvent&id=" . $_POST['Events_id']);
     }
 
     public function activeStatus()

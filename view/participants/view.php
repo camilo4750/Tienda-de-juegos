@@ -82,6 +82,7 @@
                                     <?php endif; ?>
                                     <?php if ($Participant->quarters === 'Activo') : ?>
                                         <a href="<?= baseUrl ?>Participants/inactiveQuarters&id=<?= $Participant->idparticipant  ?>" type="button" class="btn-sm btn-danger" data-toggle="tooltip" data-placement="top" title="Inactivar Inscripción"><i class="bi bi-dice-4-fill"></i></a>
+                                        
                                     <?php else : ?>
                                         <a href="<?= baseUrl ?>Participants/activeQuarters&id=<?= $Participant->idparticipant  ?>" type="button" class="btn-sm btn-success" data-toggle="tooltip" data-placement="top" title="Activar Inscripción"><i class="bi bi-dice-4-fill"></i></a>
                                     <?php endif; ?>

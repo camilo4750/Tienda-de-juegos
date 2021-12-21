@@ -8,6 +8,19 @@
     <section class="bg-light">
         <div class="container-fluid">
             <div class="row">
+                <?php if (isset($_SESSION['save']) && $_SESSION['save'] == "exitoso") : ?>
+                    <div class="row" id="alerta">
+                        <div class="col-md-12 ">
+                            <div class=" text-center alert alert-success alert-dismissible fade show" role="alert">
+                                <strong> <i class="bi bi-controller"></i> Felicidades <?= $_SESSION['User']->name ?> <?= $_SESSION['User']->surname ?> tu registro ha sido
+                                    exitoso...! Procesaremos tu informacion y en tu menu de compras aparecera un boton extra llamado "Evento" donde tendras el resto de la informacion
+                                    adicionalmente enviaremos un mensaje de texto al numero registrado.
+                                </strong>
+                            </div>
+                        </div>
+                    </div>
+                <?php endif; ?>
+                <?= utilities::deleteSession(); ?>
                 <div class="py-3 px-4">
                     <?php if ($seeEvent->finalized === "No") : ?>
                         <div class="badge bg-success text-wrap" style="width: 10rem;">
@@ -35,21 +48,22 @@
                             </div>
                         </div>
                     <?php endif; ?>
-                    <div class="row">
-                        <div class="py-3 px-4">
-                            <h2 class="text-title lh-1">DESCRIPCION DEL EVENTO</h2>
-                            <ul style="list-style-type: none;">
-                                <li class="fs-4"><b>Fecha de inicio:</b> <?= $seeEvent->create_at ?></li>
-                                <li class="fs-4"><b>Fecha de Fin:</b> <?= $seeEvent->expires_in ?></li>
-                                <li class="fs-4"><b>Numero de participantes:</b> <?= $seeEvent->numberParticipants ?></li>
-                                <li class="fs-4"><b>Metodo de juego:</b> <?= $seeEvent->type ?></li>
-                                <li class="fs-4">
-                                    <?php if (isset($_SESSION['User'])) : ?>
-                                        <?php if ($seeEvent->finalized === "No") : ?>
-                                            <!-- Button trigger modal -->
+                    <?php if ($seeEvent->finalized === "No") : ?>
+                        <div class="row">
+                            <div class="py-3 px-4">
+                                <h2 class="text-title lh-1">DESCRIPCION DEL EVENTO </h2>
+                                <ul style="list-style-type: none;">
+                                    <li class="fs-4"><b>Fecha de inicio:</b> <?= $seeEvent->create_at ?></li>
+                                    <li class="fs-4"><b>Fecha de Fin:</b> <?= $seeEvent->expires_in ?></li>
+                                    <li class="fs-4"><b>Numero de participantes:</b> <?= $seeEvent->numberParticipants ?></li>
+                                    <li class="fs-4"><b>Metodo de juego:</b> <?= $seeEvent->type ?></li>
+                                    <li class="fs-4">
+                                        <?php if (isset($_SESSION['User'])) : ?>
                                             <button type="button" class="btn btn-b" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
                                                 CLICK PARA REGISTRARTE EN ESTE EVENTO
                                             </button>
+                                        <?php else : ?>
+                                            <a href="#" onclick="alert('Debes iniciar Session...!');" class="btn btn-success">CLICK PARA REGISTRARTE EN ESTE EVENTO</a>
                                         <?php endif; ?>
                                         <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
                                             <div class="modal-dialog">
@@ -86,7 +100,7 @@
                                                                 <input class="form-check-input" name="install" type="checkbox" value="No">
                                                                 <label class="form-check-label" for="inlineCheckbox2">No</label>
                                                             </div>
-                                                            <input type="hidden" name="Events_id" value="<?= $EVENT->idevent ?>">
+                                                            <input type="hidden" name="Events_id" value="<?= $seeEvent->idevent ?>">
                                                             <input type="hidden" name="Clients_id" value="<?= isset($_SESSION['User']) ? $_SESSION['User']->idclient : "" ?>">
 
                                                             <div class="modal-footer">
@@ -97,29 +111,30 @@
                                                 </div>
                                             </div>
                                         </div>
-                                    <?php else : ?>
-                                        <a href="#" onclick="alert('Debes iniciar Session...!');" class="btn btn-success">CLICK PARA REGISTRARTE EN ESTE EVENTO</a>
-                                    <?php endif; ?>
-                                </li>
-                            </ul>
-                        </div>
-                        <?php if ($seeEvent->finalized == 'Si') : ?>
+
+                                    </li>
+                                </ul>
+                            </div>
+                        <?php else : ?>
+
                             <div class="py-2 px-4">
-                                <h2 class="text-title lh-1">CLASIFICACION CUARTOS DE FINAL</h2>
+                                <h2 class="text-title lh-1">CLASIFICACION CUARTOS DE FINAL <i class="bi bi-dice-4-fill"></i></h2>
                             </div>
                             <?php $idEvent = $seeEvent->idevent ?>
-                            <?php $participant = utilities::classificationResult($idEvent); ?>
+                            <?php $participant = utilities::classificationQuarters($idEvent); ?>
                             <div class="row justify-content-center">
                                 <?php while ($result = $participant->fetch_object()) : ?>
-                                    <div class="col-3">
-                                        <div class="card mb-3" style="background: rgb(0, 0, 0, .7);">
+                                    <div class="col-sm-12 col-md-4 col-lg-3 col-xs-3">
+                                        <div class="card mb-3 border-0" style="background: rgb(0, 0, 0, .9);">
                                             <div class="row g-0">
-                                                <div class="col-md-4">
-                                                    <img src="<?= baseUrl ?>Uploads/profiles/<?= $result->image ?>" class="img-fluid rounded-circle p-2 mt-2" height="100" width="100" alt="...">
+                                                <div class="col-3">
+                                                    <img src="<?= baseUrl ?>Uploads/profiles/<?= $result->image ?>" class="rounded-start p-0 border-0" height="70" width="90" alt="...">
                                                 </div>
-                                                <div class="col-md-8">
-                                                    <div class="card-body p-1">
-                                                        <h6 class="card-title lh-1"><?= $result->name . " " . $result->surname ?> - <?= $result->email ?></h6>
+                                                <div class="col-9">
+                                                    <div class="card-body p-1 lh-1 text-center">
+                                                        <h6 class="card-title text-white lh-1"><?= $result->email ?></h6>
+                                                        <b class="apodo text-white"><?= $result->nickname ?></b>
+                                                        <p class="card-text text-end"><small class="text-muted"><?= $result->status ?></small></p>
                                                     </div>
                                                 </div>
                                             </div>
@@ -127,8 +142,87 @@
                                     </div>
                                 <?php endwhile; ?>
                             </div>
-                        <?php endif; ?>
-                    </div>
+
+
+                            <div class="py-2 px-4">
+                                <h2 class="text-title lh-1">CLASIFICACION SEMIFINAL <i class="bi bi-dice-5-fill"></i></h2>
+                            </div>
+                            <?php $idEvent = $seeEvent->idevent ?>
+                            <?php $participant = utilities::classificationSemifinal($idEvent); ?>
+                            <div class="row justify-content-center">
+                                <?php while ($result = $participant->fetch_object()) : ?>
+                                    <div class="col-sm-12 col-md-4 col-lg-3 col-xs-3">
+                                        <div class="card mb-3 border-0" style="background: rgb(0, 0, 0, .9);">
+                                            <div class="row g-0">
+                                                <div class="col-3">
+                                                    <img src="<?= baseUrl ?>Uploads/profiles/<?= $result->image ?>" class="rounded-start p-0 border-0" height="70" width="90" alt="...">
+                                                </div>
+                                                <div class="col-9">
+                                                    <div class="card-body p-1 lh-1 text-center">
+                                                        <h6 class="card-title text-white lh-1"><?= $result->email ?></h6>
+                                                        <b class="apodo text-white"><?= $result->nickname ?></b>
+                                                        <p class="card-text text-end"><small class="text-muted"><?= $result->status ?></small></p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                <?php endwhile; ?>
+                            </div>
+
+                            <div class="py-2 px-4">
+                                <h2 class="text-title lh-1">CLASIFICACION FINAL <i class="bi bi-flag-fill"></i></h2>
+                            </div>
+                            <?php $idEvent = $seeEvent->idevent ?>
+                            <?php $participant = utilities::classificationSemifinal($idEvent); ?>
+                            <div class="row justify-content-center">
+                                <?php while ($result = $participant->fetch_object()) : ?>
+                                    <div class="col-sm-12 col-md-4 col-lg-3 col-xs-3">
+                                        <div class="card mb-3 border-0" style="background: rgb(0, 0, 0, .9);">
+                                            <div class="row g-0">
+                                                <div class="col-3">
+                                                    <img src="<?= baseUrl ?>Uploads/profiles/<?= $result->image ?>" class="rounded-start p-0 border-0" height="70" width="90" alt="...">
+                                                </div>
+                                                <div class="col-9">
+                                                    <div class="card-body p-1 lh-1 text-center">
+                                                        <h6 class="card-title text-white lh-1"><?= $result->email ?></h6>
+                                                        <b class="apodo text-white"><?= $result->nickname ?></b>
+                                                        <p class="card-text text-end"><small class="text-muted"><?= $result->status ?></small></p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                <?php endwhile; ?>
+                            </div>
+
+                            <div class="py-2 px-4">
+                                <h2 class="text-title lh-1">CLASIFICACION GANADOR <i class="bi bi-trophy"></i></h2>
+                            </div>
+                            <?php $idEvent = $seeEvent->idevent ?>
+                            <?php $participant = utilities::classificationWinner($idEvent); ?>
+                            <div class="row justify-content-center">
+                                <?php while ($result = $participant->fetch_object()) : ?>
+                                    <div class="col-sm-12 col-md-4 col-lg-3 col-xs-3">
+                                        <div class="card mb-3 border-0" style="background: rgb(0, 0, 0, .9);">
+                                            <div class="row g-0">
+                                                <div class="col-3">
+                                                    <img src="<?= baseUrl ?>Uploads/profiles/<?= $result->image ?>" class="rounded-start p-0 border-0" height="70" width="90" alt="...">
+                                                </div>
+                                                <div class="col-9">
+                                                    <div class="card-body p-1 lh-1 text-center">
+                                                        <h6 class="card-title text-white lh-1"><?= $result->email ?></h6>
+                                                        <b class="apodo text-white"><?= $result->nickname ?></b>
+                                                        <p class="card-text text-end"><small class="text-muted"><?= $result->status ?></small></p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                <?php endwhile; ?>
+                            </div>
+                        </div>
+                    <?php endif; ?>
                 </div>
             </div>
         </div>
