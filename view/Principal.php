@@ -77,7 +77,7 @@
                     <div class="card p-3">
                         <a href="<?= baseUrl ?>Clients/myProfile&id=<?= $_SESSION['User']->idclient ?>" class="btn btn-fixed p-0">MI PERFIL</a>
                         <a href="#" class="btn btn-b mt-1 p-0">TOTAL:</a>
-                        <a href="#" class="btn btn-a mt-1 p-0">VER CARRITO</a>
+                        <a href="<?= baseUrl ?>Cart/listProducts" class="btn btn-a mt-1 p-0">VER CARRITO</a>
                         <a href="<?= baseUrl ?>Clients/logout" class="btn btn-c p-0 mt-1">CERRAR SESSION</a>
                     </div>
                 </div>
@@ -103,7 +103,7 @@
                                 <div class="ms-auto">
                                     <a href="<?= baseUrl ?>Products/seeProduct&id=<?= $PRODUCT->idproduct ?>" class="btn btn-fixed" type="button">ver »</a>
                                     <?php if (isset($_SESSION['User'])) : ?>
-                                        <a class="btn btn-b" href="#">Comprar »</a>
+                                        <a class="btn btn-b" href="<?= baseUrl ?>Cart/addToCart&id=<?= $PRODUCT->idproduct ?>">Comprar »</a>
                                     <?php else : ?>
                                         <a class="btn btn-b " onclick="alert('Debes iniciar Session...!');" href="#">Comprar »</a>
                                     <?php endif; ?>

@@ -1,6 +1,7 @@
 <?php
 require_once('models/Products.php');
 require_once('models/Comments.php');
+require_once('models/Category.php');
 class ProductsController
 {
     public function index()
@@ -128,6 +129,22 @@ class ProductsController
             $COMMENTS = $Comment->seeComments();
             $Count = $Comment->CountComments();
             require_once('view/products/seeProductBuy.php');
+        }
+    }
+
+    public function allCategory()
+    {
+        if (isset($_GET['id'])) {
+            $id = $_GET['id'];
+            $category = new Category();
+            $category->setIdcategory($id);
+            $nameCategory = $category->oneCategory();
+            
+            $products = new Products();
+            $products->setCategory_id($id);
+            $allProducts = $products->allProductsForCategory();
+
+            require_once('view/products/seeAllForCategoy.php');
         }
     }
 }

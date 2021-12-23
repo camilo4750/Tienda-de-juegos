@@ -34,6 +34,10 @@ class utilities
             $_SESSION['noIdentity'] = null;
             $borrado = true;
         }
+        if (isset($_SESSION['listDelete']) && $_SESSION['listDelete'] = "Exitoso") {
+            $_SESSION['listDelete'] = null;
+            $borrado = true;
+        }
     }
 
     public static function allCategory()

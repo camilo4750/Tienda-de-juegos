@@ -138,6 +138,7 @@ class Products
     public function oneProduct()
     {
         $PRODUCTS = $this->db->query("SELECT P.*, LEFT(P.description, 80) AS 'descriptionCor', C.name AS 'category' FROM products P INNER JOIN category C ON P.Category_id  = C.idcategory WHERE idproduct = '{$this->getIdproduct()}'");
+
         return $PRODUCTS->fetch_object();
     }
 
@@ -171,5 +172,11 @@ class Products
     {
         $Products = $this->db->query("SELECT COUNT(*) AS 'total' FROM products");
         return  $Products->fetch_object();
+    }
+
+    public function allProductsForCategory()
+    {
+        $category = $this->db->query("SELECT P.*, LEFT(P.description, 80) AS 'descriptionCor', C.name AS 'category' FROM products P INNER JOIN category C ON P.Category_id  = C.idcategory WHERE Category_id = '{$this->getCategory_id()}'");
+        return $category;
     }
 }

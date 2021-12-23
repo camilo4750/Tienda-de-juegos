@@ -8,10 +8,11 @@
     <link rel="stylesheet" href="<?= baseUrl ?>node_modules/bootstrap/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="<?= baseUrl ?>node_modules/bootstrap-icons/font/bootstrap-icons.css">
     <link rel="stylesheet" href="<?= baseUrl ?>assets/css/style.css?v=<?php echo time(); ?>">
+
     <title>Document</title>
 </head>
 
-<body>
+<body class="sm">
     <?php if (isset($_SESSION['Admin'])) : ?>
         <?php unset($_SESSION['Admin']) ?>
     <?php endif; ?>
@@ -32,7 +33,7 @@
                     <?php $CATEGORIES = utilities::allCategory() ?>
                     <?php while ($CATEGORY = $CATEGORIES->fetch_object()) : ?>
                         <li class="nav-item">
-                            <a class="nav-link" href="<?= baseUrl ?>Clients/sessions&id=<?= $CATEGORY->idcategory ?>"><?= $CATEGORY->name ?></a>
+                            <a class="nav-link" href="<?= baseUrl ?>Products/allCategory&id=<?= $CATEGORY->idcategory ?>"><?= $CATEGORY->name ?></a>
                         </li>
                     <?php endwhile; ?>
                 </ul>

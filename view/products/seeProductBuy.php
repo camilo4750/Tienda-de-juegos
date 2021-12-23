@@ -24,7 +24,7 @@
                             <li class="text-options">Descuento: <?= $seeProduct->discount ?>%</li>
                             <li class="text-options">
                                 <?php if (isset($_SESSION['User'])) : ?>
-                                    <a class="btn btn-b" href="#">Comprar »</a>
+                                    <a class="btn btn-b" href="<?= baseUrl ?>Cart/addToCart&id=<?= $seeProduct->idproduct ?>">Comprar »</a>
                                 <?php else : ?>
                                     <a class="btn btn-b" onclick="alert('Debes iniciar Session...!');" href="#">Comprar »</a>
                                 <?php endif; ?>
@@ -209,4 +209,4 @@
 </section>
 
 
-<?php require_once('view/layout/Footer1.php'); ?>
+    <?php require_once('view/layout/Footer1.php'); ?>
