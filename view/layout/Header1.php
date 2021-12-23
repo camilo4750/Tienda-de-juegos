@@ -8,11 +8,10 @@
     <link rel="stylesheet" href="<?= baseUrl ?>node_modules/bootstrap/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="<?= baseUrl ?>node_modules/bootstrap-icons/font/bootstrap-icons.css">
     <link rel="stylesheet" href="<?= baseUrl ?>assets/css/style.css?v=<?php echo time(); ?>">
-
     <title>Document</title>
 </head>
 
-<body class="sm">
+<body>
     <?php if (isset($_SESSION['Admin'])) : ?>
         <?php unset($_SESSION['Admin']) ?>
     <?php endif; ?>
@@ -40,3 +39,4 @@
             </div>
         </div>
     </nav>
+    <script src="https://unpkg.com/scrollreveal"></script>

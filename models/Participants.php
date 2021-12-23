@@ -151,6 +151,13 @@ class Participants
         $Participant =  $this->db->query("SELECT COUNT(*) AS 'total' FROM participants WHERE Events_id = '$idEvent' ");
         return $Participant->fetch_object();
     }
+
+    public function countParticipants()
+    {
+        $Participant =  $this->db->query("SELECT COUNT(*) AS 'total' FROM participants");
+        return $Participant->fetch_object();
+    }
+
     public function save()
     {
         $SQL = "INSERT INTO participants VALUES(NULL, '{$this->getReason()}', '{$this->getTerms()}', '{$this->getTelephone()}', '{$this->getInstall()}', '{$this->getStatus()}', '{$this->getQuarters()}', '{$this->getSemifinal()}', '{$this->getFinal()}', '{$this->getWinner()}', '{$this->getEvents_id()}', '{$this->getClients_id()}');";

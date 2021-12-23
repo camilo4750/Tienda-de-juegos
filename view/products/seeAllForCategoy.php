@@ -1,23 +1,36 @@
 <?php require_once('View/layout/Header1.php'); ?>
 <section>
-    <div class="container-fluid p-0">
+    <div class="container-fluid">
         <div class="row">
-
             <?php if (isset($_SESSION['User'])) : ?>
-                <div class="col-md-2">
+                <div class="col-sm-12 col-md-12 col-lg-2">
                     <div class="card shadow mt-7 sticky-lg-top">
                         <h5 class="text-center">Bienvenido: <?= $_SESSION['User']->name ?></h5>
-                        <div class="card border-0 p-3">
-                            <a href="<?= baseUrl ?>Clients/myProfile&id=<?= $_SESSION['User']->idclient ?>" class="btn btn-fixed p-0">MI PERFIL</a>
-                            <a href="#" class="btn btn-b mt-1 p-0">TOTAL:</a>
-                            <a href="<?= baseUrl ?>Cart/listProducts" class="btn btn-a mt-1 p-0">VER CARRITO</a>
-                            <a href="<?= baseUrl ?>Clients/logout" class="btn btn-c p-0 mt-1">CERRAR SESSION</a>
+                        <div class="card border-0 p-1">
+                            <a href="<?= baseUrl ?>Clients/myProfile&id=<?= $_SESSION['User']->idclient ?>" class="btn fs-6 btn-fixed p-0">MI PERFIL</a>
+                            <a href="<?= baseUrl ?>Clients/logout" class="btn btn-c fs-6 p-0 mt-1">CERRAR SESSION</a>
+                            <a href="<?= baseUrl ?>Cart/listProducts" class="btn btn-a mt-1 fs-6 p-0">VER CARRITO</a>
+                            <?php $stats = utilities::statsCart(); ?>
+                            <table class="table table-hover table-bordered mt-1">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">Productos</th>
+                                        <th scope="col">Precio</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <th scope="row"><?= $stats['countProducts'] ?></th>
+                                        <td><?= $stats['priceTotal'] ?></td>
+                                    </tr>
+                                </tbody>
+                            </table>
                         </div>
                     </div>
                 </div>
-                <div class="col-md-10">
+                <div class="col-sm-12 col-md-12 col-lg-10">
                 <?php else : ?>
-                    <div class="col-md-12">
+                    <div class="col-sm-12 col-md-12 col-lg-10">
                     <?php endif; ?>
                     <div class="card mt-7 shadow bg-light">
                         <div class="card-body">

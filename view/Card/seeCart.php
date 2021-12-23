@@ -1,5 +1,4 @@
 <?php require_once('View/layout/Header1.php'); ?>
-
 <div class="container">
     <div class="row">
         <div class="col-12">

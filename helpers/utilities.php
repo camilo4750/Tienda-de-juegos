@@ -137,4 +137,21 @@ class utilities
         $resultParticipation = $events->EventsForClient($idClient);
         return $resultParticipation;
     }
+
+    public static function statsCart()
+    {
+        $stats = array(
+            'countProducts' => 0,
+            'priceTotal' => 0,
+        );
+
+        if (isset($_SESSION['cart'])) {
+            $stats['countProducts'] = count($_SESSION['cart']);
+
+            foreach ($_SESSION['cart'] as $product) {
+                $stats['priceTotal'] += $product['price'] * $product['units'];
+            }
+        }
+        return $stats;
+    }
 }
