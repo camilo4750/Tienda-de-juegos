@@ -1,16 +1,9 @@
 window.sr = ScrollReveal();
     sr.reveal(".effect1", {
-        duration: 3000,
+        duration: 2000,
         origin: 'top',
         distance: '-100px'
     });
-
-
-
-  
-
-
-
 
     let locationPrincipal = window.pageYOffset;
     window.onscroll = function() {

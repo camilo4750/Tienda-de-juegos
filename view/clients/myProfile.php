@@ -5,20 +5,33 @@
         <div class="container-fluid">
             <div class="row justify-content-center">
                 <?php if ($_SESSION['User']->idclient === $Client->idclient) : ?>
-
-                    <div class="col-md-2">
-                        <div class="card border-0 mt-7 mb-3 shadow">
-                            <div class="card p-3">
-                                <a href="<?= baseUrl ?>Clients/myProfile&id=<?= $Client->idclient ?>" class="btn btn-fixed p-0">MI PERFIL</a>
-                                <a href="#" class="btn btn-b mt-1 p-0">TOTAL:</a>
-                                <a href="<?= baseUrl ?>Cart/listProducts" class="btn btn-a mt-1 p-0">VER CARRITO</a>
-                                <a href="<?= baseUrl ?>Clients/logout" class="btn btn-c p-0 mt-1">CERRAR SESSION</a>
+                    <div class="col-sm-12 col-md-12 col-lg-2">
+                        <div class="card mt-7 shadow">
+                            <div class="card border-0 p-1">
+                                <a href="<?= baseUrl ?>Clients/myProfile&id=<?= $_SESSION['User']->idclient ?>" class="btn fs-6 btn-fixed p-0">MI PERFIL</a>
+                                <a href="<?= baseUrl ?>Clients/logout" class="btn btn-c fs-6 p-0 mt-1">CERRAR SESSION</a>
+                                <a href="<?= baseUrl ?>Cart/listProducts" class="btn btn-a mt-1 fs-6 p-0">VER CARRITO</a>
+                                <?php $stats = utilities::statsCart(); ?>
+                                <table class="table table-hover table-bordered mt-1">
+                                    <thead>
+                                        <tr>
+                                            <th scope="col">Productos</th>
+                                            <th scope="col">Precio</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <th scope="row"><?= $stats['countProducts'] ?></th>
+                                            <td><?= $stats['priceTotal'] ?></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
                             </div>
                         </div>
                     </div>
                 <?php endif; ?>
 
-                <div class="col-md-10">
+                <div class="col-sm-12 col-md-12 col-lg-10">
                     <div class="card mt-7 mb-4  p-3 rounded-3 border-0 shadow">
                         <div class="container">
                             <div class="row">
@@ -32,6 +45,7 @@
                                         </div>
                                     </div>
                                 <?php endif; ?>
+
                                 <?php utilities::deleteSession(); ?>
                                 <div class="col-sm-12 col-lg-2">
                                     <div class="d-flex align-items-center">
@@ -170,9 +184,28 @@
                         <div class="py-3 px-4">
                             <h2 class="text-title lh-1">MI LISTA DE COMRAS</h2>
                         </div>
-                        <?php if (!isset($Pedido)) : ?>
-                            <h2> - Aun no realizas ninguna compra</h2>
-                        <?php endif; ?>
+                        <div class="table-responsive mx-5">
+                            <table class="table table-hover text-center">
+                                <thead>
+                                    <tr>
+                                        <th scope="col"># Pedido</th>
+                                        <th scope="col">Total</th>
+                                        <th scope="col">Solicitado</th>
+                                        <th scope="col">Estado</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <?php while ($allOrders = $order->fetch_object()) : ?>
+                                        <tr>
+                                            <td><a href="<?= baseUrl ?>Cart/viewOrder&id=<?= $allOrders->idorder ?>"><strong><?= $allOrders->idorder ?></strong></a></td>
+                                            <td><?= $allOrders->coste ?></td>
+                                            <td><?= $allOrders->create_ad ?></td>
+                                            <td><?= $allOrders->status ?></td>
+                                        </tr>
+                                    <?php endwhile; ?>
+                                </tbody>
+                            </table>
+                        </div>
                     </div>
                 </div>
             </div>

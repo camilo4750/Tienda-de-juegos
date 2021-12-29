@@ -123,7 +123,9 @@ class EventsController
             $see = new Events();
             $see->setIdevent($id);
             $seeEvent = $see->seeEventOne();
-
+            $user = new Participants();
+            $user->setEvents_id($id);
+            $seeUser = $user->idsParticipants();
             require_once('view/events/seeEvent.php');
         }
     }

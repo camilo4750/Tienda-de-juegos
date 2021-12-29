@@ -15,7 +15,7 @@ class utilities
         }
 
         if (isset($_SESSION['delete']) && $_SESSION['delete'] = "exitoso") {
-            $_SESSION['deletes'] = null;
+            $_SESSION['delete'] = null;
             $borrado = true;
         }
 
@@ -146,7 +146,9 @@ class utilities
         );
 
         if (isset($_SESSION['cart'])) {
-            $stats['countProducts'] = count($_SESSION['cart']);
+            foreach ($_SESSION['cart'] as $product) {
+                $stats['countProducts'] += $product['units'];
+            }
 
             foreach ($_SESSION['cart'] as $product) {
                 $stats['priceTotal'] += $product['price'] * $product['units'];

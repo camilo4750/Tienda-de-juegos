@@ -15,14 +15,14 @@
     <?php if (isset($_SESSION['Admin'])) : ?>
         <?php unset($_SESSION['Admin']) ?>
     <?php endif; ?>
-    <nav class="navbar navbar-expand-lg fixed-top nav-black" id="menu">
+    <nav class="navbar navbar-expand-xl fixed-top nav-black" id="menu">
         <div class="container-fluid">
             <a class="navbar-brand text-title-menu" href="<?= baseUrl ?>Products/index">Quick Shopping Game</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarScroll" aria-controls="navbarScroll" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="bi bi-card-list fs-1 "></span>
             </button>
             <div class="collapse navbar-collapse float-left" id="navbarScroll">
-                <ul class="navbar-nav  ms-auto  my-2 my-lg-0 navbar-nav-scroll" style="--bs-scroll-height: 150px;">
+                <ul class="navbar-nav ms-auto my-2 my-lg-0 navbar-nav-scroll" style="--bs-scroll-height: 150px;">
                     <li class="nav-item">
                         <a class="nav-link" href="<?= baseUrl ?>Clients/sessions">Iniciar Session</a>
                     </li>

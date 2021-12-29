@@ -76,7 +76,7 @@
                 </div>
                 <div class="col-sm-12 col-md-12 col-lg-10">
                 <?php else : ?>
-                    <div class="col-sm-12 col-md-12 col-lg-10">
+                    <div class="col-sm-12 col-md-12 col-lg-12">
                     <?php endif; ?>
                     <div class="row mb-4">
                         <?php $PRODUCTS = utilities::allProducts(); ?>
@@ -95,7 +95,7 @@
                                     <div class="ms-auto">
                                         <a href="<?= baseUrl ?>Products/seeProduct&id=<?= $PRODUCT->idproduct ?>" class="btn btn-fixed" type="button">ver »</a>
                                         <?php if (isset($_SESSION['User'])) : ?>
-                                            <a class="btn btn-b" href="#">Comprar »</a>
+                                            <a class="btn btn-b" href="<?= baseUrl ?>Cart/addToCart&id=<?= $PRODUCT->idproduct ?>">Comprar »</a>
                                         <?php else : ?>
                                             <a class="btn btn-b " onclick="alert('Debes iniciar Session...!');" href="#">Comprar »</a>
                                         <?php endif; ?>
@@ -126,6 +126,7 @@
                                     </div>
                                 </div>
                             <?php endif; ?>
+                         
                             <?php if (isset($_SESSION['edit']) && $_SESSION['edit'] == "exitoso") : ?>
                                 <div class="row" id="mydiv">
                                     <div class="col-md-12 ">
@@ -137,6 +138,7 @@
                                     </div>
                                 </div>
                             <?php endif; ?>
+
                             <?php if (isset($_SESSION['delete']) && $_SESSION['delete'] == "exitoso") : ?>
                                 <div class="row" id="mydiv">
                                     <div class="col-md-12 ">
@@ -221,6 +223,4 @@
             </div>
         </div>
     </section>
-
-
     <?php require_once('view/layout/Footer1.php'); ?>

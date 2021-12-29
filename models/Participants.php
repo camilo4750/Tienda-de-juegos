@@ -175,6 +175,12 @@ class Participants
         return $allParticipants;
     }
 
+    public function idsParticipants()
+    {
+        $idParticipants = $this->db->query("SELECT Clients_id FROM participants WHERE Events_id = '{$this->getEvents_id()}'");
+        return $idParticipants->fetch_object();
+    }
+
     public function status()
     {
         $SQL = "UPDATE participants SET status = '{$this->getStatus()}' WHERE idparticipant = '{$this->getIdparticipant()}'";

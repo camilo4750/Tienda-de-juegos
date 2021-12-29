@@ -1,10 +1,16 @@
 <?php
 require_once('models/Products.php');
+require_once('models/Orders.php');
 class CartController
 {
     public function listProducts()
     {
-        $cart = $_SESSION['cart'];
+        if (isset($_SESSION['cart']) == null) {
+            $cart = $_SESSION['cart'] = [];
+        } else {
+            $cart = $_SESSION['cart'];
+        }
+
         require_once('view/Card/seeCart.php');
     }
 
@@ -49,5 +55,63 @@ class CartController
         unset($_SESSION['cart']);
         $_SESSION['listDelete'] = "Exitoso";
         header("Location:" .  baseUrl . "Cart/listProducts");
+    }
+
+    public function performBuy()
+    {
+        require_once('view/Card/performBuy.php');
+    }
+
+    public function realizedBuy()
+    {
+        if (isset($_POST)) {
+            $order = new Orders();
+            $stats = utilities::statsCart();
+            $Client_id = $_SESSION['User']->idclient;
+            $coste = $stats['priceTotal'];
+            $order->setName($_POST['name']);
+            $order->setDocument($_POST['document']);
+            $order->setCity($_POST['city']);
+            $order->setDirection($_POST['direction']);
+            $order->setTelephone($_POST['telephone']);
+            $order->setCoste($coste);
+            $order->setStatus('Pendiente');
+            $order->setClients_id($Client_id);
+            $Save = $order->saveOrder();
+            $line_orders = $order->saveLine_orders();
+            if ($Save &&  $line_orders) {
+                $_SESSION['saveOrder'] = "exitoso";
+            }
+        }
+        header("Location:" . baseUrl . "Cart/confirmed");
+    }
+
+    public function confirmed()
+    {
+        $Client_id = $_SESSION['User']->idclient;
+        $order = new Orders();
+        $order->setClients_id($Client_id);
+        $oneOrder = $order->oneUserBuy();
+
+        $products = new Orders();
+        $allProducts = $products->productsOfOneOrder($oneOrder->idorder);
+        $card = $_SESSION['cart'] = [];
+        require_once('view/Card/confirmed.php');
+    }
+
+    public function viewOrder()
+    {
+        if (isset($_GET['id'])) {
+            $id = $_GET['id'];
+            $products = new Orders();
+            $allProducts = $products->productsOfOneOrder($id);
+
+
+            $order = new Orders();
+            $order->setIdorder($id);
+            $oneOrder = $order->oneOrder();
+
+            require_once('view/Card/detailsOrder.php');
+        }
     }
 }

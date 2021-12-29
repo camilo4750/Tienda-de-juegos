@@ -1,5 +1,6 @@
 <?php
 require_once('models/Clients.php');
+require_once('models/Orders.php');
 class ClientsController
 {
     public function sessions()
@@ -101,6 +102,10 @@ class ClientsController
             $Client = new Clients();
             $Client->setIdclient($id);
             $Client = $Client->oneClient();
+
+            $order = new Orders();
+            $order->setClients_id($id);
+            $order = $order->ordersForClient();
             require_once('view/clients/myProfile.php');
         }
     }

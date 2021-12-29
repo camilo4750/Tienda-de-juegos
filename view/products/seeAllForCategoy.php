@@ -30,7 +30,7 @@
                 </div>
                 <div class="col-sm-12 col-md-12 col-lg-10">
                 <?php else : ?>
-                    <div class="col-sm-12 col-md-12 col-lg-10">
+                    <div class="col-sm-12 col-md-12 col-lg-12">
                     <?php endif; ?>
                     <div class="card mt-7 shadow bg-light">
                         <div class="card-body">
