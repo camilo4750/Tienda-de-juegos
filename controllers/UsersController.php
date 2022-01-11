@@ -5,61 +5,12 @@ require_once('models/Participants.php');
 require_once('models/Events.php');
 require_once('models/Products.php');
 require_once('models/Comments.php');
+require_once('models/Orders.php');
 class UsersController
 {
-    public function session()
-    {
-        $User = new Users();
-        $total = $User->total();
-        require_once 'view/users/session.php';
-    }
-
-    public function save()
-    {
-        if (isset($_POST)) {
-            $User = new Users();
-            $User->setName($_POST['name']);
-            $User->setSurname($_POST['surname']);
-            $User->setEmail($_POST['email']);
-            $User->setPassword($_POST['password']);
-            $User->setRol('Admin');
-            $save = $User->save();
-            if ($save) {
-                $_SESSION['save'] = "exitoso";
-            } else {
-                echo "ERROR 2";
-            }
-        } else {
-            echo "error 1";
-        }
-        header("Location:" . baseUrl . "users/session");
-    }
-
-    public function login()
-    {
-        if (isset($_POST)) {
-            $USER = new Users();
-            $USER->setEmail($_POST['email']);
-            $USER->setPassword($_POST['password']);
-            $identificado = $USER->login();
-            if ($identificado && is_object($identificado)) {
-                if ($identificado->rol == "Admin") {
-                    $identificado->password = null;
-                    $_SESSION['Admin'] = $identificado;
-                    header("Location:" . baseUrl . "Users/panel");
-                }
-            } else {
-                $_SESSION['noIdentity'] = "error1";
-                echo "error1";
-                header("Location:" . baseUrl . "Users/session");
-            }
-        } else {
-            echo "error en post";
-        }
-    }
-
     public function panel()
     {
+        utilities::isAdmin();
         $Clients = new Clients();
         $totalClients = $Clients->countClients();
         $Participants = new Participants();
@@ -70,14 +21,34 @@ class UsersController
         $totalProducts = $Products->countProducts();
         $Comments = new Comments();
         $totalComments = $Comments->totalCount();
+        $Orders = new Orders();
+        $ValorPedidos = $Orders->ValueOrders();
+        $pendientes = $Orders->countOrdersPending();
+        $preparacion = $Orders->countOrdersPreparation();
+        $enviados = $Orders->countOrdersSend();
+        $entregados = $Orders->countOrdersDelivered();
+        $stock = $Products->totalStock();
         require_once('view/users/panel.php');
     }
 
     public function logout()
     {
+        utilities::isAdmin();
         if (isset($_SESSION['Admin'])) {
             unset($_SESSION['Admin']);
         }
         header("Location:" . baseUrl . "Products/index");
+    }
+
+    public function profileAdmin()
+    {
+        utilities::isAdmin();
+        if (isset($_GET['id'])) {
+            $id = $_GET['id'];
+            $Admin = new Clients();
+            $Admin->setIdclient($id);
+            $adminData = $Admin->oneClient();
+            require_once('view/users/profile.php');
+        }
     }
 }

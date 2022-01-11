@@ -1,10 +1,13 @@
 <?php
 require_once('models/Clients.php');
 require_once('models/Orders.php');
+require_once('models/Participants.php');
 class ClientsController
 {
     public function sessions()
     {
+        $client = new Clients();
+        $admin = $client->countAdmin();
         require_once 'view/clients/sessions.php';
     }
 
@@ -32,7 +35,7 @@ class ClientsController
             $Client->setNickname($_POST['nickname']);
             $Client->setPassword($_POST['password']);
             $Client->setStatus('activo');
-            $Client->setRol('user');
+            $Client->setRol($_POST['rol']);
             $Client->setClient_fixed('inactivo');
             if (isset($_GET['id'])) {
                 $id = $_GET['id'];
@@ -71,6 +74,11 @@ class ClientsController
                     $_SESSION['User'] = $identificado;
                     header("Location:" . baseUrl . "Products/index");
                 }
+                if ($identificado->rol == 'admin') {
+                    $identificado->password = null;
+                    $_SESSION['Admin'] = $identificado;
+                    header("Location:" . baseUrl . "Users/Panel");
+                }
             } else {
                 $_SESSION['noIdentity'] = "error1";
                 header("Location:" . baseUrl . "Clients/sessions");
@@ -103,10 +111,19 @@ class ClientsController
             $Client->setIdclient($id);
             $Client = $Client->oneClient();
 
+            $events = new Participants();
+            $events->setClients_id($id);
+            $countEvents = $events->countEventsForUser();
+
             $order = new Orders();
             $order->setClients_id($id);
+            $count = $order->countOrders();
             $order = $order->ordersForClient();
+
+
             require_once('view/clients/myProfile.php');
+        } else {
+            header("Location:" .  baseUrl . "Error/peticion");
         }
     }
 }

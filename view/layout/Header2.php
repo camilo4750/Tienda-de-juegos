@@ -30,10 +30,7 @@
                 <div class="sidebar-brand-text mx-2">QUICK SHOPPING<sup><i class="bi bi-controller"></i></sup></div>
             </a>
             <hr class="sidebar-divider my-0">
-            <?php if (isset($_SESSION['Admin'])) : ?>
 
-                <span class="text-white text-center mt-2 p-1">Bienvenido: <?= $_SESSION['Admin']->name ?></span>
-            <?php endif; ?>
             <a class="btn btn-sm btn-danger mb-2 mt-2" href="<?= baseUrl ?>Users/logout">
                 Cerrar Session
             </a>
@@ -50,6 +47,19 @@
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">Componentes:</h6>
                         <a class="collapse-item" href="<?= baseUrl ?>Clients/view">Ver</a>
+                    </div>
+                </div>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link collapsed" data-toggle="collapse" data-target="#collapseTwo7" aria-expanded="true" aria-controls="collapseTwo1">
+                    <i class="bi bi-people-fill"></i>
+                    <span>Pedidos</span>
+                </a>
+                <div id="collapseTwo7" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <h6 class="collapse-header">Componentes:</h6>
+                        <a class="collapse-item" href="<?= baseUrl ?>Orders/listOrders">Ver</a>
                     </div>
                 </div>
             </li>
@@ -102,6 +112,18 @@
                         <h6 class="collapse-header">Componentes:</h6>
                         <a class="collapse-item" href="<?= baseUrl ?>Products/create">Crear</a>
                         <a class="collapse-item" href="<?= baseUrl ?>Products/view">Ver</a>
+                    </div>
+                </div>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo8" aria-expanded="true" aria-controls="collapseTwo5">
+                    <i class="bi bi-chat-left-text-fill"></i>
+                    <span>Comentarios</span>
+                </a>
+                <div id="collapseTwo8" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <h6 class="collapse-header">Componentes:</h6>
+                        <a class="collapse-item" href="<?= baseUrl ?>Comments/view">Ver</a>
                     </div>
                 </div>
             </li>
@@ -161,46 +183,60 @@
                         <li class="nav-item dropdown no-arrow mx-1">
                             <a class="nav-link dropdown-toggle" href="#" id="alertsDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <i class="bi bi-bell-fill"></i>
-                                <span class="badge badge-danger badge-counter">3+</span>
+                                <?php $count = utilities::countOrdersPending(); ?>
+                                <span class="badge badge-danger badge-counter">+<?= $count->totalPending ?></span>
                             </a>
-                            <div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="alertsDropdown">
+                            <div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in overflow-auto" aria-labelledby="alertsDropdown">
                                 <h6 class="dropdown-header">
-                                    Alerts Center
+                                    PEDIDOS PENDIENTES
                                 </h6>
-                                <a class="dropdown-item d-flex align-items-center" href="#">
-                                    <div class="mr-3">
-                                        <div class="icon-circle bg-primary">
-                                            <i class="fas fa-file-alt text-white"></i>
+
+                                <?php if ($count->totalPending == 0) : ?>
+                                    <a class="dropdown-item d-flex align-items-center" href="#">
+                                        <div class="mr-3">
+                                            <div class="icon-circle bg-primary text-white">
+                                                <i class="bi bi-cart4"></i>
+                                            </div>
                                         </div>
-                                    </div>
-                                    <div>
-                                        <div class="small text-gray-500">December 12, 2019</div>
-                                        <span class="font-weight-bold">A new monthly report is ready to download!</span>
-                                    </div>
-                                </a>
-                                <a class="dropdown-item d-flex align-items-center" href="#">
-                                    <div class="mr-3">
-                                        <div class="icon-circle bg-success">
-                                            <i class="fas fa-donate text-white"></i>
+                                        <div>
+                                            <span class="font-weight-bold">No tienes pedidos pendiente</span>
                                         </div>
-                                    </div>
-                                    <div>
-                                        <div class="small text-gray-500">December 7, 2019</div>
-                                        $290.29 has been deposited into your account!
-                                    </div>
-                                </a>
-                                <a class="dropdown-item d-flex align-items-center" href="#">
-                                    <div class="mr-3">
-                                        <div class="icon-circle bg-warning">
-                                            <i class="fas fa-exclamation-triangle text-white"></i>
+                                    </a>
+                                <?php else : ?>
+
+                                <?php endif; ?>
+                                <?php $Pending = utilities::ordersPending(); ?>
+
+                                <?php while ($orderPending = $Pending->fetch_object()) : ?>
+                                    <a class="dropdown-item d-flex align-items-center" href="<?= baseUrl ?>Orders/detailsOrder&id=<?= $orderPending->idorder ?>">
+                                        <div class="mr-3">
+                                            <div class="icon-circle bg-primary text-white">
+                                                <i class="bi bi-cart-plus-fill"></i>
+                                            </div>
                                         </div>
-                                    </div>
-                                    <div>
-                                        <div class="small text-gray-500">December 2, 2019</div>
-                                        Spending Alert: We've noticed unusually high spending for your account.
-                                    </div>
+                                        <div>
+                                            <div class="small text-gray-500"><?= $orderPending->create_ad . " " . $orderPending->time  ?></div>
+                                            <span class="font-weight-bold"><?= $orderPending->city ?> - $<?= $orderPending->coste ?></span>
+                                        </div>
+                                    </a>
+                                <?php endwhile; ?>
+
+                                <a class="dropdown-item text-center text-success font-weight-bold " href="<?= baseUrl ?>Orders/listOrders">Ver todos los pedidos</a>
+                            </div>
+                        </li>
+                        <li class="nav-item dropdown no-arrow">
+                            <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <?php if (isset($_SESSION['Admin'])) : ?>
+                                    <span class="mr-2 d-none d-lg-inline text-gray-600 small"><?= $_SESSION['Admin']->name ?> <i class="bi bi-caret-down-fill"></i></span>
+                                <?php endif; ?>
+                                <img class="img-profile rounded-circle" src="<?= baseUrl ?>Uploads/profiles/<?= $_SESSION['Admin']->image ?>">
+                            </a>
+                            <!-- Dropdown - User Information -->
+                            <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
+                                <a class="dropdown-item" href="<?= baseUrl ?>Users/profileAdmin&id=<?= $_SESSION['Admin']->idclient ?>">
+                                    <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
+                                    Profile
                                 </a>
-                                <a class="dropdown-item text-center small text-gray-500" href="#">Show All Alerts</a>
                             </div>
                         </li>
                     </ul>

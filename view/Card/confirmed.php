@@ -18,7 +18,7 @@
                                     <li>3. Podra observar el estado de su pedido directamente en la pagina oficial de Servientrega -> <a href="https://www.servientrega.com/wps/portal/!ut/p/z1/04_Sj9CPykssy0xPLMnMz0vMAfIjo8ziTS08TTwMTAz93f1cTAwCg5yMfP0MHY0cfY30wwkpiAJKG-AAjgb6XoQUAF1gVOTr7JuuH1WQWJKhm5mXlq8f4Zyfk5-blJmoH1GQWlQMdGqxfkRmXmZyZj7QRVGEzCzIjajycbL0BACT8ktL/dz/d5/L2dBISEvZ0FBIS9nQSEh/?gclid=Cj0KCQiA5aWOBhDMARIsAIXLlkfqlf77hCHJ9waV0rnLtC8NzkD2ebyhbyzhgGsCZnbQ_Bf1UKXqpHIaAgXOEALw_wcB">Link Aquí</a>
                                     </li>
                                     <li>4. Disfrutar de la calidad de nuestros productos garantizado por <strong>QHICK SHOPPING</strong></li>
-                                    <li>5. Prodras contar con esta informacion en tu perfil -> <a href="<?= baseUrl ?>Clients/myProfile&id=<?= $_SESSION['User']->idclient ?>">VER MI PERFIL</a></li>
+                                    <li>5. Prodras contar con esta informacion en tu perfil -> <a href="<?= baseUrl ?>Clients/myProfile&id=<?= isset($_SESSION['User']) ? $_SESSION['User']->idclient : "0" ?>">VER MI PERFIL</a></li>
                                 </ul>
                                 <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                             </div>
@@ -26,7 +26,7 @@
                         <h3>Datos del pedido:</h3>
                         <ul class="list-unstyled">
                             <li>Numero de pedido: <strong><?= $oneOrder->idorder ?></strong></li>
-                            <li>Total a pagar: <strong>$<?= $oneOrder->coste ?> mil</strong></li>
+                            <li>Total a pagar: <strong>$<?= number_format($oneOrder->coste) ?> </strong></li>
                             <li># de guía: <strong><?= isset($oneOrder) && $oneOrder != NULL ? $oneOrder->guide_number : "Aun no se realiza el envio" ?></strong></li>
                             <li>Estado del pedido: <strong><?= $oneOrder->status ?></strong></li>
                             <li>Fecha y hora de la solicitud: <strong> <?= $oneOrder->create_ad . " / " . $oneOrder->time ?></strong></li>

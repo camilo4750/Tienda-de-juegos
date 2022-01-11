@@ -40,4 +40,27 @@ class CommentsController
         }
         header("Location:" .  baseUrl . "Products/seeProduct&id=" . $product);
     }
+
+    public function deleteAdmin()
+    {
+        utilities::isAdmin();
+        if (isset($_GET['id'])) {
+            $id = $_GET['id'];
+            $deleteComment = new Comments();
+            $deleteComment->setIdcomment($id);
+            $Delete = $deleteComment->deleteComment();
+            if ($Delete) {
+                $_SESSION['delete'] = "exitoso";
+            }
+        }
+        header("Location:" .  baseUrl . "Comments/view");
+    }
+
+    public function view()
+    {
+        utilities::isAdmin();
+        $SeeComment = new Comments();
+        $see = $SeeComment->allcommnets();
+        require_once('view/comment/view.php');
+    }
 }

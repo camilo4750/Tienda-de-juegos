@@ -11,15 +11,24 @@ class ProductsController
 
     public function create()
     {
+        utilities::isAdmin();
         require_once('view/products/create.php');
     }
 
     public function save()
     {
+        utilities::isAdmin();
         if (isset($_POST)) {
             $product = new Products();
             $product->setName($_POST['name']);
+            $product->setCreator($_POST['creator']);
             $product->setDescription($_POST['description']);
+            $product->setFormat($_POST['format']);
+            $product->setLanguage($_POST['language']);
+            $product->setLVoices($_POST['voices']);
+            $product->setLOnline($_POST['online']);
+            $product->setLRequirements($_POST['requirements']);
+            $product->setLPrice_init($_POST['price_init']);
             $product->setPrice($_POST['price']);
             $product->setStock($_POST['stock']);
             $product->setDiscount($_POST['discount']);
@@ -59,13 +68,18 @@ class ProductsController
 
     public function view()
     {
+        utilities::isAdmin();
         $PRODUCTS = new Products();
-        $PRODUCTS = $PRODUCTS->all();
+        $allProducts = $PRODUCTS->all();
+        $totalInit = $PRODUCTS->totalPriceProducts();
+        $totalProduct = $PRODUCTS->totalPriceProductsClient();
         require_once('view/products/view.php');
     }
 
     public function viewProduct()
     {
+        utilities::isAdmin();
+
         if ($_GET['id']) {
             $id = $_GET['id'];
             $Product = new Products();
@@ -77,6 +91,7 @@ class ProductsController
 
     public function edit()
     {
+        utilities::isAdmin();
         if ($_GET['id']) {
             $id = $_GET['id'];
             $Product = new Products();
@@ -88,6 +103,7 @@ class ProductsController
 
     public function active()
     {
+        utilities::isAdmin();
         if (isset($_GET['id'])) {
             $id = $_GET['id'];
             $Product = new Products();
@@ -103,6 +119,7 @@ class ProductsController
 
     public function inactive()
     {
+        utilities::isAdmin();
         if (isset($_GET['id'])) {
             $id = $_GET['id'];
             $Product = new Products();
@@ -139,12 +156,26 @@ class ProductsController
             $category = new Category();
             $category->setIdcategory($id);
             $nameCategory = $category->oneCategory();
-            
+
             $products = new Products();
             $products->setCategory_id($id);
             $allProducts = $products->allProductsForCategory();
 
             require_once('view/products/seeAllForCategoy.php');
         }
+    }
+
+    public function allProducts()
+    {
+        $products = new Products();
+        $allProducts = $products->allProducts();
+        require_once('view/products/allProducts.php');
+    }
+
+    public function stockEmpty()
+    {
+        $product = new Products();
+        $allOnStock = $product->emptyStock();
+        require_once('view/products/stocks.php');
     }
 }

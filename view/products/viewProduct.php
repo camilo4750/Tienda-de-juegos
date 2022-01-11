@@ -35,8 +35,16 @@
                                                 <td><?= $PRODUCT->description ?></td>
                                             </tr>
                                             <tr>
-                                                <th scope="row">PRECIO</th>
+                                                <th scope="row">PRECIO INICIAL</th>
+                                                <td>$<?= $PRODUCT->price_init ?></td>
+                                            </tr>
+                                            <tr>
+                                                <th scope="row">PRECIO CLIENTE</th>
                                                 <td>$<?= $PRODUCT->price ?></td>
+                                            </tr>
+                                            <tr>
+                                                <th scope="row">Unidades</th>
+                                                <td><?= $PRODUCT->stock ?></td>
                                             </tr>
                                             <tr>
                                                 <th scope="row">DESCUENTO</th>
@@ -69,10 +77,37 @@
                                     </div>
                                     <p><?= $PRODUCT->descriptionCor ?></p>
                                     <div class="ml-auto">
-                                        <a href="<?= baseUrl ?>Products/viewProduct&id=<?= $PRODUCT->idproduct ?>" class="btn btn-fixed" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-controls="offcanvasRight">ver »</a>
+                                        <a href="#" class="btn btn-fixed" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-controls="offcanvasRight">ver »</a>
                                         <a class="btn btn-b" href="#">Comprar »</a>
                                     </div>
                                 </div>
+
+                                <h4 class="d-flex justify-content-between align-items-center mb-2 mt-3">
+                                    <span class="text-primary">Diagnostico</span>
+                                </h4>
+                                <ul class="list-group mb-3">
+                                    <li class="list-group-item d-flex justify-content-between lh-sm">
+                                        <div>
+                                            <h6 class="my-0">Valor invertido</h6>
+                                            <small class="text-muted">valor inicial * unidades</small>
+                                        </div>
+                                        <span class="text-muted">$<?= number_format($PRODUCT->price_init * $PRODUCT->stock) ?></span>
+                                    </li>
+                                    <li class="list-group-item d-flex justify-content-between lh-sm">
+                                        <div>
+                                            <h6 class="my-0">Valor cobrado</h6>
+                                            <small class="text-muted">Valor Cliente * Unidades</small>
+                                        </div>
+                                        <span class="text-muted">$<?= number_format($PRODUCT->price * $PRODUCT->stock) ?></span>
+                                    </li>
+
+                                    <li class="list-group-item d-flex justify-content-between bg-light">
+                                        <div class="text-success">
+                                            <h6 class="my-0">Total Ganancia</h6>
+                                        </div>
+                                        <span class="text-success">$<?= number_format($PRODUCT->price * $PRODUCT->stock - $PRODUCT->price_init * $PRODUCT->stock) ?></span>
+                                    </li>
+                                </ul>
                             </div>
                         </div>
                     </div>

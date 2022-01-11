@@ -4,11 +4,13 @@ class CategoryController
 {
     public function create()
     {
+        utilities::isAdmin();
         require_once('view/category/create.php');
     }
 
     public function save()
     {
+        utilities::isAdmin();
         if (isset($_POST)) {
             $Category = new Category();
             $Category->setName($_POST['name']);
@@ -38,6 +40,7 @@ class CategoryController
 
     public function view()
     {
+        utilities::isAdmin();
         $CATEGORIES = new Category();
         $CATEGORIES = $CATEGORIES->allCategories();
         require_once('view/category/view.php');;
@@ -45,6 +48,7 @@ class CategoryController
 
     public function edit()
     {
+        utilities::isAdmin();
         if (isset($_GET['id'])) {
             $id = $_GET['id'];
             $CATEGORY = new Category();
@@ -58,6 +62,7 @@ class CategoryController
 
     public function active()
     {
+        utilities::isAdmin();
         if (isset($_GET['id'])) {
             $id = $_GET['id'];
             $Category = new Category();
@@ -73,6 +78,7 @@ class CategoryController
 
     public function inactive()
     {
+        utilities::isAdmin();
         if (isset($_GET['id'])) {
             $id = $_GET['id'];
             $Category = new Category();

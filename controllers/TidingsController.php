@@ -4,11 +4,14 @@ class TidingsController
 {
     public function create()
     {
+        utilities::isAdmin();
+
         require_once('view/tidings/create.php');
     }
 
     public function save()
     {
+        utilities::isAdmin();
         if (isset($_POST)) {
             $tidings = new Tidings();
             $tidings->setName($_POST['name']);
@@ -49,6 +52,7 @@ class TidingsController
 
     public function view()
     {
+        utilities::isAdmin();
         $TIDINGS = new Tidings();
         $TIDINGS = $TIDINGS->total();
         require_once('view/tidings/view.php');
@@ -56,6 +60,7 @@ class TidingsController
 
     public function edit()
     {
+        utilities::isAdmin();
         if (isset($_GET['id'])) {
             $id = $_GET['id'];
             $Tidings = new Tidings();
@@ -69,6 +74,7 @@ class TidingsController
 
     public function viewTiding()
     {
+        utilities::isAdmin();
         if (isset($_GET['id'])) {
             $id = $_GET['id'];
             $Tiding = new Tidings();
@@ -82,6 +88,7 @@ class TidingsController
 
     public function active()
     {
+        utilities::isAdmin();
         if (isset($_GET['id'])) {
             $id = $_GET['id'];
             $Tiding = new Tidings();
@@ -97,6 +104,7 @@ class TidingsController
 
     public function inactive()
     {
+        utilities::isAdmin();
         if (isset($_GET['id'])) {
             $id = $_GET['id'];
             $Tiding = new Tidings();

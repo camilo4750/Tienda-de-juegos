@@ -9,7 +9,7 @@
                     </div>
                     <div class="card-body text-description">
 
-                        <?php if (isset($_SESSION['saveOrder']) && $_SESSION['saveOrder'] = "exitoso" && $oneOrder->status == "Pendiente") : ?>
+                        <?php if (isset($oneOrder) && $oneOrder->status == "Pendiente") : ?>
                             <div class="alert alert-success alert-dismissible fade show" role="alert">
                                 <ul class="list-unstyled p-2">
                                     <li> <strong><i class="bi bi-person-fill"></i> Su solicitud de pedido ha sido exitosa,
@@ -30,7 +30,9 @@
                             <li>Numero de pedido: <strong><?= $oneOrder->idorder ?></strong></li>
                             <li>Total a pagar: <strong>$<?= $oneOrder->coste ?> mil</strong></li>
                             <li># de guía: <strong><?= isset($oneOrder) && $oneOrder != NULL ? $oneOrder->guide_number : "Aun no se realiza el envio" ?></strong></li>
-                            <li>Estado del pedido: <strong><?= $oneOrder->status ?></strong></li>
+                            <li>Estado del pedido:
+                                <strong><?= $oneOrder->status ?></strong>
+                            </li>
                             <li>Fecha y hora de la solicitud: <strong> <?= $oneOrder->create_ad . " / " . $oneOrder->time ?></strong></li>
                         </ul>
                         <div class="table-responsive mx-5">

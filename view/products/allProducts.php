@@ -34,9 +34,9 @@
                     <?php endif; ?>
                     <div class="card mt-7 shadow bg-light">
                         <div class="card-body">
-                            <h2 class="text-title text-center"> <?= $nameCategory->name ?> </h2>
+                            <h2 class="text-title text-center">TODOS NUESTROS PRODUCTOS</h2>
                             <hr>
-                            <div class="row mb-4">
+                            <div class="row mb-4 justify-content-center">
                                 <?php while ($PRODUCT = $allProducts->fetch_object()) : ?>
                                     <?php if ($PRODUCT->status == 'Activo') : ?>
                                         <div class="col-sm-9 col-xl-3 col-md-6 ">
@@ -64,7 +64,7 @@
                                                 </div>
                                             </div>
                                         </div>
-                                    <?php endif; ?>
+                                    <?php endif ?>
                                 <?php endwhile; ?>
                             </div>
                         </div>
@@ -75,4 +75,5 @@
         </div>
     </div>
 </section>
+
 <?php require_once('view/layout/Footer1.php'); ?>

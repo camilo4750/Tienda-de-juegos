@@ -8,7 +8,7 @@ require_once('helpers/utilities.php');
 function showError()
 {
     $error = new ErrorController();
-    $error->index();
+    $error->peticion();
 }
 
 if (isset($_GET['controller'])) {
@@ -16,7 +16,7 @@ if (isset($_GET['controller'])) {
 } elseif (!isset($_GET['controller']) && !isset($_GET['action'])) {
     $nameController = ControllerDefault;
 } else {
-    echo "error1";
+    showError();
 }
 
 if (class_exists($nameController)) {
@@ -29,8 +29,8 @@ if (class_exists($nameController)) {
         $actionDefault = ActionDefault;
         $controlador->$actionDefault();
     } else {
-        echo "error2";
+        showError();
     }
 } else {
-    echo "error3";
+    showError();
 }

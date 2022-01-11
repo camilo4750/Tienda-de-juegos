@@ -4,7 +4,7 @@
     <section class="bg-light">
         <div class="container-fluid">
             <div class="row justify-content-center">
-                <?php if ($_SESSION['User']->idclient === $Client->idclient) : ?>
+                <?php if (isset($_SESSION['User']) && $_SESSION['User']->idclient === $Client->idclient) : ?>
                     <div class="col-sm-12 col-md-12 col-lg-2">
                         <div class="card mt-7 shadow">
                             <div class="card border-0 p-1">
@@ -66,7 +66,7 @@
                                                 <div class="d-flex flex-column"> <span class="articles">creado:</span> <span class="number1"><?= $Client->create_at ?></span> </div>
                                                 <div class="d-flex flex-column"> <span class="followers">Cliente fijo:</span> <span class="number2"><?= $Client->client_fixed ?></span> </div>
                                                 <div class="d-flex flex-column"> <span class="followers">Editar datos:</span>
-                                                    <?php if ($_SESSION['User']->idclient === $Client->idclient) : ?>
+                                                    <?php if (isset($_SESSION['User']) && $_SESSION['User']->idclient === $Client->idclient) : ?>
                                                         <button type="button" class="btn-warning" data-bs-toggle="modal" data-bs-target="#exampleModal">
                                                             <i class="bi bi-pencil-square"></i>
                                                         </button>
@@ -132,51 +132,54 @@
                 <div class="py-3 px-4">
                     <h2 class="text-title lh-1">MI LISTA DE TORNEOS</h2>
                 </div>
-                <?php $idClient = $Client->idclient ?>
-                <?php $Events = utilities::EventsForClients($idClient); ?>
-                <?php while ($Event = $Events->fetch_object()) : ?>
-
-                    <div class="col-sm-12 col-md-7 col-lg-5 col-xl-4">
-                        <a href="<?= baseUrl ?>Events/seeEvent&id=<?= $Event->idevent ?>">
-                            <div class="card bg-dark rounded text-white mb-3 border-events">
-                                <img src="<?= baseUrl ?>Uploads/events/<?= $Event->image ?>" class="card-img" alt="..." height="240">
-                                <div class="card-img-overlay fondImage p-2">
-                                    <h3 class="card-title lh-1"><?= $Event->name ?></h3>
-                                    <div>
-                                        <span class="fw-bold">FIN DE INSCRIPCIÓN</span> <br>
-                                        <p class="card-text"> <?= $Event->expires_in ?> </p>
-                                    </div>
-                                    <div>
-                                        <span class="fw-bold">INICIO</span> <br>
-                                        <p class="card-text"> <?= $Event->create_at ?> </p>
-                                    </div>
-                                    <div>
-                                        <span class="fw-bold">MAXIMO DE PARTICIPANTES</span> <br>
-                                        <p class="card-text"> <?= $Event->numberParticipants . " " . $Event->type ?> </p>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-auto me-auto"> <span class="fw-bold">INSCRITOS HASTA LA FECHA</span> <br>
-                                            <?php $idEvent = $Event->idevent ?>
-                                            <?php $countParticipants = utilities::countParticipants($idEvent); ?>
-                                            <p class="card-text"> <?= isset($countParticipants) && is_object($countParticipants) ? $countParticipants->total . " " . $Event->type : "" ?> </p>
+                <?php if (isset($countEvents) && $countEvents->total == 0) : ?>
+                    <h2 class="text-dark ms-5">- Aun no participas en ningun evento.</h2>
+                <?php else : ?>
+                    <?php $idClient = $Client->idclient ?>
+                    <?php $Events = utilities::EventsForClients($idClient); ?>
+                    <?php while ($Event = $Events->fetch_object()) : ?>
+                        <div class="col-sm-12 col-md-7 col-lg-5 col-xl-4">
+                            <a href="<?= baseUrl ?>Events/seeEvent&id=<?= $Event->idevent ?>">
+                                <div class="card bg-dark rounded text-white mb-3 border-events">
+                                    <img src="<?= baseUrl ?>Uploads/events/<?= $Event->image ?>" class="card-img" alt="..." height="240">
+                                    <div class="card-img-overlay fondImage p-2">
+                                        <h3 class="card-title lh-1"><?= $Event->name ?></h3>
+                                        <div>
+                                            <span class="fw-bold">FIN DE INSCRIPCIÓN</span> <br>
+                                            <p class="card-text"> <?= $Event->expires_in ?> </p>
                                         </div>
-                                        <div class="col-auto">
-                                            <?php if ($Event->finalized == 'Si') : ?>
-                                                <p class="text-danger fw-bold textfin">FINALIZADO</p>
-                                            <?php else : ?>
-                                                <p class="text-success fw-bold textfin2">EN CURSO</p>
-                                            <?php endif; ?>
+                                        <div>
+                                            <span class="fw-bold">INICIO</span> <br>
+                                            <p class="card-text"> <?= $Event->create_at ?> </p>
+                                        </div>
+                                        <div>
+                                            <span class="fw-bold">MAXIMO DE PARTICIPANTES</span> <br>
+                                            <p class="card-text"> <?= $Event->numberParticipants . " " . $Event->type ?> </p>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-auto me-auto"> <span class="fw-bold">INSCRITOS HASTA LA FECHA</span> <br>
+                                                <?php $idEvent = $Event->idevent ?>
+                                                <?php $countParticipants = utilities::countParticipants($idEvent); ?>
+                                                <p class="card-text"> <?= isset($countParticipants) && is_object($countParticipants) ? $countParticipants->total . " " . $Event->type : "" ?> </p>
+                                            </div>
+                                            <div class="col-auto">
+                                                <?php if ($Event->finalized == 'Si') : ?>
+                                                    <p class="text-danger fw-bold textfin">FINALIZADO</p>
+                                                <?php else : ?>
+                                                    <p class="text-success fw-bold textfin2">EN CURSO</p>
+                                                <?php endif; ?>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
-                        </a>
-                    </div>
-                <?php endwhile; ?>
+                            </a>
+                        </div>
+                    <?php endwhile; ?>
+                <?php endif; ?>
             </div>
         </div>
     </section>
-    <?php if ($_SESSION['User']->idclient === $Client->idclient) : ?>
+    <?php if (isset($_SESSION['User']) && $_SESSION['User']->idclient === $Client->idclient) : ?>
         <section>
             <div class="container-fluid">
                 <div class="row">
@@ -195,14 +198,28 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <?php while ($allOrders = $order->fetch_object()) : ?>
+                                    <?php if (isset($count) && $count->total == 0) : ?>
                                         <tr>
-                                            <td><a href="<?= baseUrl ?>Cart/viewOrder&id=<?= $allOrders->idorder ?>"><strong><?= $allOrders->idorder ?></strong></a></td>
-                                            <td><?= $allOrders->coste ?></td>
-                                            <td><?= $allOrders->create_ad ?></td>
-                                            <td><?= $allOrders->status ?></td>
+                                            <td colspan="4" class="fw-bold text-center text-danger fs-4">Aun no realizas ninguna compra en nuestra tienda</td>
                                         </tr>
-                                    <?php endwhile; ?>
+                                    <?php else : ?>
+                                        <?php while ($allOrders = $order->fetch_object()) : ?>
+                                            <tr>
+                                                <td><a href="<?= baseUrl ?>Cart/viewOrder&id=<?= $allOrders->idorder ?>"><strong>Ver Pedido</strong></a></td>
+                                                <td>$<?= number_format($allOrders->coste) ?></td>
+                                                <td><?= $allOrders->create_ad ?></td>
+                                                <?php if ($allOrders->status == 'Pendiente') : ?>
+                                                    <td class="text-danger fw-bold"><?= $allOrders->status ?></td>
+                                                <?php elseif ($allOrders->status == 'Preparacion') : ?>
+                                                    <td class="text-warning fw-bold"><?= $allOrders->status ?></td>
+                                                <?php elseif ($allOrders->status == "Enviado") : ?>
+                                                    <td class="text-info fw-bold"><?= $allOrders->status ?></td>
+                                                <?php elseif ($allOrders->status == "Entregado") : ?>
+                                                    <td class="text-success fw-bold"><?= $allOrders->status ?></td>
+                                                <?php endif; ?>
+                                            </tr>
+                                        <?php endwhile; ?>
+                                    <?php endif; ?>
                                 </tbody>
                             </table>
                         </div>

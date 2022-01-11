@@ -22,7 +22,7 @@
         <div class="row" id="alerta">
             <div class="col-md-12 ">
                 <div class=" text-center alert alert-info alert-dismissible fade show" role="alert">
-                    <strong> <i class="bi bi-bag-plus-fill"></i> El producto se ha editado exitosamente..!</strong>
+                    <strong> <i class="bi bi-bag-plus-fill"></i> El producto se ha Activado exitosamente..!</strong>
                 </div>
             </div>
         </div>
@@ -31,7 +31,7 @@
         <div class="row" id="alerta">
             <div class="col-md-12 ">
                 <div class=" text-center alert alert-warning alert-dismissible fade show" role="alert">
-                    <strong> <i class="bi bi-bag-plus-fill"></i> El producto se ha editado exitosamente..!</strong>
+                    <strong> <i class="bi bi-bag-plus-fill"></i> El producto se ha Inacitvado exitosamente..!</strong>
                 </div>
             </div>
         </div>
@@ -57,8 +57,10 @@
                             <th>ID</th>
                             <th>Titulo</th>
                             <th>Descripcion</th>
-                            <th>Precio</th>
+                            <th>Precio Inicial</th>
+                            <th>Precio Cliente</th>
                             <th>Bodega</th>
+                            <th>Total</th>
                             <th>Descuento</th>
                             <th>Image</th>
                             <th>Creado</th>
@@ -68,21 +70,23 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <?php while ($PRODUCT = $PRODUCTS->fetch_object()) : ?>
+                        <?php while ($PRODUCT = $allProducts->fetch_object()) : ?>
                             <tr>
                                 <td><?= $PRODUCT->idproduct ?></td>
                                 <td><?= $PRODUCT->name ?></td>
                                 <td><?= $PRODUCT->descriptionCor ?></td>
-                                <td>$<?= $PRODUCT->price ?></td>
+                                <td>$<?= number_format($PRODUCT->price_init) ?></td>
+                                <td>$<?= number_format($PRODUCT->price) ?></td>
                                 <td><?= $PRODUCT->stock ?></td>
+                                <td>$<?= number_format($PRODUCT->price * $PRODUCT->stock) ?></td>
                                 <td><?= $PRODUCT->discount ?>%</td>
                                 <td> <img src="<?= baseUrl ?>Uploads/products/<?= $PRODUCT->image ?>" width="65" height="80" alt=""> </td>
                                 <td><?= $PRODUCT->create_at ?></td>
                                 <td><?= $PRODUCT->category ?></td>
-                                <?php if ($PRODUCT->status === 'Activo') : ?>
-                                    <td class="text-success"><?= $PRODUCT->status ?></td>
+                                <?php if ($PRODUCT->status == 'Activo') : ?>
+                                    <td><b class="text-success"><?= $PRODUCT->status ?></b></td>
                                 <?php else : ?>
-                                    <td class="text-danger"><?= $PRODUCT->status ?></td>
+                                    <td><b class="text-danger"><?= $PRODUCT->status ?></b></td>
                                 <?php endif; ?>
                                 <td>
                                     <a href="<?= baseUrl ?>Products/viewProduct&id=<?= $PRODUCT->idproduct  ?>" class="btn-sm btn-info ms-2 mb-1" type="button" data-bs-toggle="tooltip" data-bs-placement="top" title="Ver Noticia">
@@ -106,8 +110,10 @@
                             <th>ID</th>
                             <th>Titulo</th>
                             <th>Descripcion</th>
-                            <th>Precio</th>
+                            <th>Precio Inicial</th>
+                            <th>Precio Cliente</th>
                             <th>Bodega</th>
+                            <th>Total</th>
                             <th>Descuento</th>
                             <th>Amage</th>
                             <th>Creado</th>
@@ -117,6 +123,30 @@
                         </tr>
                     </tfoot>
                 </table>
+            </div>
+            <div class="row mt-3 text-center text-dark">
+                <div class="col-sm-12 col-md-4">
+                    <div class="card bg-light mb-2">
+                        <b>
+                            VALOR INVERTIDO: $<?= isset($totalInit) && is_object($totalInit) ? $totalInit->total_product : "0" ?>
+                        </b>
+                    </div>
+                </div>
+                <div class="col-sm-12 col-md-4 mb-2">
+                    <div class="card bg-light">
+                        <b>
+                            VALOR COBRADO: $<?= isset($totalProduct) && is_object($totalProduct) ? $totalProduct->total_product_client : "0" ?>
+                        </b>
+                    </div>
+                </div>
+                <div class="col-sm-12 col-md-4 mb-2">
+                    <div class="card bg-light">
+                        <b>
+                            GANANCIA: $<?= isset($totalInit) && isset($totalProduct) ? ($totalProduct->total_product_client - $totalInit->total_product) : "0" ?>
+                        </b>
+
+                    </div>
+                </div>
             </div>
         </div>
     </div>

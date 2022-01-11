@@ -6,11 +6,13 @@ class EventsController
 {
     public function create()
     {
+        utilities::isAdmin();
         require_once('view/events/create.php');
     }
 
     public function save()
     {
+        utilities::isAdmin();
         if (isset($_POST)) {
             $event = new Events();
             $event->setName($_POST['name']);
@@ -58,6 +60,7 @@ class EventsController
 
     public function view()
     {
+        utilities::isAdmin();
         $EVENTS = new Events();
         $EVENTS = $EVENTS->all();
         require_once('view/events/view.php');
@@ -66,6 +69,7 @@ class EventsController
 
     public function active()
     {
+        utilities::isAdmin();
         if (isset($_GET['id'])) {
             $id = $_GET['id'];
             $Event = new Events();
@@ -81,6 +85,7 @@ class EventsController
 
     public function inactive()
     {
+        utilities::isAdmin();
         if (isset($_GET['id'])) {
             $id = $_GET['id'];
             $Event = new Events();
@@ -96,6 +101,7 @@ class EventsController
 
     public function viewEvent()
     {
+        utilities::isAdmin();
         if (isset($_GET['id'])) {
             $id = $_GET['id'];
             $Event = new Events();
@@ -107,6 +113,7 @@ class EventsController
 
     public function edit()
     {
+        utilities::isAdmin();
         if (isset($_GET['id'])) {
             $id = $_GET['id'];
             $Event = new Events();

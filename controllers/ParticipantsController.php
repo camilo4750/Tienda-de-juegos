@@ -4,6 +4,7 @@ class ParticipantsController
 {
     public function view()
     {
+        utilities::isAdmin();
         $Participants = new Participants();
         $allParticipants = $Participants->allParticipants();
         require_once('view/participants/view.php');
@@ -34,6 +35,7 @@ class ParticipantsController
 
     public function activeStatus()
     {
+        utilities::isAdmin();
         if (isset($_GET['id'])) {
             $id = $_GET['id'];
             $active = new Participants();
@@ -49,6 +51,7 @@ class ParticipantsController
 
     public function inactiveStatus()
     {
+        utilities::isAdmin();
         if (isset($_GET['id'])) {
             $id = $_GET['id'];
             $inactive = new Participants();
@@ -64,6 +67,7 @@ class ParticipantsController
 
     public function activeQuarters()
     {
+        utilities::isAdmin();
         if (isset($_GET['id'])) {
             $id = $_GET['id'];
             $active = new Participants();
@@ -79,6 +83,7 @@ class ParticipantsController
 
     public function inactiveQuarters()
     {
+        utilities::isAdmin();
         if (isset($_GET['id'])) {
             $id = $_GET['id'];
             $inactive = new Participants();
@@ -94,6 +99,7 @@ class ParticipantsController
 
     public function activeSemifinal()
     {
+        utilities::isAdmin();
         if (isset($_GET['id'])) {
             $id = $_GET['id'];
             $inactive = new Participants();
@@ -109,6 +115,7 @@ class ParticipantsController
 
     public function inactiveSemifinal()
     {
+        utilities::isAdmin();
         if (isset($_GET['id'])) {
             $id = $_GET['id'];
             $inactive = new Participants();
@@ -124,6 +131,7 @@ class ParticipantsController
 
     public function activeFinal()
     {
+        utilities::isAdmin();
         if (isset($_GET['id'])) {
             $id = $_GET['id'];
             $inactive = new Participants();
@@ -139,7 +147,7 @@ class ParticipantsController
 
     public function inactiveFinal()
     {
-
+        utilities::isAdmin();
         if (isset($_GET['id'])) {
             $id = $_GET['id'];
             $inactive = new Participants();
@@ -155,6 +163,7 @@ class ParticipantsController
 
     public function seeParticipant()
     {
+        utilities::isAdmin();
         if (isset($_GET['id'])) {
             $id = $_GET['id'];
             $Participant = new Participants();

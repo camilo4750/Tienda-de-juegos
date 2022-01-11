@@ -24,7 +24,7 @@
                             <?php $stats = utilities::statsCart(); ?>
                             <caption class="fs-4 ms-5 mt-2 fw-bolder text-dark">
                                 UNIDADES: <?= $stats['countProducts'] ?> <br>
-                                VALOR TOTAL: $<?= $stats['priceTotal'] ?>
+                                VALOR TOTAL: $<?= number_format($stats['priceTotal']) ?>
                             </caption>
                             <thead>
                                 <tr>
@@ -44,13 +44,23 @@
                                     foreach ($cart as $indice => $element) :
                                         $product = $element['product'];
                                     ?>
-                                        <tr class="text-description">
+                                        <tr class="text-description align-middle">
                                             <th scope="row"><?= $indice ?></th>
                                             <td><img src="<?= baseUrl ?>Uploads/products/<?= $product->image ?>" height="100" width="80" alt=""></td>
-                                            <td><a href="<?= baseUrl ?>Products/seeProduct&id=<?= $product->idproduct ?>" class=""><?= $product->name ?></a></td>
-                                            <td><?= $element['units'] ?></td>
-                                            <td><?= $product->price * $element['units'] ?></td>
-                                            <td>@mdo</td>
+                                            <td><a href="<?= baseUrl ?>Products/seeProduct&id=<?= $product->idproduct ?>" class="mt-2"><?= $product->name ?></a></td>
+                                            <td>
+                                                <b class="ms-3"> <?= $element['units'] ?></b>
+                                                <div>
+                                                    <a href="<?= baseUrl ?>Cart/plus&id=<?= $indice ?>" class="btn btn-success p-1"><i class="bi bi-plus"></i></a>
+
+                                                    <a href="<?= baseUrl ?>Cart/minus&id=<?= $indice ?>" class="btn btn-primary p-1"><i class="bi bi-dash-lg"></i></a>
+                                                </div>
+
+                                            </td>
+                                            <td><b><?= number_format($product->price * $element['units']) ?></b></td>
+                                            <td>
+                                                <a href="<?= baseUrl ?>Cart/deleteOneProduct&id=<?= $indice ?>" class="btn btn-danger rounded-pill">Quitar Producto</a>
+                                            </td>
                                         </tr>
                                     <?php endforeach; ?>
                                 <?php endif; ?>
@@ -64,7 +74,7 @@
                     <?php else : ?>
                         <div class="d-grid gap-2 mx-5 mb-4">
                             <a href="<?= baseUrl ?>Cart/PerformBuy" class="btn btn-b">REALIZAR COMPRA</a>
-                            <a href="<?= baseUrl ?>Cart/deleteAllCart" class="btn btn-a">BORRAR PRODUCTOS DEL CARRITO</a>
+                            <a href="<?= baseUrl ?>Cart/deleteAllCart" class="btn btn-a">VACIAR CARRO DE COMPRAS</a>
                         </div>
                     <?php endif; ?>
                 </div>

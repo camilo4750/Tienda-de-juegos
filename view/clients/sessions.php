@@ -29,12 +29,12 @@
 
                         <div class="col-md-6 p-0">
                             <div class="card border-color-blue">
-                                <img src="<?= baseUrl ?>assets/img/gaming.jpg" class="img-fluid" alt="">
+                                <img src="<?= baseUrl ?>assets/img/gaming.jpg" class="img-fluid rounded" style="height: 340px;">
                             </div>
                         </div>
                         <div class="col-md-6 p-0">
                             <div class="card p-4 border-0 text-center border-color-blue">
-                                <h3 class="text-title">Iniciar Session Cliente</h3>
+                                <h3 class="text-title">INICIAR SESSION</h3>
                                 <form action="<?= baseUrl ?>Clients/login" method="POST">
                                     <div class="form-floating mb-3">
                                         <input type="email" class="form-control" id="floatingInput" required name="email" placeholder="Email">
@@ -51,24 +51,25 @@
                                     <div class="d-grid gap-2">
                                         <button class="btn btn-a mt-2" type="button">Recuperar contraseña</button>
                                     </div>
-                                    <div class="d-grid gap-2">
-                                        <a href="<?= baseUrl ?>Users/session" class="btn btn-c mt-2" type="button">ADMIN</a>
-                                    </div>
                                 </form>
                             </div>
-
                         </div>
-
                     </div>
                 </div>
             </div>
 
             <div class="card p-3">
-                <div class="header text-title text-center mb-3">Deseas hacer parte de nuesta comunidad, no esperes mas y registrate</div>
+                <div class="header text-title text-center mb-3 lh-1">Deseas hacer parte de nuesta comunidad, no esperes mas y registrate</div>
                 <!-- Button trigger modal -->
-                <button type="button" class="btn btn-b" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                    Registrate Aqui
-                </button>
+                <?php if (isset($admin) && $admin->total_admin == 0) : ?>
+                    <button type="button" class="btn btn-b" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                        Admin
+                    </button>
+                <?php else : ?>
+                    <button type="button" class="btn btn-b" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                        Registrate Aqui
+                    </button>
+                <?php endif; ?>
                 <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                     <div class="modal-dialog">
                         <div class="modal-content">
@@ -78,6 +79,11 @@
                             </div>
                             <div class="modal-body">
                                 <form action="<?= baseUrl ?>Clients/save" method="POST" enctype="multipart/form-data">
+                                    <?php if (isset($admin) && $admin->total_admin == 0) : ?>
+                                        <input type="hidden" name="rol" value="admin">
+                                    <?php else : ?>
+                                        <input type="hidden" name="rol" value="user">
+                                    <?php endif; ?>
                                     <div class="form-floating mb-3">
                                         <input type="text" class="form-control" placeholder="Nombre" required name="name">
                                         <label for="floatingInput">Nombres</label>

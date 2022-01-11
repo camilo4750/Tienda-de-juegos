@@ -101,11 +101,11 @@ class CartController
 
     public function viewOrder()
     {
+        
         if (isset($_GET['id'])) {
             $id = $_GET['id'];
             $products = new Orders();
             $allProducts = $products->productsOfOneOrder($id);
-
 
             $order = new Orders();
             $order->setIdorder($id);
@@ -113,5 +113,32 @@ class CartController
 
             require_once('view/Card/detailsOrder.php');
         }
+    }
+
+    public function deleteOneProduct()
+    {
+        if (isset($_GET['id'])) {
+            $id = $_GET['id'];
+            unset($_SESSION['cart'][$id]);
+        }
+        header("Location:" .  baseUrl . "Cart/listProducts");
+    }
+
+    public function plus()
+    {
+        if (isset($_GET['id'])) {
+            $id = $_GET['id'];
+            $_SESSION['cart'][$id]['units']++;
+        }
+        header("Location:" .  baseUrl . "Cart/listProducts");
+    }
+
+    public function minus()
+    {
+        if (isset($_GET['id'])) {
+            $id = $_GET['id'];
+            $_SESSION['cart'][$id]['units']--;
+        }
+        header("Location:" .  baseUrl . "Cart/listProducts");
     }
 }

@@ -1,8 +1,8 @@
 <?php
 class errorController
 {
-    public function index()
+    public function peticion()
     {
-        require_once "view/Error404.php";
+        require_once("view/Error404.php");
     }
 }

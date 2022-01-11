@@ -26,35 +26,31 @@
                 </thead>
                 <?php while ($CLIENT = $CLIENTS->fetch_object()) : ?>
                     <tr>
-                        <th><?= $CLIENT->idclient ?></th>
-                        <th><?= $CLIENT->name ?></th>
-                        <th><?= $CLIENT->surname ?></th>
-                        <th><?= $CLIENT->email ?></th>
-                        <th><?= $CLIENT->image ?></th>
-                        <th><?= $CLIENT->description ?></th>
-                        <th><?= $CLIENT->create_at ?></th>
-                        <th><?= $CLIENT->status ?></th>
-                        <th><?= $CLIENT->client_fixed ?></th>
+                        <td><?= $CLIENT->idclient ?></td>
+                        <td><?= $CLIENT->name ?></td>
+                        <td><?= $CLIENT->surname ?></td>
+                        <td><?= $CLIENT->email ?></td>
+                        <td><?= $CLIENT->image ?></td>
+                        <td><?= $CLIENT->description ?></td>
+                        <td><?= $CLIENT->create_at ?></td>
+                        <td><?= $CLIENT->status ?></td>
+                        <td><?= $CLIENT->client_fixed ?></td>
                     </tr>
                 <?php endwhile; ?>
                 <tbody>
+                <tfoot>
                     <tr>
-                        <td class="bg-gradient-secondary text-white">ID</td>
-                        <td class="bg-gradient-secondary text-white">Nombre</td>
-                        <td class="bg-gradient-secondary text-white">Apellido</td>
-                        <td class="bg-gradient-secondary text-white">Email</td>
-                        <td class="bg-gradient-secondary text-white">Image</td>
-                        <td class="bg-gradient-secondary text-white">Descripcion</td>
-                        <td class="bg-gradient-secondary text-white">Creado</td>
-                        <td class="bg-gradient-secondary text-white">Estado</td>
-                        <td class="bg-gradient-secondary text-white">Premium</td>
-
-
-
-
-
+                        <th class="bg-gradient-secondary text-white">ID</th>
+                        <th class="bg-gradient-secondary text-white">Nombre</th>
+                        <th class="bg-gradient-secondary text-white">Apellido</th>
+                        <th class="bg-gradient-secondary text-white">Email</th>
+                        <th class="bg-gradient-secondary text-white">Image</th>
+                        <th class="bg-gradient-secondary text-white">Descripcion</th>
+                        <th class="bg-gradient-secondary text-white">Creado</td>
+                        <th class="bg-gradient-secondary text-white">Estado</th>
+                        <th class="bg-gradient-secondary text-white">Premium</th>
                     </tr>
-                    </tfoot>
+                </tfoot>
             </table>
         </div>
     </div>

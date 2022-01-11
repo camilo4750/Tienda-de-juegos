@@ -120,7 +120,6 @@ class Orders
         return $this;
     }
 
-
     public function getClients_id()
     {
         return $this->Clients_id;
@@ -131,6 +130,7 @@ class Orders
         $this->Clients_id = $Clients_id;
         return $this;
     }
+
 
     public function saveOrder()
     {
@@ -149,10 +149,14 @@ class Orders
         $lastId = $this->db->query($SQL);
         $order_id = $lastId->fetch_object()->order;
 
+
         foreach ($_SESSION['cart'] as $indice => $element) {
             $product = $element['product'];
+            $stocks = ($product->stock - $element['units']);
             $insert = "INSERT INTO line_orders VALUES(NULL, CURDATE(), CURTIME(), '{$order_id}', '{$product->idproduct}', '{$element['units']}');";
             $save = $this->db->query($insert);
+            $updateStock = "UPDATE products set stock = '{$stocks}' WHERE idproduct = '{$product->idproduct}'";
+            $update = $this->db->query($updateStock);
         }
         $result = false;
         if ($save) {
@@ -184,4 +188,77 @@ class Orders
         $orders = $this->db->query("SELECT idorder, coste, create_ad, status FROM orders WHERE Clients_id = '{$this->getClients_id()}'");
         return $orders;
     }
+
+    public function ordersPending()
+    {
+        $orders = $this->db->query("SELECT idorder, coste, create_ad, time, city FROM orders WHERE status = 'Pendiente' ORDER BY idorder DESC LIMIT 7");
+        return $orders;
+    }
+
+    public function countOrdersPending()
+    {
+        $pending = $this->db->query("SELECT COUNT(*) AS 'totalPending' FROM orders WHERE status = 'Pendiente' ORDER BY idorder DESC");
+        return $pending->fetch_object();
+    }
+
+    public function countOrdersPreparation()
+    {
+        $Preparation = $this->db->query("SELECT COUNT(*) AS 'totalPreparation' FROM orders WHERE status = 'Preparacion' ORDER BY idorder DESC");
+        return $Preparation->fetch_object();
+    }
+
+
+    public function countOrdersSend()
+    {
+        $Send = $this->db->query("SELECT COUNT(*) AS 'totalSend' FROM orders WHERE status = 'Enviado' ORDER BY idorder DESC");
+        return $Send->fetch_object();
+    }
+
+    public function countOrdersDelivered()
+    {
+        $Delivered = $this->db->query("SELECT COUNT(*) AS 'totalDelivered' FROM orders WHERE status = 'Entregado' ORDER BY idorder DESC");
+        return $Delivered->fetch_object();
+    }
+
+    public function countOrders()
+    {
+        $count = $this->db->query("SELECT COUNT(*) AS 'total' FROM orders WHERE Clients_id = '{$this->getClients_id()}'");
+        return $count->fetch_object();
+    }
+
+    public function allOrders()
+    {
+        $orders = $this->db->query("SELECT idorder, coste, create_ad, time, status FROM orders ORDER BY idorder DESC");
+        return $orders;
+    }
+
+    public function updateOrder()
+    {
+        $SQL = "UPDATE orders SET status = '{$this->getStatus()}' WHERE idorder = '{$this->getIdorder()}'";
+        $updateOrder = $this->db->query($SQL);
+        $update = false;
+        if ($updateOrder) {
+            $update = true;
+        }
+        return $update;
+    }
+
+    public function saveGuide()
+    {
+        $SQL = "UPDATE orders SET guide_number = '{$this->getGuide_number()}' WHERE idorder = '{$this->getIdorder()}'";
+        $updateOrder = $this->db->query($SQL);
+        $update = false;
+        if ($updateOrder) {
+            $update = true;
+        }
+        return $update;
+    }
+
+    public function ValueOrders()
+    {
+        $value = $this->db->query("SELECT SUM(coste) AS 'totalOrders' FROM orders;");
+        return $value->fetch_object();
+    }
+
+
 }

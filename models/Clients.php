@@ -172,7 +172,7 @@ class Clients
 
     public function allClients()
     {
-        $CLIENTS = $this->db->query("SELECT * FROM clients");
+        $CLIENTS = $this->db->query("SELECT * FROM clients WHERE rol = 'user'");
         return $CLIENTS;
     }
 
@@ -185,6 +185,12 @@ class Clients
     public function countClients()
     {
         $Clients = $this->db->query("SELECT COUNT(*) AS 'total' FROM clients");
+        return $Clients->fetch_object();
+    }
+
+    public function countAdmin()
+    {
+        $Clients = $this->db->query("SELECT COUNT(rol) AS 'total_admin' FROM clients WHERE rol = 'admin'");
         return $Clients->fetch_object();
     }
 

@@ -22,29 +22,79 @@
             <form class="user" action="<?= $UrlAction ?>" method="POST" enctype="multipart/form-data">
                 <div class="form-group row">
                     <div class="col-sm-6 mb-3 mb-sm-0">
-                        <input type="text" class="form-control form-control-user" placeholder="Nombre del producto" name="name" required value="<?= isset($editProduct) && is_object($editProduct) ? $editProduct->name : "" ?>">
+                        <label class="form-label">Nombre del producto:</label>
+                        <input type="text" class="form-control" name="name" required value="<?= isset($editProduct) && is_object($editProduct) ? $editProduct->name : "" ?>">
                     </div>
                     <div class="col-sm-6">
-                        <input type="text" class="form-control form-control-user" placeholder="Descripcion" name="description" required value="<?= isset($editProduct) && is_object($editProduct) ? $editProduct->description : "" ?>">
+                        <label class="form-label">Descripcion:</label>
+                        <input type="text" class="form-control" name="description" required value="<?= isset($editProduct) && is_object($editProduct) ? $editProduct->description : "" ?>">
                     </div>
                 </div>
                 <div class="form-group row">
                     <div class="col-sm-6 mb-3 mb-sm-0">
-                        <input type="number" class="form-control form-control-user" placeholder="Precio del producto" name="price" required value="<?= isset($editProduct) && is_object($editProduct) ? $editProduct->price : "" ?>">
+                        <label class="form-label">Nombre del Fabricante:</label>
+                        <input type="text" class="form-control" name="creator" required value="<?= isset($editProduct) && is_object($editProduct) ? $editProduct->creator : "" ?>">
                     </div>
                     <div class="col-sm-6">
-                        <input type="number" class="form-control form-control-user" placeholder="Cantidad de productos disponibles" name="stock" required value="<?= isset($editProduct) && is_object($editProduct) ? $editProduct->stock : "" ?>">
+                        <label class="form-label">Formato:</label>
+                        <input type="text" class="form-control" name="format" required value="<?= isset($editProduct) && is_object($editProduct) ? $editProduct->format : "" ?>">
                     </div>
                 </div>
                 <div class="form-group row">
                     <div class="col-sm-6 mb-3 mb-sm-0">
-                        <input type="number" class="form-control form-control-user" placeholder="Descuento aplicado" name="discount" required value="<?= isset($editProduct) && is_object($editProduct) ? $editProduct->discount : "" ?>">
+                        <label class="form-label">Lenguaje de voces:</label>
+                        <input type="text" class="form-control" name="voices" required value="<?= isset($editProduct) && is_object($editProduct) ? $editProduct->voices : "" ?>">
                     </div>
                     <div class="col-sm-6">
-                        <input type="date" class="form-control form-control-user" placeholder="Cantidad de productos disponibles" name="create_at" required value="<?= isset($editProduct) && is_object($editProduct) ? $editProduct->create_at : "" ?>">
+                        <label class="form-label">Idioma general del juego:</label>
+                        <input type="text" class="form-control" name="language" required value="<?= isset($editProduct) && is_object($editProduct) ? $editProduct->language : "" ?>">
                     </div>
                 </div>
                 <div class="form-group row">
+                    <div class="col-sm-6 mb-3 mb-sm-0">
+                        <label class="form-label">Requeriminetos:</label>
+                        <input type="textarea" class="form-control" name="requirements" required value="<?= isset($editProduct) && is_object($editProduct) ? $editProduct->requirements : "" ?>">
+                    </div>
+
+                    <div class="col-sm-6">
+                        <label for="">Es online</label>
+                        <select class="form-control " aria-label="Default select example" name="online">
+                            <option value="Si" <?= isset($editProduct) && is_object($editProduct) && $editProduct->online == "Si" ? 'selected' : "" ?>>Si</option>
+                            <option value="No" <?= isset($editProduct) && is_object($editProduct) && $editProduct->online == "No"  ? 'selected' : "" ?>>No</option>
+                        </select>
+                    </div>
+
+                </div>
+                <div class="form-group row">
+                    <div class="col-sm-6 mb-3 mb-sm-0">
+                        <label class="form-label">Precio de compra:</label>
+                        <input type="number" class="form-control " placeholder="" name="price_init" required value="<?= isset($editProduct) && is_object($editProduct) ? $editProduct->price_init : "" ?>">
+                    </div>
+                    <div class="col-sm-6">
+                        <label class="form-label">Precio de vemta:</label>
+                        <input type="number" class="form-control " name="price" required value="<?= isset($editProduct) && is_object($editProduct) ? $editProduct->price : "" ?>">
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <div class="col-sm-6 mb-3 mb-sm-0">
+                        <label class="form-label">Cantidad de productos disponibles:</label>
+                        <input type="number" class="form-control" name="stock" required value="<?= isset($editProduct) && is_object($editProduct) ? $editProduct->stock : "" ?>">
+
+
+                    </div>
+                    <div class="col-sm-6">
+                        <label class="form-label">Descuento aplicado:</label>
+                        <input type="number" class="form-control" name="discount" required value="<?= isset($editProduct) && is_object($editProduct) ? $editProduct->discount : "" ?>">
+
+
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <div class="col-sm-6">
+                        <label class="form-label">Fecha de creacion:</label>
+                        <input type="date" class="form-control" name="create_at" required value="<?= isset($editProduct) && is_object($editProduct) ? $editProduct->create_at : "" ?>">
+
+                    </div>
                     <div class="col-sm-6">
                         <label for="">Seleccionar la categoria</label>
                         <select class="form-control " aria-label="Default select example" name="Category_id">
@@ -54,30 +104,29 @@
                             <?php endwhile; ?>
                         </select>
                     </div>
-                    <div class="col-sm-6">
-                        <label for="">Mostrar Producto</label>
-                        <select class="form-control " aria-label="Default select example" name="status">
-                            <option value="Activo">Activo</option>
-                            <option value="Inactivo">Inactivo</option>
-                        </select>
-                    </div>
 
                 </div>
                 <div class="form-group row">
                     <div class="col-sm-6">
+
+                        <label for="">Mostrar Producto</label>
+                        <select class="form-control " aria-label="Default select example" name="status">
+                            <option value="Activo" <?= isset($editProduct) && is_object($editProduct) && $editProduct->status == "Activo" ? 'selected' : "" ?>>Activo</option>
+                            <option value="Inactivo" <?= isset($editProduct) && is_object($editProduct) && $editProduct->status == "Inactivo" ? 'selected' : "" ?>>Inactivo</option>
+                        </select>
+
+                    </div>
+                    <div class="col-sm-6">
                         <?php if (isset($editProduct) && is_object($editProduct)) : ?>
                             <label for="">Cambiar imagen:</label>
                             <input type="file" class="form-control" name="image">
+                            <img src="<?= baseUrl ?>Uploads/products/<?= $editProduct->image ?>" class="float-right mt-1" height="90" width="80" alt="">
                         <?php else : ?>
                             <label for="">Seleccionar imagen del producto</label>
                             <input type="file" class="form-control" name="image" required>
                         <?php endif; ?>
-                    </div>
-                    <div class="col-sm-6">
                         <?php if (isset($editProduct) && is_object($editProduct)) : ?>
-                            <img src="<?= baseUrl ?>Uploads/products/<?= $editProduct->image ?>" height="90" width="80" alt="">
                         <?php endif; ?>
-
                     </div>
                 </div>
                 <?php if (isset($editProduct) && is_object($editProduct)) : ?>

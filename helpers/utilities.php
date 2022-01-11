@@ -156,4 +156,29 @@ class utilities
         }
         return $stats;
     }
+
+    public static function ordersPending()
+    {
+        require_once('models/Orders.php');
+        $order = new Orders();
+        $Pending = $order->ordersPending();
+        return $Pending;
+    }
+
+    public static function countOrdersPending()
+    {
+        require_once('models/Orders.php');
+        $order = new Orders();
+        $count = $order->countOrdersPending();
+        return $count;
+    }
+
+    public static function isAdmin()
+    {
+        if (!isset($_SESSION['Admin'])) {
+            header("Location:" . baseUrl);
+        } else {
+            return true;
+        }
+    }
 }

@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="<?= baseUrl ?>node_modules/bootstrap/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="<?= baseUrl ?>node_modules/bootstrap-icons/font/bootstrap-icons.css">
     <link rel="stylesheet" href="<?= baseUrl ?>assets/css/style.css?v=<?php echo time(); ?>">
-    <title>Document</title>
+    <title>Shopping Game</title>
 </head>
 
 <body>
@@ -19,12 +19,16 @@
         <div class="container-fluid">
             <a class="navbar-brand text-title-menu" href="<?= baseUrl ?>Products/index">Quick Shopping Game</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarScroll" aria-controls="navbarScroll" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="bi bi-card-list fs-1 "></span>
+                <span class="bi bi-card-list "></span>
             </button>
             <div class="collapse navbar-collapse float-left" id="navbarScroll">
                 <ul class="navbar-nav ms-auto my-2 my-lg-0 navbar-nav-scroll" style="--bs-scroll-height: 150px;">
                     <li class="nav-item">
-                        <a class="nav-link" href="<?= baseUrl ?>Clients/sessions">Iniciar Session</a>
+                        <?php if (isset($_SESSION['User']) && $_SESSION['User']->idclient == $_SESSION['User']->idclient) : ?>
+                            <a class="nav-link" onclick="alert('Debes cerrar tu session primero..!');">Iniciar Session</a>
+                        <?php else : ?>
+                            <a class="nav-link" href="<?= baseUrl ?>Clients/sessions">Iniciar Session</a>
+                        <?php endif; ?>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link active" aria-current="page" href="<?= baseUrl ?>Products/index">Home</a>

@@ -3,7 +3,14 @@ class Products
 {
     private $idproduct;
     private $name;
+    private $creator;
     private $description;
+    private $format;
+    private $language;
+    private $voices;
+    private $online;
+    private $requirements;
+    private $price_init;
     private $price;
     private $stock;
     private $discount;
@@ -28,6 +35,16 @@ class Products
         return $this;
     }
 
+    public function getCreator()
+    {
+        return $this->creator;
+    }
+    public function setCreator($creator)
+    {
+        $this->creator = $creator;
+        return $this;
+    }
+
     public function getName()
     {
         return $this->name;
@@ -45,6 +62,66 @@ class Products
     public function setDescription($description)
     {
         $this->description = $description;
+        return $this;
+    }
+
+    public function getFormat()
+    {
+        return $this->format;
+    }
+    public function setFormat($format)
+    {
+        $this->format = $format;
+        return $this;
+    }
+
+    public function getLanguage()
+    {
+        return $this->language;
+    }
+    public function setLanguage($language)
+    {
+        $this->language = $language;
+        return $this;
+    }
+
+    public function getVoices()
+    {
+        return $this->voices;
+    }
+    public function setLVoices($voices)
+    {
+        $this->voices = $voices;
+        return $this;
+    }
+
+    public function getOnline()
+    {
+        return $this->online;
+    }
+    public function setLOnline($online)
+    {
+        $this->online = $online;
+        return $this;
+    }
+
+    public function getRequirements()
+    {
+        return $this->requirements;
+    }
+    public function setLRequirements($requirements)
+    {
+        $this->requirements = $requirements;
+        return $this;
+    }
+
+    public function getPrice_init()
+    {
+        return $this->price_init;
+    }
+    public function setLPrice_init($price_init)
+    {
+        $this->price_init = $price_init;
         return $this;
     }
 
@@ -120,7 +197,8 @@ class Products
 
     public function save()
     {
-        $SQL = "INSERT INTO products VALUES(NULL, '{$this->getName()}', '{$this->getDescription()}', '{$this->getPrice()}', '{$this->getStock()}', '{$this->getDiscount()}', '{$this->getImage()}', '{$this->getCreate_at()}', '{$this->getStatus()}', '{$this->getCategory_id()}');";
+        $SQL = "INSERT INTO products VALUES(NULL, '{$this->getName()}', '{$this->getCreator()}', '{$this->getDescription()}', '{$this->getFormat()}', '{$this->getLanguage()}', '{$this->getVoices()}', '{$this->getOnline()}', '{$this->getRequirements()}', '{$this->getPrice_init()}', '{$this->getPrice()}', '{$this->getStock()}', '{$this->getDiscount()}', '{$this->getImage()}', '{$this->getCreate_at()}', '{$this->getStatus()}', '{$this->getCategory_id()}');";
+
         $PRODCUTS = $this->db->query($SQL);
         $Save = false;
         if ($PRODCUTS) {
@@ -131,20 +209,31 @@ class Products
 
     public function all()
     {
-        $PRODUCTS = $this->db->query("SELECT P.*, LEFT(P.description, 50) AS 'descriptionCor', C.name AS 'category' FROM products P INNER JOIN category C ON P.Category_id  = C.idcategory ORDER BY idproduct");
+        $PRODUCTS = $this->db->query("SELECT P.*, LEFT(P.description, 75) AS 'descriptionCor', C.name AS 'category' FROM products P INNER JOIN category C ON P.Category_id  = C.idcategory   ORDER BY rand() LIMIT 8");
+        return $PRODUCTS;
+    }
+
+    public function allproducts()
+    {
+        $PRODUCTS = $this->db->query("SELECT P.*, LEFT(P.description, 75) AS 'descriptionCor', C.name AS 'category' FROM products P INNER JOIN category C ON P.Category_id  = C.idcategory ORDER BY rand()");
+        return $PRODUCTS;
+    }
+
+    public function seeAll()
+    {
+        $PRODUCTS = $this->db->query("SELECT P.*, LEFT(P.description, 50) AS 'descriptionCor', C.name AS 'category' FROM products P INNER JOIN category C ON P.Category_id  = C.idcategory ORDER BY rand()");
         return $PRODUCTS;
     }
 
     public function oneProduct()
     {
         $PRODUCTS = $this->db->query("SELECT P.*, LEFT(P.description, 80) AS 'descriptionCor', C.name AS 'category', C.idcategory FROM products P INNER JOIN category C ON P.Category_id  = C.idcategory WHERE idproduct = '{$this->getIdproduct()}'");
-
         return $PRODUCTS->fetch_object();
     }
 
     public function editProduct()
     {
-        $SQL = "UPDATE products SET name = '{$this->getName()}', description = '{$this->description}', price = '{$this->getPrice()}', stock = '{$this->getStock()}', discount = '{$this->getDiscount()}'  ";
+        $SQL = "UPDATE products SET name = '{$this->getName()}', creator = '{$this->getCreator()}', description = '{$this->getDescription()}', format = '{$this->getFormat()}', language = '{$this->getLanguage()}', voices = '{$this->getVoices()}', online = '{$this->getOnline()}', requirements = '{$this->getRequirements()}', price_init = '{$this->getPrice_init()}', price = '{$this->getPrice()}', stock = '{$this->getStock()}', discount = '{$this->getDiscount()}'  ";
         if ($this->getImage() != null) {
             $SQL .= ", image = '{$this->getImage()}'";
         }
@@ -174,9 +263,34 @@ class Products
         return  $Products->fetch_object();
     }
 
+
+    public function totalPriceProducts()
+    {
+        $totalInit = $this->db->query("SELECT SUM(price_init * stock) AS 'total_product' FROM products");
+        return  $totalInit->fetch_object();
+    }
+
+    public function totalPriceProductsClient()
+    {
+        $totalProduct = $this->db->query("SELECT SUM(price * stock) AS 'total_product_client' FROM products");
+        return  $totalProduct->fetch_object();
+    }
+
     public function allProductsForCategory()
     {
         $category = $this->db->query("SELECT P.*, LEFT(P.description, 80) AS 'descriptionCor', C.name AS 'category' FROM products P INNER JOIN category C ON P.Category_id  = C.idcategory WHERE Category_id = '{$this->getCategory_id()}'");
         return $category;
+    }
+
+    public function emptyStock()
+    {
+        $stocks = $this->db->query("SELECT P.*, LEFT(P.description, 75) AS 'descriptionCor', C.name AS 'category' FROM products P INNER JOIN category C ON P.Category_id  = C.idcategory WHERE stock = '0'");
+        return  $stocks;
+    }
+
+    public function totalStock()
+    {
+        $totalStock = $this->db->query("SELECT COUNT(*) AS 'totalStock' FROM products WHERE stock = '0'");
+        return $totalStock->fetch_object();
     }
 }

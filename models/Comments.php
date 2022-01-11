@@ -65,7 +65,7 @@ class Comments
 
     public function save()
     {
-        $SQL = "INSERT INTO comments VALUES(NULL, '{$this->getComment()}', CURDATE(), '{$this->getProducts_id()}', '{$this->getClients_id()}');";
+        $SQL = "INSERT INTO comments VALUES(NULL, '{$this->getComment()}', CURDATE(), CURTIME(), '{$this->getProducts_id()}', '{$this->getClients_id()}');";
         $Comment = $this->db->query($SQL);
         $save = false;
         if ($Comment) {
@@ -89,6 +89,7 @@ class Comments
     public function editComment()
     {
         $SQL = "UPDATE comments SET comment = '{$this->getComment()}' WHERE idcomment = '{$this->getIdcomment()}'";
+
         $Comment = $this->db->query($SQL);
         $Edit = false;
         if ($Comment) {
@@ -107,9 +108,16 @@ class Comments
         }
         return $Delete;
     }
+
     public function totalCount()
     {
         $Comments = $this->db->query("SELECT COUNT(*) AS 'total' FROM comments");
         return $Comments->fetch_object();
+    }
+
+    public function allcommnets()
+    {
+        $view = $this->db->query("SELECT C.*, P.name AS 'namePerson', A.name AS 'nameProduct' FROM comments C INNER JOIN clients P ON C.Clients_id = P.idclient INNER JOIN products A ON C.Products_id = A.idproduct ORDER BY C.idcomment DESC;");
+        return $view;
     }
 }
